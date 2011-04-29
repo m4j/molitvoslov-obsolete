@@ -27,7 +27,7 @@ from urlparse import urlparse
 # enable utf-8 output
 sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout)
 
-sections = [u"", u"chapter", u"section", u"subsection", u"subsubsection",
+sections = [u"", u"mychapter", u"section", u"subsection", u"subsubsection",
     u"paragraph"]
 
 def fetch(level, baseUrl, path):
@@ -70,12 +70,13 @@ def outputElement(root, allow_br=True):
     for el in root:
         if isinstance(el, NavigableString):
             #~ if el != "&nbsp;":
-            s = el.replace('\n', ' ')
-            s = s.replace('<', '$<$')
+            #~ s = el.replace('\n', ' ')
+            s = el.replace('<', '$<$')
             s = s.replace('&lt;', '$<$')
             s = s.replace('>', '$>$')
             s = s.replace('&gt;', '$>$')
             s = s.replace('&#8212;', '"---')
+            s = s.replace('&quot;', '"')
             myprint(s)
         elif el.name == "br" and allow_br:
             myprint("\n\n")
@@ -86,15 +87,15 @@ def outputElement(root, allow_br=True):
             else:
                 outputElement(el, allow_br)
         elif el.name == "i" or el.name == "em":
-            if el.find("br"):
-                myprint("\n\n");
-            myprint("{\\itshape ")
-            outputElement(el, False)
-            myprint("}")
-        elif el.name == "b":
-            myprint("{\\bfseries ")
+            #~ if el.find("br"):
+                #~ myprint("\n\n");
+            myprint("\\itshape ")
             outputElement(el, allow_br)
-            myprint("}")
+            myprint("\\normalfont{}")
+        elif el.name == "b":
+            myprint("\\bfseries ")
+            outputElement(el, allow_br)
+            myprint("\\normalfont{}")
     
 def getMyTd(soup):
     return soup.find("div", id="center").table.tr.td.findNextSibling('td')
