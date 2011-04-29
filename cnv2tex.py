@@ -20,27 +20,31 @@
 #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #       MA 02110-1301, USA.
 
-import sys, urllib2
-from BeautifulSoup import BeautifulSoup, NavigableString
+import sys, codecs, locale, urllib2
+from BeautifulSoup import BeautifulSoup, NavigableString, Tag
 from urlparse import urlparse
 
-sections = ["", "chapter", "section", "subsection", "subsubsection",
-    "paragraph"]
+# enable utf-8 output
+sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout)
+
+sections = [u"", u"chapter", u"section", u"subsection", u"subsubsection",
+    u"paragraph"]
 
 def fetch(level, baseUrl, path):
     soup = getSoup(baseUrl, path)
     my_td = getMyTd(soup)
     if level > 0:
         heading = getHeading(my_td)
-        print "\n\n\\" + sections[level] + "{" + heading + "}"
-    print "\n%" + baseUrl + path
+        myprint("\n\n\\" + sections[level] + "{")
+        myprint(heading)
+        myprint("}")
+    myprint("\n%" + baseUrl + path)
     node = getNode(my_td)
-    for el in getContents(node):
-        outputElement(el)
+    outputElement(getContents(node))
     subtitles = getSubtitles(node)
     for li in subtitles:
         fetch(level + 1, baseUrl, li.a["href"])
-    #print soup.prettify()
+    #myprint(soup.prettify()
     return 0
 
 def getHeading(td):
@@ -58,10 +62,29 @@ def getNode(td):
     
 def getContents(node):
     return node.div.contents
-    
-def outputElement(el):
-    if isinstance(el, NavigableString):
-        print "\n" + el
+
+def myprint(str):
+    sys.stdout.write(str)
+
+def outputElement(root, allow_br=True):
+    for el in root:
+        if isinstance(el, NavigableString):
+            if el != "&nbsp;":
+                myprint(el)
+        elif el.name == "br" and allow_br:
+            myprint("\n")
+        elif el.name == "p":
+            outputElement(el, allow_br)
+        elif el.name == "i" or el.name == "em":
+            if el.find("br"):
+                myprint("\n");
+            myprint("{\\itshape ")
+            outputElement(el, False)
+            myprint("}")
+        elif el.name == "b":
+            myprint("{\\bfseries ")
+            outputElement(el, allow_br)
+            myprint("}")
     
 def getMyTd(soup):
     return soup.find("div", id="center").table.tr.td.findNextSibling('td')
