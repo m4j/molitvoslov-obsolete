@@ -69,15 +69,25 @@ def myprint(str):
 def outputElement(root, allow_br=True):
     for el in root:
         if isinstance(el, NavigableString):
-            if el != "&nbsp;":
-                myprint(el)
+            #~ if el != "&nbsp;":
+            s = el.replace('\n', ' ')
+            s = s.replace('<', '$<$')
+            s = s.replace('&lt;', '$<$')
+            s = s.replace('>', '$>$')
+            s = s.replace('&gt;', '$>$')
+            s = s.replace('&#8212;', '"---')
+            myprint(s)
         elif el.name == "br" and allow_br:
-            myprint("\n")
+            myprint("\n\n")
         elif el.name == "p":
-            outputElement(el, allow_br)
+            myprint("\n\n")
+            if el.next == "&nbsp;":
+                myprint("\\medskip")
+            else:
+                outputElement(el, allow_br)
         elif el.name == "i" or el.name == "em":
             if el.find("br"):
-                myprint("\n");
+                myprint("\n\n");
             myprint("{\\itshape ")
             outputElement(el, False)
             myprint("}")
@@ -95,6 +105,6 @@ def getSoup(baseUrl, path = "/"):
 
 
 if __name__ == '__main__':
-    url = urlparse(sys.argv[1])
-    fetch(0, url.scheme + "://" + url.netloc, url.path)
+    url = urlparse(sys.argv[2])
+    fetch(int(sys.argv[1]), url.scheme + "://" + url.netloc, url.path)
 
