@@ -2,11 +2,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 \usepackage{graphicx}
+\graphicspath{{img/}}
+
+\usepackage{wrapfig}
 \usepackage{fancyhdr}
 \usepackage{indentfirst}
 
 %\usepackage{pscyr}
-%\usepackage{PTSerif}
+\usepackage{PTSerif}
+\usepackage{ptsans}
 
 % position chapter and toc headings higher
 \makeatletter
@@ -49,6 +53,16 @@
 \markright{#1}
 }
 
+\newcommand{\myfig}[1]{
+\begin{wrapfigure}{l}{0.44\textwidth}
+\vspace{-15pt}
+%~ \begin{center}
+\includegraphics[width=0.43\textwidth]{#1}
+%~ \end{center}
+\vspace{-10pt}
+\end{wrapfigure}
+}
+
 \usepackage[unicode=true]{hyperref}
 \hypersetup{pdftex, colorlinks=true, linkcolor=black, citecolor=black, 
 filecolor=black, urlcolor=blue, pdftitle=Молитвослов, pdfauthor=, 
@@ -60,19 +74,25 @@ pdfsubject=, pdfkeywords=}
 \maketitle
 \tableofcontents
 
-\input{lit}
-\nopagebreak
-\begin{center}
-\includegraphics[width=0.1\textwidth]{uzor_end_red}
-\end{center}
+%~ \input{lit}
+%~ \nopagebreak
+%~ \begin{center}
+%~ \includegraphics[width=0.1\textwidth]{uzor_end_red}
+%~ \end{center}
+%~ 
+%~ \input{chas}
+%~ \nopagebreak
+%~ \begin{center}
+%~ \includegraphics[width=0.1\textwidth]{uzor_end_red}
+%~ \end{center}
+%~ 
+%~ \input{semeynoy-zhizni}
+%~ \nopagebreak
+%~ \begin{center}
+%~ \includegraphics[width=0.1\textwidth]{uzor_end_red}
+%~ \end{center}
 
-\input{chas}
-\nopagebreak
-\begin{center}
-\includegraphics[width=0.1\textwidth]{uzor_end_red}
-\end{center}
-
-\input{semeynoy-zhizni}
+\input{molitvi}
 \nopagebreak
 \begin{center}
 \includegraphics[width=0.1\textwidth]{uzor_end_red}
