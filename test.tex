@@ -1,16 +1,32 @@
-\documentclass[12pt,oneside, a4paper]{book}
+\documentclass[12pt,oneside]{book}
+\usepackage[a4paper]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 \usepackage{graphicx}
-\graphicspath{{img/}}
+\graphicspath{{img/},{../uzory/}}
 
 \usepackage{wrapfig}
-\usepackage{fancyhdr}
+\usepackage{fancyhdr, fancybox}
 \usepackage{indentfirst}
 
 %\usepackage{pscyr}
 \usepackage{PTSerif}
 \usepackage{ptsans}
+\usepackage{calc}
+\usepackage[texcoord]{eso-pic}
+
+\pagestyle{fancyplain}
+
+%\chead{\fancyplain{}{\includegraphics[width=\textwidth]{uzor_begin_2}}}
+
+%~ \fancypagestyle{plain}{%
+%~ \fancyhf{} % clear all header and footer fields
+%~ \fancyfoot[C]{\bfseries \thepage} % except the center
+%~ \fancyhead[C]{\includegraphics[width=\textwidth]{uzor_begin_2}}
+%~ \renewcommand{\headrulewidth}{0pt}
+%~ \renewcommand{\footrulewidth}{0pt}}
+
+\newcommand{\ornament}{uzor_begin_2}
 
 % position chapter and toc headings higher
 \makeatletter
@@ -27,11 +43,13 @@
   }}
 \def\@makeschapterhead#1{%
   {\parindent \z@ \raggedright
-  \includegraphics[width=\textwidth]{uzor_begin_red}
+    %~ \vspace{-40pt}
+    \includegraphics[width=\textwidth]{\ornament}
     \normalfont
     \interlinepenalty\@M
-    \Huge \bfseries  #1\par\nobreak
-    \vskip 20\p@
+    \vskip 40\p@
+    \Huge \bfseries \centering \color{red}  #1\par\nobreak
+    \vskip 40\p@
   }}
 \makeatother
 
@@ -45,12 +63,32 @@
 \setcounter{secnumdepth}{0}
 \righthyphenmin=2
 
+\newlength{\myhpos}
+\addtolength{\myhpos}{1in}
+\addtolength{\myhpos}{\oddsidemargin}
+
+%~ \newcommand{\ornament2}{
+%~ \includegraphics[width=\textwidth]{uzor_begin_2}
+%~ }
+
+\newlength{\myvpos}
+\setlength{\myvpos}{-1in}
+\addtolength{\myvpos}{-\topmargin}
+%\addtolength{\myvpos}{-\totalheightof{\ornament2}}
+
+
 \newcommand{\mychapter}[1]{
 \cleardoublepage
 \phantomsection
 \addcontentsline{toc}{chapter}{#1}
 \chapter*{#1}
 \markright{#1}
+%\thisfancyput(0pt, 0pt){\includegraphics[width=\textwidth]{uzor_begin_2}}
+  %~ \AddToShipoutPicture*{
+    %~ %\setlength{\unitlength}{1in}
+     %~ \put(\LenToUnit{\myhpos}, \LenToUnit{\myvpos}){%
+       %~ \includegraphics[width=\textwidth]{uzor_begin_2}
+   %~ }}
 }
 
 \newcommand{\myfig}[1]{
@@ -61,6 +99,22 @@
 %~ \end{center}
 \vspace{-10pt}
 \end{wrapfigure}
+}
+
+\newcommand{\myfigure}[1]{
+\begin{center}
+\includegraphics[width=0.43\textwidth]{#1}
+\end{center}
+}
+
+
+\newcommand{\mypart}[1]{\part{#1}}
+
+\newcommand{\mychapterending}{
+\nopagebreak\bigskip\bigskip
+\begin{center}
+\includegraphics[width=0.45\textwidth]{uzor_end_3}
+\end{center}
 }
 
 \usepackage[unicode=true]{hyperref}
@@ -92,10 +146,7 @@ pdfsubject=, pdfkeywords=}
 %~ \includegraphics[width=0.1\textwidth]{uzor_end_red}
 %~ \end{center}
 
-\input{molitvi}
-\nopagebreak
-\begin{center}
-\includegraphics[width=0.1\textwidth]{uzor_end_red}
-\end{center}
+\renewcommand{\ornament}{uzor_begin_3}
+\input{root}
 
 \end{document}
