@@ -10,6 +10,13 @@
 \usepackage{indentfirst}
 \usepackage{truncate}
 
+\usepackage{tocloft}
+% fill with dots after chapter titles
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+% centered TOC title
+\renewcommand{\cfttoctitlefont}{\hfill\Huge\bfseries\color{red}}
+\renewcommand{\cftaftertoctitle}{\hfill}
+
 %\usepackage{pscyr}
 %\usepackage{PTSerif}
 %\usepackage{ptsans}
@@ -61,7 +68,7 @@
         \vskip 20\p@
     \fi
     \interlinepenalty\@M
-    \LARGE \bfseries #1\par\nobreak
+    \LARGE \bfseries \centering \color{red} #1\par\nobreak
     \vskip 20\p@
   }}
 \def\@makeschapterhead#1{%
@@ -77,8 +84,8 @@
 \makeatother
 
 \title{\Huge\bfseries Молитвослов}
-\author{}
-\date{}
+\author{www.molitvoslov.com}
+\date{2011-05-01}
 \raggedbottom
 % widow/orphane control
 \widowpenalty=10000
@@ -151,7 +158,14 @@ pdfsubject=, pdfkeywords=}
 
 \begin{document}
 \maketitle
+{\setlength\parindent{0pt}
+\includegraphics[width=\textwidth]{\ornament}}
 \tableofcontents
+\nopagebreak\bigskip\bigskip
+\begin{center}
+\includegraphics[width=0.15\textwidth]{uzor_end_2}
+\end{center}
+
 
 %~ \input{lit}
 %~ \nopagebreak

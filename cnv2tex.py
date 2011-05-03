@@ -55,15 +55,16 @@ class Fetcher:
             else:
                 heading = self.getHeading(my_td)
                 self.myprint('\n\n\\' + sections[level] + '{' + heading + '}')
-            print '  ' * (level + 1) + path + ':' + self.myFile.name
+            sys.stdout.write('\n')
+            sys.stdout.write('  ' * (level + 1) + path + '-->' + self.myFile.name)
             self.myprint('\n%' + self.baseUrl + path)
             node = self.getNode(my_td)
             self.outputElement(self.getContents(node))
             subtitles = self.getSubtitles(node)
             count = 0
             for li in subtitles:
-                if count == 3:
-                    break
+                #~ if count == 3:
+                    #~ break
                 count = count + 1
                 href = li.a['href']
                 if level == 0:
@@ -133,6 +134,7 @@ class Fetcher:
             elif el.name == 'a' and el.get('class') == 'icona':
                 file_name = self.findAndSaveBigIcon(el)
                 self.myprint('\\myfig{' + file_name + '}')
+                sys.stdout.write(', ' + file_name)
                 
     def findAndSaveBigIcon(self, el_a):
         bi_soup = self.getSoup(el_a['href'])
