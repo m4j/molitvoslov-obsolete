@@ -82,7 +82,7 @@ class Fetcher:
                 else:
                     self.fetch(level + 1, href)
             if self.isChapter(level):
-                self.myprint('\n\n\\mychapterending')
+                self.myprint('\n\n\\bigskip\\bigskip\\mychapterending')
         finally:
             if level == 0 and self.myFile:
                 self.myFile.close()
