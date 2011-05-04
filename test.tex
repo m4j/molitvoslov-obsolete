@@ -9,6 +9,7 @@
 \usepackage{fancyhdr}
 \usepackage{indentfirst}
 \usepackage{truncate}
+\usepackage{pdfcolparallel}
 
 \usepackage{tocloft}
 % fill with dots after chapter titles
@@ -20,7 +21,7 @@
 %\usepackage{pscyr}
 \usepackage{PTSerif}
 %\usepackage{PTSans}
-%\usepackage{calc}
+\usepackage{calc}
 %\usepackage[texcoord]{eso-pic}
 
 \pagestyle{fancy}
@@ -94,31 +95,31 @@
 \righthyphenmin=2
 
 \newcommand{\mychapter}[1]{
-\cleardoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{#1}
-\chapter*{#1}
-\markright{#1}
-%\thisfancyput(0pt, 0pt){\includegraphics[width=\textwidth]{uzor_begin_2}}
-  %~ \AddToShipoutPicture*{
-    %~ %\setlength{\unitlength}{1in}
-     %~ \put(\LenToUnit{\myhpos}, \LenToUnit{\myvpos}){%
-       %~ \includegraphics[width=\textwidth]{uzor_begin_2}
-   %~ }}
+    \cleardoublepage
+    \phantomsection
+    \addcontentsline{toc}{chapter}{#1}
+    \chapter*{#1}
+    \markright{#1}
+    %\thisfancyput(0pt, 0pt){\includegraphics[width=\textwidth]{uzor_begin_2}}
+      %~ \AddToShipoutPicture*{
+        %~ %\setlength{\unitlength}{1in}
+         %~ \put(\LenToUnit{\myhpos}, \LenToUnit{\myvpos}){%
+           %~ \includegraphics[width=\textwidth]{uzor_begin_2}
+       %~ }}
 }
 
 \newcommand{\myfig}[2][0.43]{
-\begin{wrapfigure}{l}{#1\textwidth}
-%\vspace{-12pt}
-\includegraphics[width=#1\textwidth]{#2}
-\end{wrapfigure}
-\vspace{-12pt}
+    \begin{wrapfigure}{l}{#1\textwidth}
+    %\vspace{-12pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+    \vspace{-12pt}
 }
 
 \newcommand{\myfigure}[2][0.43]{
-\begin{center}
-\includegraphics[width=#1\textwidth]{#2}
-\end{center}
+    \begin{center}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{center}
 }
 
 \newcommand{\mypart}[1]{
@@ -126,10 +127,36 @@
 \markright{#1}}
 
 \newcommand{\mychapterending}{
-\begin{center}
-\includegraphics[width=0.45\textwidth]{uzor_end_3}
-\end{center}
+    \begin{center}
+    \includegraphics[width=0.45\textwidth]{uzor_end_3}
+    \end{center}
 }
+
+\usepackage{microtype}
+\SetProtrusion
+{
+encoding = T2A,
+family = *
+}
+{
+« = {500,      },
+» = {    ,  500},
+„ = {1000,     },
+“ = {    , 1000},
+( = {600,      },
+) = {    ,  600},
+! = {    , 1000},
+? = {    ,  600},
+: = {    , 1000},
+; = {    , 1000},
+. = {    , 1000},
+- = {    , 1000},
+%— = {    ,  500},
+%– = {    ,  500},
+{,}= {    , 1000}
+}
+\DeclareMicrotypeSet{t2atext}{encoding=T2A}
+\UseMicrotypeSet{t2atext}
 
 \usepackage[unicode=true]{hyperref}
 \hypersetup{pdftex, colorlinks=true, linkcolor=black, citecolor=black, 
@@ -140,6 +167,38 @@ pdfsubject=, pdfkeywords=}
 
 \newcommand\longpage[1][1]{\enlargethispage{#1\baselineskip}}
 \newcommand\shortpage[1][1]{\enlargethispage{-#1\baselineskip}}
+
+% save the value of current parindent to be used
+% later in minipage environments
+\newlength\myparindent
+\setlength\myparindent{\parindent}
+
+\newlength\firstcolumnwidth
+\newlength\secondcolumnwidth
+
+\newcommand\twocolumns[3][0.43]{
+    \setlength\firstcolumnwidth{#1\linewidth - 0.01\linewidth}
+    \setlength\secondcolumnwidth{\linewidth - \firstcolumnwidth - 0.02\linewidth}
+    \begin{figure}[h]
+    \begin{minipage}[b]{\firstcolumnwidth}
+    #2
+    \end{minipage}
+    \hspace{0.01\linewidth}
+    \begin{minipage}[b]{\secondcolumnwidth}
+    #3
+    \end{minipage}
+    \end{figure}
+}
+
+\newcommand\twocolumnss[3][0.43]{
+    \setlength\firstcolumnwidth{#1\linewidth}
+    \setlength\secondcolumnwidth{\linewidth - \firstcolumnwidth - 0.05\linewidth}
+    \begin{figure}[h]
+    \begin{tabular}{p{\firstcolumnwidth} p{\secondcolumnwidth}}
+    #2 & #3 \\
+    \end{tabular}
+    \end{figure}
+}
 
 \begin{document}
 \maketitle
