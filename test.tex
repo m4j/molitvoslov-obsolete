@@ -1,4 +1,4 @@
-\documentclass[12pt,oneside]{book}
+\documentclass[11pt,oneside]{book}
 \usepackage[a4paper]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
@@ -18,8 +18,8 @@
 \renewcommand{\cftaftertoctitle}{\hfill}
 
 %\usepackage{pscyr}
-%\usepackage{PTSerif}
-%\usepackage{ptsans}
+\usepackage{PTSerif}
+\usepackage{PTSans}
 %\usepackage{calc}
 %\usepackage[texcoord]{eso-pic}
 
@@ -32,7 +32,6 @@
 \renewcommand{\headrulewidth}{0.0pt}
 
 \renewcommand\sectionmark[1]{}
-
 \newcommand{\ornament}{uzor_begin_2}
 
 % position chapter and toc headings higher
@@ -44,6 +43,7 @@
     \else
       \addcontentsline{toc}{part}{#1}%
     \fi
+    \addtocontents{toc}{\protect\mbox{}\protect\hrulefill\par}
     \markboth{}{}%
     {\centering
      \interlinepenalty \@M
@@ -90,22 +90,8 @@
 % widow/orphane control
 \widowpenalty=10000
 \clubpenalty=10000
-\setcounter{secnumdepth}{0}
+\setcounter{secnumdepth}{-2}
 \righthyphenmin=2
-
-\newlength{\myhpos}
-\addtolength{\myhpos}{1in}
-\addtolength{\myhpos}{\oddsidemargin}
-
-%~ \newcommand{\ornament2}{
-%~ \includegraphics[width=\textwidth]{uzor_begin_2}
-%~ }
-
-\newlength{\myvpos}
-\setlength{\myvpos}{-1in}
-\addtolength{\myvpos}{-\topmargin}
-%\addtolength{\myvpos}{-\totalheightof{\ornament2}}
-
 
 \newcommand{\mychapter}[1]{
 \cleardoublepage
@@ -121,22 +107,19 @@
    %~ }}
 }
 
-\newcommand{\myfig}[1]{
-\begin{wrapfigure}{l}{0.44\textwidth}
-\vspace{-15pt}
-%~ \begin{center}
-\includegraphics[width=0.43\textwidth]{#1}
-%~ \end{center}
-\vspace{-10pt}
+\newcommand{\myfig}[2][0.43]{
+\begin{wrapfigure}{l}{#1\textwidth}
+%\vspace{-12pt}
+\includegraphics[width=#1\textwidth]{#2}
 \end{wrapfigure}
+\vspace{-12pt}
 }
 
-\newcommand{\myfigure}[1]{
+\newcommand{\myfigure}[2][0.43]{
 \begin{center}
-\includegraphics[width=0.43\textwidth]{#1}
+\includegraphics[width=#1\textwidth]{#2}
 \end{center}
 }
-
 
 \newcommand{\mypart}[1]{
 \part{#1}
@@ -156,6 +139,9 @@ pdfsubject=, pdfkeywords=}
 
 \sloppy
 
+\newcommand\longpage[1][1]{\enlargethispage{#1\baselineskip}}
+\newcommand\shortpage[1][1]{\enlargethispage{-#1\baselineskip}}
+
 \begin{document}
 \maketitle
 {\setlength\parindent{0pt}
@@ -166,26 +152,7 @@ pdfsubject=, pdfkeywords=}
 \includegraphics[width=0.15\textwidth]{uzor_end_2}
 \end{center}
 
-
-%~ \input{lit}
-%~ \nopagebreak
-%~ \begin{center}
-%~ \includegraphics[width=0.1\textwidth]{uzor_end_red}
-%~ \end{center}
-%~ 
-%~ \input{chas}
-%~ \nopagebreak
-%~ \begin{center}
-%~ \includegraphics[width=0.1\textwidth]{uzor_end_red}
-%~ \end{center}
-%~ 
-%~ \input{semeynoy-zhizni}
-%~ \nopagebreak
-%~ \begin{center}
-%~ \includegraphics[width=0.1\textwidth]{uzor_end_red}
-%~ \end{center}
-
-\renewcommand{\ornament}{uzor_begin_3}
+%~ \renewcommand{\ornament}{uzor_begin_3}
 \input{root}
 
 \end{document}
