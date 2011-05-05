@@ -9,7 +9,7 @@
 \usepackage{fancyhdr}
 \usepackage{indentfirst}
 \usepackage{truncate}
-\usepackage{pdfcolparallel}
+%\usepackage{pdfcolparallel}
 
 \usepackage{tocloft}
 % fill with dots after chapter titles
@@ -108,12 +108,18 @@
        %~ }}
 }
 
-\newcommand{\myfig}[2][0.43]{
-    \begin{wrapfigure}{l}{#1\textwidth}
-    %\vspace{-12pt}
+\setlength\intextsep{0pt}
+
+\newcommand{\myfig}[2][0.4]{
+    \begin{wrapfigure}{l}{0pt}
     \includegraphics[width=#1\textwidth]{#2}
     \end{wrapfigure}
-    \vspace{-12pt}
+}
+
+\newcommand{\myfigr}[2][0.4]{
+    \begin{wrapfigure}{r}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
 }
 
 \newcommand{\myfigure}[2][0.43]{
