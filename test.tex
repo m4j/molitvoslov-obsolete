@@ -27,13 +27,19 @@
 \pagestyle{fancy}
 \setlength\headheight{23pt}
 \chead{\itshape \textbf{\rightmark}}
-\rhead{}
-\lhead{} \cfoot{\thepage} \rfoot{}
+\rhead{\thepage}
+\lhead{} \cfoot{} \rfoot{}
 \lfoot{}
-\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\headrulewidth}{0.4pt}
 
 \renewcommand\sectionmark[1]{}
 \newcommand{\ornament}{uzor_begin_2}
+
+% calculate header offset from text body
+\newlength\headoff
+\addtolength\headoff{\headheight}
+\addtolength\headoff{\headsep}
+\addtolength\headoff{12pt}
 
 % position chapter and toc headings higher
 \makeatletter
@@ -74,11 +80,11 @@
   }}
 \def\@makeschapterhead#1{%
   {\parindent \z@ \raggedright
-    %~ \vspace{-40pt}
+    \vspace*{-\headoff}
     \includegraphics[width=\textwidth]{\ornament}
     \normalfont
     \interlinepenalty\@M
-    \vskip 40\p@
+    \vskip 30\p@
     \Huge \bfseries \centering \color{red}  #1\par\nobreak
     \vskip 40\p@
   }}
@@ -145,8 +151,8 @@ encoding = T2A,
 family = *
 }
 {
-« = {500,      },
-» = {    ,  500},
+« = {600,      },
+» = {    ,  600},
 „ = {1000,     },
 “ = {    , 1000},
 ( = {600,      },
@@ -156,7 +162,7 @@ family = *
 : = {    , 1000},
 ; = {    , 1000},
 . = {    , 1000},
-- = {    , 1000},
+- = {    , 800},
 %— = {    ,  500},
 %– = {    ,  500},
 {,}= {    , 1000}
@@ -178,6 +184,8 @@ pdfsubject=, pdfkeywords=}
 % later in minipage environments
 \newlength\myparindent
 \setlength\myparindent{\parindent}
+\newcommand\noparindent{\setlength\parindent{0pt}}
+\newcommand\restoreparindent{\setlength\parindent{\myparindent}}
 
 \newlength\firstcolumnwidth
 \newlength\secondcolumnwidth
@@ -208,8 +216,11 @@ pdfsubject=, pdfkeywords=}
 
 \begin{document}
 \maketitle
-{\setlength\parindent{0pt}
+
+{\noparindent
+\vspace*{-\headoff}
 \includegraphics[width=\textwidth]{\ornament}}
+
 \tableofcontents
 \nopagebreak\bigskip\bigskip
 \begin{center}
