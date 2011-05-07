@@ -214,18 +214,21 @@ pdfsubject=, pdfkeywords=}
     \end{figure}
 }
 
+\long\def\symbolfootnote[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
+
 \begin{document}
 \maketitle
 
-{\noparindent
-\vspace*{-\headoff}
-\includegraphics[width=\textwidth]{\ornament}}
-
-\tableofcontents
-\nopagebreak\bigskip\bigskip
-\begin{center}
-\includegraphics[width=0.15\textwidth]{uzor_end_2}
-\end{center}
+%~ {\noparindent
+%~ \vspace*{-\headoff}
+%~ \includegraphics[width=\textwidth]{\ornament}}
+%~ 
+%~ \tableofcontents
+%~ \nopagebreak\bigskip\bigskip
+%~ \begin{center}
+%~ \includegraphics[width=0.15\textwidth]{uzor_end_2}
+%~ \end{center}
 
 %~ \renewcommand{\ornament}{uzor_begin_3}
 \input{root}
