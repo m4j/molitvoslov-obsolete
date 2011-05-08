@@ -9,6 +9,7 @@
 \usepackage{fancyhdr}
 \usepackage{indentfirst}
 \usepackage{truncate}
+\usepackage{shorttoc}
 %\usepackage{pdfcolparallel}
 
 \usepackage{tocloft}
@@ -23,12 +24,16 @@
 %\usepackage{PTSans}
 \usepackage{calc}
 %\usepackage[texcoord]{eso-pic}
+\usepackage{etoolbox}
 
 \pagestyle{fancy}
-\setlength\headheight{23pt}
-\chead{\itshape \textbf{\rightmark}}
+%\setlength\headheight{23pt}
+\chead{}
 \rhead{\thepage}
-\lhead{} \cfoot{} \rfoot{}
+\lhead{\truncate{0.95\textwidth}{\itshape\textbf{\rightmark}}}
+
+\cfoot{}
+\rfoot{}
 \lfoot{}
 \renewcommand{\headrulewidth}{0.4pt}
 
@@ -225,14 +230,36 @@ pdfsubject=, pdfkeywords=}
 %~ {\noparindent
 %~ \vspace*{-\headoff}
 %~ \includegraphics[width=\textwidth]{\ornament}}
-%~ 
-%~ \tableofcontents
-%~ \nopagebreak\bigskip\bigskip
-%~ \begin{center}
-%~ \includegraphics[width=0.15\textwidth]{uzor_end_2}
-%~ \end{center}
+
+\begingroup
+\makeatletter
+\patchcmd{\l@part}{%
+    \addvspace{2.25em \@plus\p@}%
+}{%
+    \addvspace{0.3em \@plus 0.3\p@}% substitute code line
+}{}{}
+\makeatother
+\shorttableofcontents{Краткое оглавление}{-1}
+\endgroup
+
+\nopagebreak\bigskip\bigskip
+\begin{center}
+\includegraphics[width=0.15\textwidth]{uzor_end_2}
+\end{center}
+
+
+{\noparindent
+\vspace*{-\headoff}
+\includegraphics[width=\textwidth]{\ornament}}
+
+\tableofcontents
+\nopagebreak\bigskip\bigskip
+\begin{center}
+\includegraphics[width=0.15\textwidth]{uzor_end_2}
+\end{center}
 
 %~ \renewcommand{\ornament}{uzor_begin_3}
+
 \input{root}
 
 \end{document}
