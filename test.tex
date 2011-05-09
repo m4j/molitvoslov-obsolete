@@ -9,15 +9,20 @@
 \usepackage{fancyhdr}
 \usepackage{indentfirst}
 \usepackage{truncate}
-%\usepackage{shorttoc}
+\usepackage{shorttoc}
 %\usepackage{pdfcolparallel}
 
 \usepackage{tocloft}
+\tocloftpagestyle{empty}
 % fill with dots after chapter titles
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 % centered TOC title
 \renewcommand{\cfttoctitlefont}{\hfill\Huge\bfseries\color{red}}
 \renewcommand{\cftaftertoctitle}{\hfill}
+
+\makeatletter
+\renewcommand{\@pnumwidth}{3em} \renewcommand{\@tocrmarg}{4em}
+\makeatother
 
 %\usepackage{pscyr}
 \usepackage{PTSerif}
@@ -240,14 +245,24 @@ pdfsubject=, pdfkeywords=}
 %~ {\noparindent
 %~ \vspace*{-\headoff}
 %~ \includegraphics[width=\textwidth]{\ornament}}
-\setcounter{tocdepth}{-1}
-\tableofcontents
+%\setcounter{tocdepth}{-1}
+\newlength\mybeforepartskip
+\setlength\mybeforepartskip{\cftbeforepartskip}
+\setlength\cftbeforepartskip{3pt}
+\clearpage
+\shorttableofcontents{Краткое оглавление}{-1}
+\thispagestyle{empty}\longpage[5]{}
+\nopagebreak\medskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
 
-\newpage
-\setcounter{tocdepth}{1}
+\clearpage
+%~ %\setcounter{tocdepth}{1}
+{\noparindent
+\vspace*{-\headoff}
+\includegraphics[width=\textwidth]{\ornament}}
+\setlength\cftbeforepartskip{\mybeforepartskip}
+\addtolength\cftbeforechapskip{-5pt}
 \tableofcontents
-%~ \nopagebreak\bigskip\bigskip
-%~ \begin{center}\includegraphics[width=0.15\textwidth]{uzor_end_2}\end{center}
+\nopagebreak\bigskip\bigskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
 
 %~ \renewcommand{\ornament}{uzor_begin_3}
 
