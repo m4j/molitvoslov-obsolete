@@ -28,7 +28,7 @@
 \usepackage{PTSerif}
 %\usepackage{PTSans}
 \usepackage{calc}
-%\usepackage[texcoord]{eso-pic}
+\usepackage[texcoord]{eso-pic}
 %\usepackage{etoolbox}
 
 \pagestyle{fancy}
@@ -227,10 +227,31 @@ pdfsubject=, pdfkeywords=}
 \long\def\symbolfootnote[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
 
-\setlength\footskip{45pt}
+\setlength\footskip{60pt}
+
+\newcommand\makebanner{
+   \put(0,0){
+   \parbox[b]{\paperheight}{\paperwidth}{%
+   \vfill
+   \centering
+   \includegraphics[width=\paperwidth]{logo.pdf}%
+   \vfill
+}}}
+
 
 \begin{document}
-\maketitle
+
+%\maketitle
+
+\begin{titlepage}
+%~ \AddToShipoutPicture*{\makebanner}
+\begin{flushright}
+\vspace*{3in}
+\bfseries
+\sffamily
+{\Huge www.molitvoslov.com \\ \large версия 2011-05-03}
+\end{flushright}
+\end{titlepage}
 
 %~ {\noparindent
 %~ \vspace*{-\headoff}
@@ -246,8 +267,8 @@ pdfsubject=, pdfkeywords=}
 %~ \vspace*{-\headoff}
 %~ \includegraphics[width=\textwidth]{\ornament}}
 %\setcounter{tocdepth}{-1}
-\newlength\mybeforepartskip
-\setlength\mybeforepartskip{\cftbeforepartskip}
+\newlength\savebeforepartskip
+\setlength\savebeforepartskip{\cftbeforepartskip}
 \setlength\cftbeforepartskip{3pt}
 \clearpage
 \shorttableofcontents{Краткое оглавление}{-1}
@@ -259,7 +280,7 @@ pdfsubject=, pdfkeywords=}
 {\noparindent
 \vspace*{-\headoff}
 \includegraphics[width=\textwidth]{\ornament}}
-\setlength\cftbeforepartskip{\mybeforepartskip}
+\setlength\cftbeforepartskip{\savebeforepartskip}
 \addtolength\cftbeforechapskip{-5pt}
 \tableofcontents
 \nopagebreak\bigskip\bigskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
