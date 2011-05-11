@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 \usepackage{graphicx}
-\graphicspath{{img/},{../uzory/}}
+\graphicspath{{img/},{uzory/}}
 
 \usepackage{wrapfig}
 \usepackage{fancyhdr}
@@ -28,7 +28,7 @@
 \usepackage{PTSerif}
 %\usepackage{PTSans}
 \usepackage{calc}
-\usepackage[texcoord]{eso-pic}
+\usepackage{eso-pic}
 %\usepackage{etoolbox}
 
 \pagestyle{fancy}
@@ -229,14 +229,26 @@ pdfsubject=, pdfkeywords=}
 
 \setlength\footskip{60pt}
 
-\newcommand\makebanner{
-   \put(0,0){
-   \parbox[b]{\paperheight}{\paperwidth}{%
-   \vfill
-   \centering
-   \includegraphics[width=\paperwidth]{logo.pdf}%
-   \vfill
-}}}
+%~ \newcommand\makebanner{
+   %~ \put(0,0){
+   %~ \parbox[b]{\paperheight}{\paperwidth}{%
+   %~ \vfill
+   %~ \centering
+   %~ \includegraphics[width=\paperwidth]{logo.png}%
+   %~ \vfill
+%~ }}}
+
+\newlength\mylength
+\newcommand\makebluebanner{
+   \setlength\mylength{0.7\paperheight}
+  \AddToShipoutPicture*{
+     \put(0,\LenToUnit{\mylength}){%
+       \includegraphics[width=\paperwidth]{logo.png} 
+       %{\color{blue}\rule{\paperwidth}{1cm}}
+       }
+   }
+}
+
 
 
 \begin{document}
@@ -244,7 +256,7 @@ pdfsubject=, pdfkeywords=}
 %\maketitle
 
 \begin{titlepage}
-%~ \AddToShipoutPicture*{\makebanner}
+\makebluebanner
 \begin{flushright}
 \vspace*{3in}
 \bfseries
