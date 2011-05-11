@@ -1,0 +1,14 @@
+# ignore tex/latex output
+*.log
+*.lof
+*.aux
+*.out
+*.toc
+*.pdf
+*.dvi
+*.ps
+vc.tex
+#target
+#target/*
+*~
+.~lock*
