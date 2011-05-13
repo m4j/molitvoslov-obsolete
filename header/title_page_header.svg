@@ -7,6 +7,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
@@ -22,7 +23,7 @@
    sodipodi:docname="01C_with_small_decor.svg"><metadata
    id="metadata5254"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
    id="defs5252"><inkscape:perspective
      sodipodi:type="inkscape:persp3d"
      inkscape:vp_x="0 : 396 : 1"
@@ -39,18 +40,18 @@
    inkscape:pageopacity="0"
    inkscape:pageshadow="2"
    inkscape:window-width="1205"
-   inkscape:window-height="828"
+   inkscape:window-height="901"
    id="namedview5250"
    showgrid="false"
    inkscape:snap-grids="true"
    inkscape:snap-to-guides="true"
-   inkscape:zoom="7.9038524"
-   inkscape:cx="431.94478"
-   inkscape:cy="549.09454"
-   inkscape:window-x="53"
-   inkscape:window-y="29"
+   inkscape:zoom="4.28"
+   inkscape:cx="320.14719"
+   inkscape:cy="620.19964"
+   inkscape:window-x="203"
+   inkscape:window-y="91"
    inkscape:window-maximized="0"
-   inkscape:current-layer="Layer_1" />
+   inkscape:current-layer="layer4" />
 <path
    d="M180.015,249.366c0.001,6.068,6.588,3.943,11.263,3.722c4.675-0.222,9.244,2.646,9.245,6.397  s-4.834,2.428-4.834,2.428s0.479,1.655,2.923,1.655c2.443,0,3.931-1.877,3.611-4.965c-0.317-3.071-4.145-7.171-10.944-6.949  c-6.8,0.222-10.094,0.8-9.775-2.287c-0.319-3.089,2.974-2.511,9.774-2.291c6.8,0.219,10.626-3.881,10.943-6.952  c0.318-3.09-1.17-4.965-3.613-4.965c-2.444,0-2.922,1.655-2.922,1.655s4.834-1.324,4.834,2.426c0,3.751-4.568,6.621-9.243,6.4  C186.602,245.421,180.014,243.297,180.015,249.366z"
    id="path4466"
@@ -1560,7 +1561,8 @@
    id="path5198"
    stroke-width="1.25"
    stroke="#6B3337"
-   fill="#FFE0BF" />
+   fill="#FFE0BF"
+   style="stroke:#6b3337;stroke-opacity:1" />
 <path
    d="M308.752,173.021c0,0-2.023,1.32-3.214,6.511c-1.085,4.734,0.251,6.474,1.977,6.643  c0,0-0.82-0.516-0.499-1.573c0.322-1.057,1.403-0.817,2.054-0.619c0.651,0.198,0.948,1.266,0.651,2.241  c-0.297,0.976-1.244,1.754-3.44,1.085c-2.196-0.668-2.846-4.088-1.495-7.942C305.91,176.159,305.404,175.556,308.752,173.021z"
    id="path5200"
@@ -1661,9 +1663,31 @@
 </g>
 <g
    inkscape:groupmode="layer"
-   id="layer1"
-   inkscape:label="na_vsiakuyu"
-   style="display:inline" /><g
-   inkscape:groupmode="layer"
-   id="layer2"
-   inkscape:label="banner" /></svg>
+   id="layer4"
+   inkscape:label="Layer"
+   style="display:inline"><text
+     xml:space="preserve"
+     style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Cotlin;-inkscape-font-specification:Cotlin"
+     x="235.1145"
+     y="313.37405"
+     id="text5274"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan5276"
+       x="235.1145"
+       y="313.37405" /></text>
+<text
+     xml:space="preserve"
+     style="font-size:37.18057251px;font-style:normal;font-weight:normal;line-height:125%;fill:#6b3337;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+     id="text5278"
+     sodipodi:linespacing="125%"
+     transform="matrix(0.9769386,0,0,0.9769386,9.7031418,1.1655952)"><textPath
+       xlink:href="#path5324"
+       id="textPath5326"><tspan
+   style="font-size:29.74445724px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#6b3337;fill-opacity:1;font-family:Cotlin;-inkscape-font-specification:Cotlin"
+   id="tspan5280">Православный</tspan></textPath></text>
+</g><path
+   style="fill:none;stroke:none;stroke-width:0.71399999999999997;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1"
+   d="m 232.45637,149.20296 c 63.16308,-17.58885 105.84584,-17.58885 173.63351,0 l 0,-0.11225"
+   id="path5324"
+   sodipodi:nodetypes="ccc" /></svg>
