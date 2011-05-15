@@ -240,10 +240,10 @@ pdfsubject=, pdfkeywords=}
 
 \newlength\mylength
 \newcommand\makebluebanner{
-   \setlength\mylength{0.7\paperheight}
+   \setlength\mylength{0.3\paperheight}
   \AddToShipoutPicture*{
      \put(0,\LenToUnit{\mylength}){%
-       \includegraphics[width=\paperwidth]{header/title_page_header} 
+       {\centering\includegraphics[width=0.95\paperwidth]{header/title_page_header_www}}
        %{\color{blue}\rule{\paperwidth}{1cm}}
        }
    }
@@ -257,12 +257,14 @@ pdfsubject=, pdfkeywords=}
 
 \begin{titlepage}
 \makebluebanner
-\begin{flushright}
-\vspace*{3in}
-\bfseries
-\sffamily
-{\Huge www.molitvoslov.com \\ \large от 2011-05-03 \\ версия 0.1}
-\end{flushright}
+    \begin{flushright}
+    \vspace*{5in}
+    \bfseries
+    \sffamily
+    
+    
+    %{\centering \large от 2011-05-03 \\ версия 0.1}
+    \end{flushright}
 \end{titlepage}
 
 %~ {\noparindent
