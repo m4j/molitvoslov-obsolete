@@ -10,8 +10,6 @@
 \usepackage{indentfirst}
 \usepackage{truncate}
 \usepackage{shorttoc}
-%\usepackage{booktabs}
-%\usepackage{pdfcolparallel}
 
 \usepackage{tocloft}
 \tocloftpagestyle{empty}
@@ -33,7 +31,6 @@
 %\usepackage{etoolbox}
 
 \pagestyle{fancy}
-%\setlength\headheight{23pt}
 \chead{}
 \rhead{\thepage}
 \lhead{\truncate{0.95\textwidth}{\itshape\textbf{\rightmark}}}
@@ -47,6 +44,7 @@
 \newcommand{\ornament}{uzor_begin_2}
 
 % calculate header offset from text body
+\setlength\headheight{14pt}
 \newlength\headoff
 \addtolength\headoff{\headheight}
 \addtolength\headoff{\headsep}
@@ -247,8 +245,6 @@ pdfsubject=, pdfkeywords=}
    }
 }
 
-
-
 \begin{document}
 
 %\maketitle
@@ -294,7 +290,10 @@ pdfsubject=, pdfkeywords=}
 \includegraphics[width=\textwidth]{\ornament}}
 \setlength\cftbeforepartskip{\savebeforepartskip}
 \addtolength\cftbeforechapskip{-5pt}
+
+\doparttoc
 \tableofcontents
+
 \nopagebreak\bigskip\bigskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
 
 \renewcommand{\ornament}{uzor_begin_5}
