@@ -125,13 +125,19 @@
 
 \setlength\intextsep{0pt}
 
-\newcommand{\myfig}[2][0.4]{
+\newcommand{\myfig}[2][0.41]{
     \begin{wrapfigure}{l}{0pt}
     \includegraphics[width=#1\textwidth]{#2}
     \end{wrapfigure}
 }
 
-\newcommand{\myfigr}[2][0.4]{
+\newcommand{\myfigh}[3][0.41]{
+    \begin{wrapfigure}[#3]{l}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+}
+
+\newcommand{\myfigr}[2][0.41]{
     \begin{wrapfigure}{r}{0pt}
     \includegraphics[width=#1\textwidth]{#2}
     \end{wrapfigure}
@@ -243,6 +249,14 @@ pdfsubject=, pdfkeywords=}
        %{\color{blue}\rule{\paperwidth}{1cm}}
        }
    }
+}
+
+\newcommand\mysubsubsection[1]{
+\medskip\noparindent\bfseries #1\normalfont{}\nopagebreak\medskip\restoreparindent
+}
+
+\newcommand\mynoskipsubsubsection[1]{
+\noparindent\bfseries #1\normalfont{}\nopagebreak\medskip\restoreparindent
 }
 
 \begin{document}
