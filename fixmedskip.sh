@@ -11,7 +11,7 @@ $ {
         # copy from the hold to the pattern buffer
         g
         # do the search and replace
-        s;\\medskip\n*\(\\bfseries .*\\normalfont{}\\nopagebreak\);\1;g
+        s/\\medskip\n*/\\medskip/g
         # print
         p
 }' $1
