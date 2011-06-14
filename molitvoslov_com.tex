@@ -252,11 +252,7 @@ pdfsubject=, pdfkeywords=}
 }
 
 \newcommand\mysubsubsection[1]{
-\medskip\noparindent\bfseries #1\normalfont{}\nopagebreak\medskip\restoreparindent
-}
-
-\newcommand\mynoskipsubsubsection[1]{
-\noparindent\bfseries #1\normalfont{}\nopagebreak\medskip\restoreparindent
+\medskip\hspace{-\parindent}\bfseries #1\normalfont{}\nopagebreak\medskip
 }
 
 \begin{document}
