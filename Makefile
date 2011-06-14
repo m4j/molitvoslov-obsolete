@@ -12,7 +12,7 @@ all: clean pdf
 
 pdf: $(TARGET).pdf
 
-$(TARGET).pdf: *.tex img/* header/*.pdf uzory/*.pdf
+$(TARGET).pdf: *.tex img/* header/* uzory/*
 	$(LATEX) $(ARGS)
 	#makeindex $(TARGET).idx
 	#pdflatex $(TARGET).tex
