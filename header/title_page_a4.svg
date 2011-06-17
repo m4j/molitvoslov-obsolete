@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -19,8 +18,10 @@
    viewBox="0 0 744.09448 1052.3622"
    enable-background="new 0 0 612 792"
    xml:space="preserve"
-   inkscape:version="0.47 r22583"
-   sodipodi:docname="title_page_a4.svg"><metadata
+   inkscape:version="0.46"
+   sodipodi:docname="title_page_a4.svg"
+   sodipodi:version="0.32"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"><metadata
    id="metadata5254"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
          rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
@@ -144,19 +145,19 @@
    guidetolerance="10"
    inkscape:pageopacity="0"
    inkscape:pageshadow="2"
-   inkscape:window-width="1648"
-   inkscape:window-height="1028"
+   inkscape:window-width="1398"
+   inkscape:window-height="995"
    id="namedview5250"
    showgrid="false"
    inkscape:snap-grids="true"
    inkscape:snap-to-guides="true"
-   inkscape:zoom="0.97470288"
-   inkscape:cx="318.2299"
-   inkscape:cy="321.52279"
-   inkscape:window-x="31"
+   inkscape:zoom="1.4886415"
+   inkscape:cx="341.67272"
+   inkscape:cy="105.09581"
+   inkscape:window-x="0"
    inkscape:window-y="0"
    inkscape:window-maximized="1"
-   inkscape:current-layer="g5097"
+   inkscape:current-layer="Layer_1"
    inkscape:object-nodes="false"
    showguides="false"
    inkscape:guide-bbox="true"><sodipodi:guide
@@ -306,6 +307,7 @@
      id="tspan5276"
      x="235.1145"
      y="573.73627" /></text>
+
 
 
 
@@ -1763,6 +1765,7 @@
    id="tspan4967"
    style="font-size:26px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#463133;fill-opacity:1;font-family:Cotlin;-inkscape-font-specification:Cotlin">Молитвослов</tspan></textPath></text>
 
+
 <path
    sodipodi:nodetypes="cccc"
    id="path4963"
@@ -1784,6 +1787,7 @@
    id="tspan3689"
    style="font-size:27.84652138px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#463133;fill-opacity:1;font-family:Cotlin;-inkscape-font-specification:Cotlin">Полный</tspan></textPath></text>
 
+
 <text
    transform="matrix(0.9541924,0,0,0.9541924,16.896138,4.2028854)"
    sodipodi:linespacing="125%"
@@ -1796,6 +1800,7 @@
    dx="0 -0.26752079"
    id="tspan5280"
    style="font-size:29.74445724px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#463133;fill-opacity:1;font-family:Cotlin;-inkscape-font-specification:Cotlin">Православный</tspan></textPath></text>
+
 
 <path
    sodipodi:nodetypes="ccc"
@@ -1830,6 +1835,7 @@
      id="tspan6424"
      sodipodi:role="line">НА  ВСЯКУЮ</tspan></text>
 
+
 <text
    sodipodi:linespacing="100%"
    id="text6436"
@@ -1841,6 +1847,7 @@
      x="336.24997"
      id="tspan6438"
      sodipodi:role="line">ПОТРЕБУ</tspan></text>
+
 
 </g>
 
@@ -1892,6 +1899,7 @@
      sodipodi:role="line"
      id="tspan3326">Пустыни Илий.</tspan></text>
 
+
 <g
    transform="translate(132.77821,-252.73177)"
    id="g12067"><g
@@ -1925,16 +1933,13 @@
      y="964.46857" /><tspan
      sodipodi:role="line"
      x="372.17203"
-     y="975.46857"
-     id="tspan4741">содержание от 03 мая 2011 г.</tspan><tspan
-     sodipodi:role="line"
-     x="372.17203"
      y="986.46857"
-     id="tspan5924">версия документа 0.2</tspan><tspan
+     id="tspan5924">версия 20110616</tspan><tspan
      sodipodi:role="line"
      x="372.17203"
      y="997.46857"
      id="tspan4739" /></text>
+
 
 
 
@@ -1949,6 +1954,7 @@
      id="textPath5128"><tspan
    id="tspan5117"
    style="fill:#463133;fill-opacity:1">www.molitvoslov.com</tspan></textPath></text>
+
 
 <path
    style="fill:none;stroke:none;stroke-width:0.54274285000000000px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"

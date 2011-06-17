@@ -101,7 +101,7 @@
 
 \title{\Huge\bfseries Молитвослов}
 \author{www.molitvoslov.com}
-\date{2011-05-01}
+\date{2011-06-16}
 \raggedbottom
 % widow/orphane control
 \widowpenalty=10000
@@ -153,8 +153,8 @@
 \part{#1}
 \markright{#1}}
 
-\newcommand{\mychapterending}{\nopagebreak[4]\begin{center}\raisebox{0pt}[1.5\baselineskip][0pt]{
-\includegraphics[width=0.33\textwidth]{uzor_end_3}}\end{center}}
+\newcommand{\mychapterending}[1][uzor_end_3]{\nopagebreak[4]\begin{center}\raisebox{0pt}[1.5\baselineskip][0pt]{
+\includegraphics[width=0.33\textwidth]{#1}}\end{center}}
 
 \usepackage{microtype}
 \SetProtrusion
@@ -271,20 +271,6 @@ pdfsubject=, pdfkeywords=}
     \end{flushright}
 \end{titlepage}
 
-%~ {\noparindent
-%~ \vspace*{-\headoff}
-%~ \includegraphics[width=\textwidth]{\ornament}}
-
-%~ \chapter*{Краткое оглавление}
-%~ \input{shortogl}
-%~ \nopagebreak\bigskip\bigskip
-%~ \begin{center}\includegraphics[width=0.15\textwidth]{uzor_end_2}\end{center}
-%~ 
-%~ 
-%~ {\noparindent
-%~ \vspace*{-\headoff}
-%~ \includegraphics[width=\textwidth]{\ornament}}
-%\setcounter{tocdepth}{-1}
 \newlength\savebeforepartskip
 \setlength\savebeforepartskip{\cftbeforepartskip}
 \setlength\cftbeforepartskip{3pt}
@@ -294,7 +280,6 @@ pdfsubject=, pdfkeywords=}
 \nopagebreak\medskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
 
 \clearpage
-%~ %\setcounter{tocdepth}{1}
 {\noparindent
 \vspace*{-\headoff}
 \includegraphics[width=\textwidth]{\ornament}}

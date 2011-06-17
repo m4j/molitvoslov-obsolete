@@ -129,7 +129,7 @@ class Fetcher:
                 self.myprint('\\itshape ')
                 self.outputElement(el)
                 self.myprint('\\normalfont{}')
-            elif el.name == 'b':
+            elif el.name == 'b' or el.name == 'strong':
                 self.myprint('\\bfseries ')
                 self.outputElement(el)
                 self.myprint('\\normalfont{}')
