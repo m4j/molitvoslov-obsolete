@@ -1,12 +1,20 @@
 TARGET = molitvoslov_com
 INCLUDEONLY = 
 LATEX = pdflatex
+FETCH_DIR = import_`date '+%Y%m%d'`
 
 ifdef ONLY
 	INCLUDEONLY = \includeonly{$(ONLY)}
 endif
 
 ARGS = "\nonstopmode $(INCLUDEONLY) \input{$(TARGET)}"
+
+fetch:
+	fdir=$(FETCH_DIR); \
+	if [ "x$$fdir" == "x" ]; then 		fdir=import_`date '+%Y%m%d'`; 	fi \
+	mkdir -p $$fdir; \
+	cd $$fdir; \
+	../cnv2tex.py 0 http://www.molitvoslov.com '[["/o-molitve"], "/content/soderzhanie", ["/slovar.php"]]'
 
 all: clean pdf
 
