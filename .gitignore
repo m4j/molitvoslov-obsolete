@@ -11,6 +11,7 @@
 *.mtc*
 *.maf 
 vc.tex
+/*.html
 #target
 #target/*
 *~
