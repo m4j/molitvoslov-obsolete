@@ -144,6 +144,12 @@
     \end{wrapfigure}
 }
 
+\newcommand{\myfigrh}[3][0.41]{
+    \begin{wrapfigure}[#3]{r}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+}
+
 \newcommand{\myfigure}[2][0.43]{
     \begin{center}
     \includegraphics[width=#1\textwidth]{#2}
@@ -274,6 +280,10 @@ pdfsubject=, pdfkeywords=}
     %{\centering \large от 2011-05-03 \\ версия 0.1}
     \end{flushright}
 \end{titlepage}
+
+\newpage
+\thispagestyle{empty}
+\input{secondpage}
 
 \newlength\savebeforepartskip
 \setlength\savebeforepartskip{\cftbeforepartskip}
