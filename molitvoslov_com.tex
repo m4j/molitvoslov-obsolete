@@ -263,9 +263,9 @@ pdfsubject=, pdfkeywords=}
 }
 
 \newcommand\mysubsubsection[1]{
-\medskip\hspace{-\parindent}{\bfseries\color{red}\centering #1
-
-}\nopagebreak\medskip
+\begin{center}
+\bfseries\color{red} #1\\\nopagebreak
+\end{center}
 }
 
 \begin{document}
@@ -297,6 +297,7 @@ pdfsubject=, pdfkeywords=}
 \nopagebreak\medskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
 
 \clearpage
+\renewcommand{\ornament}{uzor_begin_10_red}
 {\noparindent
 \vspace*{-\headoff}
 \includegraphics[width=\textwidth]{\ornament}}
