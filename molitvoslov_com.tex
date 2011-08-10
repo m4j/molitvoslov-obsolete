@@ -43,7 +43,7 @@
 \renewcommand{\headrulewidth}{0.4pt}
 
 \renewcommand\sectionmark[1]{}
-\newcommand{\ornament}{uzor_begin_2}
+\newcommand{\ornament}{uzor_begin_2_red}
 
 % calculate header offset from text body
 \setlength\headheight{14pt}
@@ -263,9 +263,7 @@ pdfsubject=, pdfkeywords=}
 }
 
 \newcommand\mysubsubsection[1]{
-\begin{center}
-\bfseries\color{red} #1\\\nopagebreak
-\end{center}
+\medskip\hspace{-\parindent}{\bfseries\color{red} #1}\nopagebreak\medskip
 }
 
 \begin{document}
