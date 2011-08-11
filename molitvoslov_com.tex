@@ -28,25 +28,28 @@
 %\usepackage{pscyr}
 \usepackage{PTSerif}
 %\usepackage{PTSans}
-\usepackage{calc}
+\usepackage{calc,layouts}
 \usepackage{eso-pic}
 %\usepackage{etoolbox}
 
 \pagestyle{fancy}
-\chead{}
+\chead{\itshape\color{red}\textbf{\rightmark}}
 \rhead{\thepage}
-\lhead{\truncate{0.95\textwidth}{\itshape\textbf{\rightmark}}}
+\lhead{}
 
 \cfoot{}
 \rfoot{}
 \lfoot{}
 \renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{{\color{red}%
+\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
 
 \renewcommand\sectionmark[1]{}
 \newcommand{\ornament}{uzor_begin_2_red}
 
 % calculate header offset from text body
-\setlength\headheight{14pt}
+\normalsize
+\setlength\headheight{2\baselineskip}
 \newlength\headoff
 \addtolength\headoff{\headheight}
 \addtolength\headoff{\headsep}
@@ -237,7 +240,7 @@ pdfsubject=, pdfkeywords=}
 \long\def\symbolfootnote[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
 
-\setlength\footskip{60pt}
+\setlength\footskip{96pt}
 
 % Make more compact lists
 \setlength\itemsep{2pt}
