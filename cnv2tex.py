@@ -23,7 +23,16 @@
 #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #       MA 02110-1301, USA.
 
-import sys, codecs, locale, urllib2, json
+import sys, codecs, locale, urllib2
+
+# This is to ensure compatibility with python 2.5 and 2.6
+try:
+    # standard 2.6 lib
+    import json
+except ImportError:
+    # case for python 2.5
+    import simplejson as json
+
 from BeautifulSoup import BeautifulSoup, NavigableString, Tag
 from urlparse import urlparse
 from datetime import datetime
