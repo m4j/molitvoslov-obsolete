@@ -33,16 +33,15 @@
 %\usepackage{etoolbox}
 
 \pagestyle{fancy}
-\chead{\itshape\color{red}\textbf{\rightmark}}
-\rhead{\thepage}
-\lhead{}
+%\fancyheadoffset[LE,RO]{\marginparsep+\marginparwidth}
 
-\cfoot{}
-\rfoot{}
-\lfoot{}
+\lhead{} \chead{\itshape\color{red}\textbf{\rightmark}} \rhead{}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\headrule}{{\color{red}%
 \hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
+
+\lfoot{} \cfoot{\thepage} \rfoot{}
+
 
 \renewcommand\sectionmark[1]{}
 \newcommand{\ornament}{uzor_begin_2_red}
@@ -102,6 +101,17 @@
     \Huge \bfseries \centering \color{red}  #1\par\nobreak
     \vskip 40\p@
   }}
+
+%\renewcommand\section{\@startsection{section}%
+ %{1}{0pt}{-\baselineskip}{\baselineskip}%
+ %{\normalfont\Large\bfseries\color{red}}}
+ 
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\Large\bfseries\color{red}}}
+
+
 \makeatother
 
 \title{\Huge\bfseries Молитвослов}
@@ -240,7 +250,7 @@ pdfsubject=, pdfkeywords=}
 \long\def\symbolfootnote[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
 
-\setlength\footskip{96pt}
+\setlength\footskip{60pt}
 
 % Make more compact lists
 \setlength\itemsep{2pt}
