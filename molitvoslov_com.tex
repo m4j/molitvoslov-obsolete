@@ -12,12 +12,15 @@
 \usepackage{shorttoc}
 \usepackage{multicol}
 
+\newcommand\myheadingcolor{}%\color{red}}
+\newcommand\mychaptercolor{\color{red}}
+
 \usepackage{tocloft}
 \tocloftpagestyle{empty}
 % fill with dots after chapter titles
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 % centered TOC title
-\renewcommand{\cfttoctitlefont}{\hfill\Huge\bfseries\color{red}}
+\renewcommand{\cfttoctitlefont}{\hfill\Huge\bfseries\mychaptercolor}
 \renewcommand{\cftaftertoctitle}{\hfill}
 \renewcommand{\cftpartpresnum}{\S\ }
 
@@ -35,9 +38,9 @@
 \pagestyle{fancy}
 %\fancyheadoffset[LE,RO]{\marginparsep+\marginparwidth}
 
-\lhead{} \chead{\itshape\color{red}\textbf{\rightmark}} \rhead{}
+\lhead{} \chead{\itshape\myheadingcolor\textbf{\rightmark}} \rhead{}
 \renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\headrule}{{\color{red}%
+\renewcommand{\headrule}{{\myheadingcolor%
 \hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
 
 \lfoot{} \cfoot{\thepage} \rfoot{}
@@ -88,7 +91,7 @@
         \vskip 20\p@
     \fi
     \interlinepenalty\@M
-    \LARGE \bfseries \centering \color{red} #1\par\nobreak
+    \LARGE \bfseries \centering \mychaptercolor #1\par\nobreak
     \vskip 20\p@
   }}
 \def\@makeschapterhead#1{%
@@ -98,18 +101,14 @@
     \normalfont
     \interlinepenalty\@M
     \vskip 30\p@
-    \Huge \bfseries \centering \color{red}  #1\par\nobreak
+    \Huge \bfseries \centering \mychaptercolor  #1\par\nobreak
     \vskip 40\p@
   }}
 
-%\renewcommand\section{\@startsection{section}%
- %{1}{0pt}{-\baselineskip}{\baselineskip}%
- %{\normalfont\Large\bfseries\color{red}}}
- 
 \renewcommand\section{\@startsection {section}{1}{\z@}%
                                    {-3.5ex \@plus -1ex \@minus -.2ex}%
                                    {2.3ex \@plus.2ex}%
-                                   {\normalfont\Large\bfseries\color{red}}}
+                                   {\normalfont\Large\bfseries\myheadingcolor}}
 
 
 \makeatother
@@ -276,7 +275,7 @@ pdfsubject=, pdfkeywords=}
 }
 
 \newcommand\mysubsubsection[1]{
-\medskip\hspace{-\parindent}{\bfseries\color{red} #1}\nopagebreak\medskip
+\medskip\hspace{-\parindent}{\bfseries\myheadingcolor #1}\nopagebreak\medskip
 }
 
 \begin{document}
@@ -319,7 +318,7 @@ pdfsubject=, pdfkeywords=}
 
 \nopagebreak\bigskip\bigskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
 
-\renewcommand{\ornament}{uzor_begin_5_red}
+\renewcommand{\ornament}{uzor_begin_5}
 
 \input{root}
 
