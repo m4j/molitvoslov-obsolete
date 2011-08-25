@@ -36,14 +36,55 @@
 %\usepackage{etoolbox}
 
 \pagestyle{fancy}
-%\fancyheadoffset[LE,RO]{\marginparsep+\marginparwidth}
-
 \lhead{} \chead{\itshape\myheadingcolor\textbf{\rightmark}} \rhead{}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\headrule}{{\myheadingcolor%
-\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\headrule}{{\myheadingcolor%
+%\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
 
 \lfoot{} \cfoot{\thepage} \rfoot{}
+
+\newcommand{\wb}[2]{\fontsize{#1}{#2}\usefont{U}{webo}{xl}{n}}
+
+% What follows has been elaborated starting from an original
+% post of Piet van Oostrum <piet@cs.uu.nl> on comp.text.tex .
+%
+% A4 pages are 210 mm wide and 297 mm high, i.e. about 595
+% bp wide and 842 bp high.  Allowing a 1 in (72 bp) white
+% margin on all sides (predefined inside TeX), that accounts
+% for a decoration border 451 bp wide and 698 bp high.  If
+% we want to use WeboMints characters in square cells with
+% 12 bp side, we need 37 cells (2 angles and 35 border) in
+% the X direction, for a total of 37*12 = 444 bp; and 58
+% cells in the Y direction, for a total of 58*12 = 696 bp.
+% The two white sides have a real dimension of (595-444)/2 =
+% 75 and (842-696)/2 = 73 bp's.
+
+%\fancyhf{}
+%\pagestyle{fancy}
+\newcommand{\fancypageframe}{%
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\unitlength}{1bp}
+
+\fancyhead[HL]{\wb{12bp}{12bp}%         Offset (48,-16), found
+  \begin{picture}(0,0)(25,-32)%           by trial and error.
+    \put(0,0){\color{red}5}%                       Upper left corner
+    \multiput(12,0)(12,0){37}{\color{red}5}%       Upper border
+    \put(456,0){\color{red}5}%                     Upper right corner
+    \multiput(0,-12)(0,-12){56}{\color{red}5}%     Left border
+    \put(0,-684){\color{red}5}%                    Lower left corner
+    \multiput(12,-684)(12,0){37}{\color{red}5}%    Lower border
+    \multiput(456,-12)(0,-12){56}{\color{red}5}%   Right border
+    \put(456,-684){\color{red}5}%                  Lower right corner
+\end{picture}}}
+
+\fancypageframe
+
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[C]{\thepage} % except the center
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypageframe}
 
 
 \renewcommand\sectionmark[1]{}
@@ -55,7 +96,7 @@
 \newlength\headoff
 \addtolength\headoff{\headheight}
 \addtolength\headoff{\headsep}
-\addtolength\headoff{14pt}
+\addtolength\headoff{32pt}
 
 % position chapter and toc headings higher
 \makeatletter
@@ -100,9 +141,9 @@
     \includegraphics[width=\textwidth]{\ornament}
     \normalfont
     \interlinepenalty\@M
-    \vskip 30\p@
+    %\vskip 20\p@
     \Huge \bfseries \centering \mychaptercolor  #1\par\nobreak
-    \vskip 40\p@
+    \vskip 30\p@
   }}
 
 \renewcommand\section{\@startsection {section}{1}{\z@}%
@@ -307,7 +348,7 @@ pdfsubject=, pdfkeywords=}
 \nopagebreak\medskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
 
 \clearpage
-\renewcommand{\ornament}{uzor_begin_10_red}
+\renewcommand{\ornament}{uzor_begin_10}
 {\noparindent
 \vspace*{-\headoff}
 \includegraphics[width=\textwidth]{\ornament}}
@@ -318,7 +359,7 @@ pdfsubject=, pdfkeywords=}
 
 \nopagebreak\bigskip\bigskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
 
-\renewcommand{\ornament}{uzor_begin_5}
+\renewcommand{\ornament}{uzor_begin_10}
 
 \input{root}
 
