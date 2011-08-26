@@ -33,6 +33,7 @@
 %\usepackage{PTSans}
 \usepackage{calc,layouts}
 \usepackage{eso-pic}
+\usepackage{pifont}
 %\usepackage{etoolbox}
 
 \pagestyle{fancy}
@@ -61,20 +62,21 @@
 
 %\fancyhf{}
 %\pagestyle{fancy}
+\newcommand\myding{\color{red}\ding{68}}
 \newcommand{\fancypageframe}{%
 \renewcommand{\headrulewidth}{0pt}
 \setlength{\unitlength}{1bp}
 
-\fancyhead[HL]{\wb{12bp}{12bp}%         Offset (48,-16), found
+\fancyhead[HL]{\wb{15bp}{15bp}%         Offset (48,-16), found
   \begin{picture}(0,0)(25,-32)%           by trial and error.
-    \put(0,0){\color{red}5}%                       Upper left corner
-    \multiput(12,0)(12,0){37}{\color{red}5}%       Upper border
-    \put(456,0){\color{red}5}%                     Upper right corner
-    \multiput(0,-12)(0,-12){56}{\color{red}5}%     Left border
-    \put(0,-684){\color{red}5}%                    Lower left corner
-    \multiput(12,-684)(12,0){37}{\color{red}5}%    Lower border
-    \multiput(456,-12)(0,-12){56}{\color{red}5}%   Right border
-    \put(456,-684){\color{red}5}%                  Lower right corner
+    \put(0,0){\myding}%                       Upper left corner
+    \multiput(12,0)(12,0){37}{\myding}%       Upper border
+    \put(456,0){\myding}%                     Upper right corner
+    \multiput(0,-12)(0,-12){56}{\myding}%     Left border
+    \put(0,-684){\myding}%                    Lower left corner
+    \multiput(12,-684)(12,0){37}{\myding}%    Lower border
+    \multiput(456,-12)(0,-12){56}{\myding}%   Right border
+    \put(456,-684){\myding}%                  Lower right corner
 \end{picture}}}
 
 \fancypageframe
@@ -86,9 +88,8 @@
 \renewcommand{\footrulewidth}{0pt}
 \fancypageframe}
 
-
 \renewcommand\sectionmark[1]{}
-\newcommand{\ornament}{uzor_begin_2_red}
+\newcommand{\ornament}{uzor_begin_2}
 
 % calculate header offset from text body
 \normalsize
@@ -96,7 +97,7 @@
 \newlength\headoff
 \addtolength\headoff{\headheight}
 \addtolength\headoff{\headsep}
-\addtolength\headoff{32pt}
+\addtolength\headoff{18pt}
 
 % position chapter and toc headings higher
 \makeatletter
@@ -109,6 +110,7 @@
     \fi
     %\addtocontents{toc}{\protect\mbox{}\protect\hrulefill\par}
     \markboth{}{}%
+    \thispagestyle{empty}
     {\centering
      \interlinepenalty \@M
      \normalfont
@@ -141,7 +143,7 @@
     \includegraphics[width=\textwidth]{\ornament}
     \normalfont
     \interlinepenalty\@M
-    %\vskip 20\p@
+    \vskip 10\p@
     \Huge \bfseries \centering \mychaptercolor  #1\par\nobreak
     \vskip 20\p@
   }}
@@ -212,7 +214,8 @@
 
 \newcommand{\mypart}[1]{
 \part{#1}
-\markright{#1}}
+\markright{#1}
+}
 
 \newcommand{\mychapterending}[1][uzor_end_3]{\nopagebreak[4]\begin{center}\raisebox{0pt}[1.5\baselineskip][0pt]{
 \includegraphics[width=0.33\textwidth]{#1}}\end{center}}
@@ -290,7 +293,7 @@ pdfsubject=, pdfkeywords=}
 \long\def\symbolfootnote[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
 
-\setlength\footskip{60pt}
+\setlength\footskip{6\baselineskip}
 
 % Make more compact lists
 \setlength\itemsep{2pt}
@@ -344,20 +347,36 @@ pdfsubject=, pdfkeywords=}
 \setlength\cftbeforepartskip{3pt}
 \clearpage
 \shorttableofcontents{Краткое оглавление}{-1}
-\thispagestyle{empty}\longpage[6]{}
+%\thispagestyle{empty}
+\longpage[6]{}
 \nopagebreak\medskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
 
 \clearpage
-\renewcommand{\ornament}{uzor_begin_10}
+\renewcommand{\ornament}{uzor_psaltyr}
 {\noparindent
 \vspace*{-\headoff}
 \includegraphics[width=\textwidth]{\ornament}}
 \setlength\cftbeforepartskip{\savebeforepartskip}
 \addtolength\cftbeforechapskip{-5pt}
 
+% redefine empty pagestyle to include frame
+\fancypagestyle{empty}{%
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypageframe}
+
 \tableofcontents
 
 \nopagebreak\bigskip\bigskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
+
+% set empty pagestyle back to defaults
+\fancypagestyle{empty}{%
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+
 
 \renewcommand{\ornament}{uzor_begin_10}
 
