@@ -1,0 +1,239 @@
+\documentclass[11pt,oneside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\graphicspath{{target/eps/}}
+
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage{truncate}
+\usepackage{shorttoc}
+\usepackage{multicol}
+\usepackage{url}
+
+
+\usepackage{tocloft}
+\tocloftpagestyle{empty}
+% fill with dots after chapter titles
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+% centered TOC title
+\renewcommand{\cfttoctitlefont}{\hfill\Huge\bfseries\color{red}}
+\renewcommand{\cftaftertoctitle}{\hfill}
+\renewcommand{\cftpartpresnum}{\S\ }
+
+\makeatletter
+\renewcommand{\@pnumwidth}{3em} \renewcommand{\@tocrmarg}{4em}
+\makeatother
+
+%\usepackage{pscyr}
+%\usepackage{PTSerif}
+%\usepackage{PTSans}
+\usepackage{calc}
+\usepackage{eso-pic}
+%\usepackage{etoolbox}
+
+\pagestyle{fancy}
+\chead{}
+\rhead{\thepage}
+\lhead{\truncate{0.95\textwidth}{\itshape\textbf{\rightmark}}}
+
+\cfoot{}
+\rfoot{}
+\lfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\renewcommand\sectionmark[1]{}
+\newcommand{\ornament}{uzor_begin_2}
+
+% calculate header offset from text body
+\setlength\headheight{14pt}
+\newlength\headoff
+\addtolength\headoff{\headheight}
+\addtolength\headoff{\headsep}
+\addtolength\headoff{14pt}
+
+% position chapter and toc headings higher
+\makeatletter
+\def\@part[#1]#2{%
+    \ifnum \c@secnumdepth >-2\relax
+      \refstepcounter{part}%
+      \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+    \else
+      \addcontentsline{toc}{part}{#1}%
+    \fi
+    %\addtocontents{toc}{\protect\mbox{}\protect\hrulefill\par}
+    \markboth{}{}%
+    {\centering
+     \interlinepenalty \@M
+     \normalfont
+     %~ \ifnum \c@secnumdepth >-2\relax
+       %~ \huge\bfseries \partname\nobreakspace\thepart
+       %~ \par
+       %~ \vskip 20\p@
+     %~ \fi
+     \includegraphics[width=0.2\textwidth]{cross}
+     \par
+     \vskip 20\p@
+     \Huge \bfseries #2\par}%
+    \@endpart}
+
+
+\def\@makechapterhead#1{%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \LARGE\bfseries \@chapapp\space \thechapter
+        \par\nobreak
+        \vskip 20\p@
+    \fi
+    \interlinepenalty\@M
+    \LARGE \bfseries \centering \color{red} #1\par\nobreak
+    \vskip 20\p@
+  }}
+\def\@makeschapterhead#1{%
+  {\parindent \z@ \raggedright
+    \vspace*{-\headoff}
+    \includegraphics[width=\textwidth]{\ornament}
+    \normalfont
+    \interlinepenalty\@M
+    \vskip 30\p@
+    \Huge \bfseries \centering \color{red}  #1\par\nobreak
+    \vskip 40\p@
+  }}
+\makeatother
+
+\title{Молитвослов на всякую потребу}
+\author{www.molitvoslov.com}
+\date{2011-06-16}
+\setcounter{secnumdepth}{-2}
+
+\newcommand{\mychapter}[1]{
+    \cleardoublepage
+    \addcontentsline{toc}{chapter}{#1}
+    \chapter*{#1}
+    \markright{#1}
+    %\thisfancyput(0pt, 0pt){\includegraphics[width=\textwidth]{uzor_begin_2}}
+      %~ \AddToShipoutPicture*{
+        %~ %\setlength{\unitlength}{1in}
+         %~ \put(\LenToUnit{\myhpos}, \LenToUnit{\myvpos}){%
+           %~ \includegraphics[width=\textwidth]{uzor_begin_2}
+       %~ }}
+}
+
+\setlength\intextsep{0pt}
+
+\newcommand{\myfig}[2][0.41]{
+    \begin{wrapfigure}{l}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+}
+
+\newcommand{\myfigh}[3][0.41]{
+    \begin{wrapfigure}[#3]{l}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+}
+
+\newcommand{\myfigr}[2][0.41]{
+    \begin{wrapfigure}{r}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+}
+
+\newcommand{\myfigrh}[3][0.41]{
+    \begin{wrapfigure}[#3]{r}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+}
+
+\newcommand{\myfigure}[2][0.43]{
+    \begin{center}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{center}
+}
+
+\newcommand{\mypart}[1]{
+\part{#1}
+\markright{#1}}
+
+\newcommand{\mychapterending}[1][uzor_end_3]{\nopagebreak[4]\begin{center}
+\includegraphics[width=0.33\textwidth]{#1}\end{center}}
+
+
+\sloppy
+
+\newcommand\longpage[1][1]{\enlargethispage{#1\baselineskip}}
+\newcommand\shortpage[1][1]{\enlargethispage{-#1\baselineskip}}
+
+% save the value of current parindent to be used
+% later in minipage environments
+\newlength\myparindent
+\setlength\myparindent{\parindent}
+\newcommand\noparindent{\setlength\parindent{0pt}}
+\newcommand\restoreparindent{\setlength\parindent{\myparindent}}
+
+\newlength\firstcolumnwidth
+\newlength\secondcolumnwidth
+
+\newcommand\twocolumns[3][0.43]{
+    \setlength\firstcolumnwidth{#1\linewidth - 0.01\linewidth}
+    \setlength\secondcolumnwidth{\linewidth - \firstcolumnwidth - 0.02\linewidth}
+    \begin{figure}[h]
+    \begin{minipage}[b]{\firstcolumnwidth}
+    #2
+    \end{minipage}
+    \hspace{0.01\linewidth}
+    \begin{minipage}[b]{\secondcolumnwidth}
+    #3
+    \end{minipage}
+    \end{figure}
+}
+
+\newcommand\twocolumnss[3][0.43]{
+    \setlength\firstcolumnwidth{#1\linewidth}
+    \setlength\secondcolumnwidth{\linewidth - \firstcolumnwidth - 0.05\linewidth}
+    \begin{figure}[h]
+    \begin{tabular}{p{\firstcolumnwidth} p{\secondcolumnwidth}}
+    #2 & #3 \\
+    \end{tabular}
+    \end{figure}
+}
+
+\long\def\symbolfootnote[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
+
+\setlength\footskip{60pt}
+
+% Make more compact lists
+\setlength\itemsep{2pt}
+
+\newcommand\mysubsubsection[1]{
+\begin{flushleft}\bfseries #1\normalfont{}\nopagebreak\end{flushleft}
+}
+
+\begin{document}
+
+%\input{secondpage}
+
+\newlength\savebeforepartskip
+\setlength\savebeforepartskip{\cftbeforepartskip}
+\setlength\cftbeforepartskip{3pt}
+
+
+{\noparindent
+\vspace*{-\headoff}
+\includegraphics[width=\textwidth]{\ornament}}
+\setlength\cftbeforepartskip{\savebeforepartskip}
+\addtolength\cftbeforechapskip{-5pt}
+
+\tableofcontents
+
+\nopagebreak\bigskip\bigskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
+
+\renewcommand{\ornament}{uzor_begin_5}
+
+\input{root}
+
+\input{changes}
+
+\end{document}
