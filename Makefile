@@ -62,16 +62,18 @@ $(TARGET_EPS_DIR)/*.eps: img/* uzory/*.pdf
 		if [ -f "$$file" ]; then \
 			fname=`basename $$file`; \
 			cnv="convert $$file $(TARGET_EPS_DIR)/$${fname%.*}.eps"; \
-			echo $$cnv; \
-			$$cnv; \
+			echo $$cnv; $$cnv; \
+			cnv="convert $$file $(TARGET_EPS_DIR)/$${fname%.*}.png"; \
+			echo $$cnv; $$cnv; \
 		fi \
 	done
 	for file in uzory/*.pdf; do \
 		if [ -f "$$file" ]; then \
 			fname=`basename $$file`; \
 			cnv="convert $$file $(TARGET_EPS_DIR)/$${fname%.*}.eps"; \
-			echo $$cnv; \
-			$$cnv; \
+			echo $$cnv; $$cnv; \
+			cnv="convert $$file $(TARGET_EPS_DIR)/$${fname%.*}.png"; \
+			echo $$cnv; $$cnv; \
 		fi \
 	done
 

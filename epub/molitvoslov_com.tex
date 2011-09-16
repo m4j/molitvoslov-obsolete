@@ -5,43 +5,12 @@
 \graphicspath{{target/eps/}}
 
 \usepackage{wrapfig}
-\usepackage{fancyhdr}
 \usepackage{indentfirst}
-\usepackage{truncate}
-\usepackage{shorttoc}
 \usepackage{multicol}
 \usepackage{url}
 
-
-\usepackage{tocloft}
-\tocloftpagestyle{empty}
-% fill with dots after chapter titles
-\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
-% centered TOC title
-\renewcommand{\cfttoctitlefont}{\hfill\Huge\bfseries\color{red}}
-\renewcommand{\cftaftertoctitle}{\hfill}
-\renewcommand{\cftpartpresnum}{\S\ }
-
-\makeatletter
-\renewcommand{\@pnumwidth}{3em} \renewcommand{\@tocrmarg}{4em}
-\makeatother
-
-%\usepackage{pscyr}
-%\usepackage{PTSerif}
-%\usepackage{PTSans}
 \usepackage{calc}
 \usepackage{eso-pic}
-%\usepackage{etoolbox}
-
-\pagestyle{fancy}
-\chead{}
-\rhead{\thepage}
-\lhead{\truncate{0.95\textwidth}{\itshape\textbf{\rightmark}}}
-
-\cfoot{}
-\rfoot{}
-\lfoot{}
-\renewcommand{\headrulewidth}{0.4pt}
 
 \renewcommand\sectionmark[1]{}
 \newcommand{\ornament}{uzor_begin_2}
@@ -55,29 +24,6 @@
 
 % position chapter and toc headings higher
 \makeatletter
-\def\@part[#1]#2{%
-    \ifnum \c@secnumdepth >-2\relax
-      \refstepcounter{part}%
-      \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
-    \else
-      \addcontentsline{toc}{part}{#1}%
-    \fi
-    %\addtocontents{toc}{\protect\mbox{}\protect\hrulefill\par}
-    \markboth{}{}%
-    {\centering
-     \interlinepenalty \@M
-     \normalfont
-     %~ \ifnum \c@secnumdepth >-2\relax
-       %~ \huge\bfseries \partname\nobreakspace\thepart
-       %~ \par
-       %~ \vskip 20\p@
-     %~ \fi
-     \includegraphics[width=0.2\textwidth]{cross}
-     \par
-     \vskip 20\p@
-     \Huge \bfseries #2\par}%
-    \@endpart}
-
 
 \def\@makechapterhead#1{%
   {\parindent \z@ \raggedright \normalfont
@@ -108,19 +54,8 @@
 \setcounter{secnumdepth}{-2}
 
 \newcommand{\mychapter}[1]{
-    \cleardoublepage
-    \addcontentsline{toc}{chapter}{#1}
-    \chapter*{#1}
-    \markright{#1}
-    %\thisfancyput(0pt, 0pt){\includegraphics[width=\textwidth]{uzor_begin_2}}
-      %~ \AddToShipoutPicture*{
-        %~ %\setlength{\unitlength}{1in}
-         %~ \put(\LenToUnit{\myhpos}, \LenToUnit{\myvpos}){%
-           %~ \includegraphics[width=\textwidth]{uzor_begin_2}
-       %~ }}
+    \chapter{#1}
 }
-
-\setlength\intextsep{0pt}
 
 \newcommand{\myfig}[2][0.41]{
     \begin{wrapfigure}{l}{0pt}
@@ -159,7 +94,6 @@
 \newcommand{\mychapterending}[1][uzor_end_3]{\nopagebreak[4]\begin{center}
 \includegraphics[width=0.33\textwidth]{#1}\end{center}}
 
-
 \sloppy
 
 \newcommand\longpage[1][1]{\enlargethispage{#1\baselineskip}}
@@ -172,59 +106,20 @@
 \newcommand\noparindent{\setlength\parindent{0pt}}
 \newcommand\restoreparindent{\setlength\parindent{\myparindent}}
 
-\newlength\firstcolumnwidth
-\newlength\secondcolumnwidth
-
-\newcommand\twocolumns[3][0.43]{
-    \setlength\firstcolumnwidth{#1\linewidth - 0.01\linewidth}
-    \setlength\secondcolumnwidth{\linewidth - \firstcolumnwidth - 0.02\linewidth}
-    \begin{figure}[h]
-    \begin{minipage}[b]{\firstcolumnwidth}
-    #2
-    \end{minipage}
-    \hspace{0.01\linewidth}
-    \begin{minipage}[b]{\secondcolumnwidth}
-    #3
-    \end{minipage}
-    \end{figure}
-}
-
-\newcommand\twocolumnss[3][0.43]{
-    \setlength\firstcolumnwidth{#1\linewidth}
-    \setlength\secondcolumnwidth{\linewidth - \firstcolumnwidth - 0.05\linewidth}
-    \begin{figure}[h]
-    \begin{tabular}{p{\firstcolumnwidth} p{\secondcolumnwidth}}
-    #2 & #3 \\
-    \end{tabular}
-    \end{figure}
-}
-
 \long\def\symbolfootnote[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
 
-\setlength\footskip{60pt}
-
-% Make more compact lists
-\setlength\itemsep{2pt}
-
 \newcommand\mysubsubsection[1]{
-\begin{flushleft}\bfseries #1\normalfont{}\nopagebreak\end{flushleft}
+    \subsubsection{#1}
 }
 
 \begin{document}
 
 %\input{secondpage}
 
-\newlength\savebeforepartskip
-\setlength\savebeforepartskip{\cftbeforepartskip}
-\setlength\cftbeforepartskip{3pt}
-
-
 {\noparindent
 \vspace*{-\headoff}
 \includegraphics[width=\textwidth]{\ornament}}
-\setlength\cftbeforepartskip{\savebeforepartskip}
-\addtolength\cftbeforechapskip{-5pt}
 
 \tableofcontents
 
