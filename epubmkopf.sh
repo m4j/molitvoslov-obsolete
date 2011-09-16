@@ -10,6 +10,11 @@ print_item() {
 
 TARGET=$1
 HTML_DIR=$2
+SECTION=$3
+
+if [ -z "$SECTION" ]; then
+    SECTION="ch"
+fi
 
 if [ -z "$TITLE" ]; then
     TITLE=`get_latex_field title $TARGET.tex`
@@ -52,10 +57,10 @@ for file in fonts/*ttf; do
 done
 
 # output chapters
-for file in ${TARGET}ch?\.html; do
+for file in ${TARGET}${SECTION}?\.html; do
     print_item $file $file "application/xhtml+xml"
 done
-for file in ${TARGET}ch??\.html; do
+for file in ${TARGET}${SECTION}??\.html; do
     print_item $file $file "application/xhtml+xml"
 done
 
@@ -76,10 +81,10 @@ cat <<EOF
 EOF
 
 # output itemrefs
-for file in ${TARGET}ch?\.html; do
+for file in ${TARGET}${SECTION}?\.html; do
     printf '    <itemref idref="%s" />\n' $file
 done
-for file in ${TARGET}ch??\.html; do
+for file in ${TARGET}${SECTION}??\.html; do
     printf '    <itemref idref="%s" />\n' $file
 done
 

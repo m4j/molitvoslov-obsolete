@@ -8,9 +8,7 @@
 \usepackage{indentfirst}
 \usepackage{multicol}
 \usepackage{url}
-
-\usepackage{calc}
-\usepackage{eso-pic}
+\usepackage{color}
 
 \renewcommand\sectionmark[1]{}
 \newcommand{\ornament}{uzor_begin_2}
@@ -23,39 +21,74 @@
 \addtolength\headoff{14pt}
 
 % position chapter and toc headings higher
-\makeatletter
+%\makeatletter
 
-\def\@makechapterhead#1{%
-  {\parindent \z@ \raggedright \normalfont
-    \ifnum \c@secnumdepth >\m@ne
-        \LARGE\bfseries \@chapapp\space \thechapter
-        \par\nobreak
-        \vskip 20\p@
-    \fi
-    \interlinepenalty\@M
-    \LARGE \bfseries \centering \color{red} #1\par\nobreak
-    \vskip 20\p@
-  }}
-\def\@makeschapterhead#1{%
-  {\parindent \z@ \raggedright
-    \vspace*{-\headoff}
-    \includegraphics[width=\textwidth]{\ornament}
-    \normalfont
-    \interlinepenalty\@M
-    \vskip 30\p@
-    \Huge \bfseries \centering \color{red}  #1\par\nobreak
-    \vskip 40\p@
-  }}
-\makeatother
+%\def\@part[#1]#2{%
+    %\ifnum \c@secnumdepth >-2\relax
+      %\refstepcounter{part}%
+      %\addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+    %\else
+      %\addcontentsline{toc}{part}{#1}%
+    %\fi
+    %%\addtocontents{toc}{\protect\mbox{}\protect\hrulefill\par}
+    %\markboth{}{}%
+    %{\centering
+     %\interlinepenalty \@M
+     %\normalfont
+     %%~ \ifnum \c@secnumdepth >-2\relax
+       %%~ \huge\bfseries \partname\nobreakspace\thepart
+       %%~ \par
+       %%~ \vskip 20\p@
+     %%~ \fi
+     %\includegraphics[width=0.2\textwidth]{cross}
+     %\par
+     %\vskip 20\p@
+     %\Huge \bfseries #2\par}%
+    %\@endpart}
+    
+%\def\@makechapterhead#1{%
+  %{\parindent \z@ \raggedright \normalfont
+    %\ifnum \c@secnumdepth >\m@ne
+        %\LARGE\bfseries \@chapapp\space \thechapter
+        %\par\nobreak
+        %\vskip 20\p@
+    %\fi
+    %\includegraphics[width=\textwidth]{\ornament}
+    %\interlinepenalty\@M
+    %\LARGE \bfseries \centering \color{red} #1\par\nobreak
+    %\vskip 20\p@
+  %}}
+%\def\@makeschapterhead#1{%
+  %{\parindent \z@ \raggedright
+    %\vspace*{-\headoff}
+    %\includegraphics[width=\textwidth]{\ornament}
+    %\normalfont
+    %\interlinepenalty\@M
+    %\vskip 30\p@
+    %\Huge \bfseries \centering \color{red}  #1\par\nobreak
+    %\vskip 40\p@
+  %}}
+%\makeatother
 
 \title{Молитвослов на всякую потребу}
 \author{www.molitvoslov.com}
 \date{2011-06-16}
 \setcounter{secnumdepth}{-2}
+\setcounter{tocdepth}{-1}
+
+\newcommand{\mypart}[1]{
+    \part{#1}
+}
 
 \newcommand{\mychapter}[1]{
     \chapter{#1}
 }
+
+\newcommand\mysubsubsection[1]{
+    \subsubsection{#1}
+}
+
+\renewcommand\thepart{}
 
 \newcommand{\myfig}[2][0.41]{
     \begin{wrapfigure}{l}{0pt}
@@ -87,17 +120,12 @@
     \end{center}
 }
 
-\newcommand{\mypart}[1]{
-\part{#1}
-\markright{#1}}
+\newcommand{\mychapterending}[1][uzor_end_3]{%
+%\begin{center}\includegraphics[width=0.33\textwidth]{#1}\end{center}
+}
 
-\newcommand{\mychapterending}[1][uzor_end_3]{\nopagebreak[4]\begin{center}
-\includegraphics[width=0.33\textwidth]{#1}\end{center}}
-
-\sloppy
-
-\newcommand\longpage[1][1]{\enlargethispage{#1\baselineskip}}
-\newcommand\shortpage[1][1]{\enlargethispage{-#1\baselineskip}}
+\newcommand\longpage[1][1]{}
+\newcommand\shortpage[1][1]{}
 
 % save the value of current parindent to be used
 % later in minipage environments
@@ -109,21 +137,13 @@
 \long\def\symbolfootnote[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
 
-\newcommand\mysubsubsection[1]{
-    \subsubsection{#1}
-}
-
 \begin{document}
 
 %\input{secondpage}
 
-{\noparindent
-\vspace*{-\headoff}
-\includegraphics[width=\textwidth]{\ornament}}
+\maketitle \tableofcontents
 
-\tableofcontents
-
-\nopagebreak\bigskip\bigskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
+%\nopagebreak\bigskip\bigskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
 
 \renewcommand{\ornament}{uzor_begin_5}
 

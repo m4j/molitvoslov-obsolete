@@ -56,32 +56,35 @@ $(TARGET_EPS_DIR)/*.eps: img/* uzory/*.pdf
 	#
 	# create directory structure and copy template
 	mkdir -p $(TARGET_EPS_DIR)
-	#cp -a uzory/*.pdf $(TARGET_EPS_DIR)/
-	#pdftops -eps $(TARGET_EPS_DIR)/*.pdf
+	cp -av img/*.jpg $(TARGET_EPS_DIR)/
 	for file in img/*; do \
 		if [ -f "$$file" ]; then \
 			fname=`basename $$file`; \
-			cnv="convert $$file $(TARGET_EPS_DIR)/$${fname%.*}.eps"; \
-			echo $$cnv; $$cnv; \
-			cnv="convert $$file $(TARGET_EPS_DIR)/$${fname%.*}.png"; \
-			echo $$cnv; $$cnv; \
+			for ext in eps; do \
+				cnv="convert $$file $(TARGET_EPS_DIR)/$${fname%.*}.$$ext"; \
+				echo $$cnv; $$cnv; \
+			done \
 		fi \
 	done
 	for file in uzory/*.pdf; do \
 		if [ -f "$$file" ]; then \
 			fname=`basename $$file`; \
-			cnv="convert $$file $(TARGET_EPS_DIR)/$${fname%.*}.eps"; \
-			echo $$cnv; $$cnv; \
-			cnv="convert $$file $(TARGET_EPS_DIR)/$${fname%.*}.png"; \
-			echo $$cnv; $$cnv; \
+			for ext in eps jpg; do \
+				cnv="convert $$file $(TARGET_EPS_DIR)/$${fname%.*}.$$ext"; \
+				echo $$cnv; $$cnv; \
+			done \
 		fi \
 	done
 
 
-$(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB_DIR)/$(TARGET).cfg $(EPUB_TEMPLATE)*
+$(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB_DIR)/* $(EPUB_TEMPLATE)*
 	#
 	# create directory structure and copy template
-	mkdir -p $(TARGET_EPUB_DIR) && cp -ar $(EPUB_TEMPLATE)/* $(TARGET_EPUB_DIR)/
+	mkdir -p $(TARGET_EPUB_DIR) && cp -avr $(EPUB_TEMPLATE)/* $(TARGET_EPUB_DIR)/
+	#
+	# copy images
+	cp -av $(TARGET_EPS_DIR)/*.jpg $(EPUB_HTML_DIR)/
+	#cp -av $(TARGET_EPS_DIR)/*.png $(EPUB_HTML_DIR)/
 	#
 	# execute tex4ht process
 	$(HTLATEX) $(EPUB_DIR)/$(TARGET).tex "$(EPUB_DIR)/$(TARGET)" " -cunihtf -utf8" "-d$(EPUB_HTML_DIR)/"
@@ -89,12 +92,15 @@ $(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB_DIR)/$(TARGET).cfg $(EPUB_TEMPLATE)*
 	# generate OPF file
 	export BOOK_ID="http://www.molitvoslov.com/"; \
 	  export BOOK_LANG="ru"; \
-	  ./epubmkopf.sh $(TARGET) $(EPUB_HTML_DIR) >$(EPUB_HTML_DIR)/content.opf
+	  ./epubmkopf.sh $(TARGET) $(EPUB_HTML_DIR) pa>$(EPUB_HTML_DIR)/content.opf
 	#
 	# apply XSL transformation, generate NCX file
 	export XML_CATALOG_FILES=$(XML_CATALOG); \
 	  ./epubapplyxslt.sh $(TARGET) $(EPUB_HTML_DIR) epubxpgt.xslt && \
 	  xsltproc -o $(EPUB_HTML_DIR)/toc.ncx epubmkncx.xslt $(EPUB_HTML_DIR)/$(TARGET).html
+	#
+	# remove image paths
+	sed -i "s;$(TARGET_EPS_DIR)/;;" $(EPUB_HTML_DIR)/$(TARGET)*.html
 	#
 	# package everything
 	cd $(TARGET_EPUB_DIR); \

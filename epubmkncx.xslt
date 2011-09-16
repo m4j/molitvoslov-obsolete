@@ -28,7 +28,7 @@
     </ncx>
   </xsl:template>
  
-  <xsl:template match="xhtml:span[@class='chapterToc']">
+  <xsl:template match="xhtml:span[@class='partToc']">
     <navPoint id="">
         <xsl:attribute name = "id">
             <xsl:value-of select = "substring-before(xhtml:a/@href,'#')"/>
