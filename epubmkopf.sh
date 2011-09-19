@@ -58,10 +58,10 @@ for file in ${TARGET}???*\.html; do
 done
 
 # output images
-for file in *.png; do
+for file in images/*.png; do
     print_item $file $file "image/png"
 done
-for file in *.jpg; do
+for file in images/*.jpg; do
     print_item $file $file "image/jpeg"
 done
 
