@@ -88,7 +88,6 @@ $(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB_DIR)/* $(EPUB_TEMPLATE)*
 	#
 	# execute tex4ht process
 	$(HTLATEX) $(EPUB_DIR)/$(TARGET).tex "$(EPUB_DIR)/$(TARGET)" " -cunihtf -utf8" "-d$(EPUB_HTML_DIR)/"
-	rm $(EPUB_HTML_DIR)/images/*
 	#
 	# generate OPF file
 	export XML_CATALOG_FILES=$(XML_CATALOG); \
