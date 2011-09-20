@@ -32,10 +32,12 @@ h1.partHead{text-align: center}
  .chapterToc ~ .sectionToc {margin-left:2em;}
 .subsubsectionToc {margin-left:6em;}
  .likesubsectionToc ~ .subsubsectionToc, .subsectionToc ~ .subsubsectionToc, {margin-left:2em;}
- .wrapfig-r {float:right; text-align:left; margin-left:auto; margin-top:0.5em;} 
- .wrapfig-l {float:left; text-align:left; margin-right:auto; margin-top:0.5em;} 
+ .wrapfig-r {float:right; text-align:left; margin-left:0.5em; width:40%} 
+ .wrapfig-l {float:left; text-align:left; margin-right:0.5em; width:40%} 
+h2.chapterHead {text-align:center; color:red}
+h5.subsubsectionHead {margin-top:1em; margin-bottom:1em}
 body { text-align: justify; font-family: MainFont;}
-a,h2,h3,h4 { text-align: left }
+a,h2,h3,h4,h5 { text-align: left }
 .chapterTOCS, .tableofcontents { text-align: left }
 span.titlemark { line-height: 300% }
 p { margin: 0px; }
