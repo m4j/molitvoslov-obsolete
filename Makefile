@@ -100,8 +100,11 @@ $(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB_DIR)/* $(EPUB_TEMPLATE)*
 	  ./epubapplyxslt.sh $(TARGET) $(EPUB_HTML_DIR) epubxpgt.xslt && \
 	  xsltproc -o $(EPUB_HTML_DIR)/toc.ncx epubmkncx.xslt $(EPUB_HTML_DIR)/$(TARGET).html
 	#
-	# remove image paths
+	# rename image paths
 	sed -i "s;$(TARGET_EPS_DIR);images;" $(EPUB_HTML_DIR)/$(TARGET)*.html
+	#
+	# copy our own css
+	cp -av $(EPUB_DIR)/$(TARGET).css $(EPUB_HTML_DIR)/
 	#
 	# package everything
 	cd $(TARGET_EPUB_DIR); \
