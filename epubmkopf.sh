@@ -38,7 +38,7 @@ cat <<EOF
       <dc:language>$BOOK_LANG</dc:language>
   </metadata>
   <manifest>
-    <item id="pt" href="page-template.xpgt" media-type="application/vnd.adobe.page-template+xml"/>
+    <item id="pt" href="page-template.xpgt" media-type="application/vnd.adobe-page-template+xml"/>
     <item id="style" href="$TARGET.css" media-type="text/css" />
     <item id="cover" href="cover.html" media-type="application/xhtml+xml" />
     <item id="toc" href="$TARGET.html" media-type="application/xhtml+xml" />
@@ -59,10 +59,10 @@ done
 
 # output images
 for file in images/*.png; do
-    print_item $file $file "image/png"
+    print_item "img`basename $file`" $file "image/png"
 done
 for file in images/*.jpg; do
-    print_item $file $file "image/jpeg"
+    print_item "img`basename $file`" $file "image/jpeg"
 done
 
 #cd back to our base dir
@@ -84,9 +84,9 @@ cat <<EOF
   </spine>
   <guide>
     <reference type="toc" title="Оглавление" href="$TARGET.html" />
-    <reference type="other.ms-coverimage-standard" title="Cover" href="cover.jpg" />
-    <reference type="other.ms-thumbimage-standard" title="ThumbImageStandard" href="cover.jpg" />
-    <reference type="other.ms-thumbimage" title="PPCThumbnailImage" href="thumb.jpg" />
+    <reference type="other.ms-coverimage-standard" title="Cover" href="images/cover.png" />
+    <reference type="other.ms-thumbimage-standard" title="ThumbImageStandard" href="images/cover.png" />
+    <reference type="other.ms-thumbimage" title="PPCThumbnailImage" href="images/thumb.jpg" />
     <!--
     <reference type="copyright" title="Copyright" href="bano_9781411432963_oeb_cop_r1.html" />
     <reference type="beginreading" title="Begin reading" href="bano_9781411432963_oeb_p01_r1.html" />

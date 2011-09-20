@@ -16,7 +16,7 @@ dt.enumerate {float:left; clear:left; margin-right:0.5em; margin-left:0.5em; tex
 div.minipage{width:100%;}
 div.center div {text-align: left;}
 span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
-div.footnotes{border-top:solid 1px black; border-bottom:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2ex; font-style:italic; font-size:85%;}
+div.footnotes{border-top:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2ex; font-size:85%;}
 div.footnotes p{margin-top:0; margin-bottom:0; text-indent:0;}
 .partToc a, .partToc {line-height: 200%; font-weight:bold; font-size:110%;}
 .chapterToc a, .chapterToc {line-height: 200%; font-weight:bold;}
@@ -41,9 +41,9 @@ a,h2,h3,h4,h5 { text-align: left }
 .chapterTOCS, .tableofcontents { text-align: left }
 span.titlemark { line-height: 300% }
 p { margin: 0px; }
-@font-face { font-style: normal; font-family: MainFont; src: url(fonts/DejaVuSerifCondensed.ttf); }
-@font-face { font-style: italic; font-family: MainFont; src: url(fonts/DejaVuSerifCondensed-Italic.ttf); }
-@font-face { font-weight: bold; font-family: MainFont; src: url(fonts/DejaVuSerifCondensed-Bold.ttf); }
-@font-face { font-weight: bold; font-style: italic; font-family: MainFont; src: url(fonts/DejaVuSerifCondensed-BoldItalic.ttf); }
+@font-face { font-style: normal; font-family: MainFont; src: url(fonts/PTF55F.ttf); }
+@font-face { font-style: italic; font-family: MainFont; src: url(fonts/PTF56F.ttf); }
+@font-face { font-weight: bold; font-family: MainFont; src: url(fonts/PTF75F.ttf); }
+@font-face { font-weight: bold; font-style: italic; font-family: MainFont; src: url(fonts/PTF76F.ttf); }
 
 
