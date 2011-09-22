@@ -34,9 +34,17 @@ all: clean pdf epub
 
 pdf: $(TARGET_DIR)/$(TARGET).pdf
 
-epub: $(TARGET_DIR)/$(TARGET).epub
+epub: $(TARGET_EPUB_DIR) | eps images $(TARGET_DIR)/$(TARGET).epub
 
 eps: $(TARGET_EPS_DIR)/*.eps
+
+images: $(EPUB_HTML_DIR)/images/*.jpg
+
+$(TARGET_EPUB_DIR):  $(EPUB_TEMPLATE)
+	#
+	# create directory structure and copy template
+	mkdir -p $(TARGET_EPUB_DIR) && cp -avr $(EPUB_TEMPLATE)/* $(TARGET_EPUB_DIR)/
+	mkdir -p $(TARGET_EPS_DIR)
 
 $(TARGET_DIR)/$(TARGET).pdf: *.tex img/* header/* uzory/*
 	mkdir -p $(TARGET_DIR)
@@ -52,39 +60,24 @@ $(TARGET_DIR)/$(TARGET).pdf: *.tex img/* header/* uzory/*
 		done
 	mv $(TARGET).pdf $(TARGET_DIR)/
 
-$(TARGET_EPS_DIR)/*.eps: img/* uzory/*.pdf
-	#
-	# create directory structure and copy template
-	mkdir -p $(TARGET_EPS_DIR)
-	cp -av img/*.jpg $(TARGET_EPS_DIR)/
-	for file in img/*; do \
-		if [ -f "$$file" ]; then \
-			fname=`basename $$file`; \
-			for ext in eps; do \
-				cnv="convert $$file $(TARGET_EPS_DIR)/$${fname%.*}.$$ext"; \
-				echo $$cnv; $$cnv; \
-			done \
-		fi \
-	done
-	for file in uzory/*.pdf; do \
-		if [ -f "$$file" ]; then \
-			fname=`basename $$file`; \
-			for ext in eps; do \
-				cnv="convert $$file $(TARGET_EPS_DIR)/$${fname%.*}.$$ext"; \
-				echo $$cnv; $$cnv; \
-			done \
-		fi \
+$(TARGET_EPS_DIR)/%.eps: img/%.jpg uzory/%.pdf
+	for file in $?; do \
+		fname=`basename $$file`; \
+		cnv="convert $$file $(@D)/$${fname%.*}.eps"; \
+		echo $$cnv; $$cnv; \
 	done
 
+$(EPUB_HTML_DIR)/images/*.jpg:: uzory/*.pdf
+	for file in $?; do \
+		fname=`basename $$file`; \
+		cnv="convert $$file $(@D)/$${fname%.*}.jpg"; \
+		echo $$cnv; $$cnv; \
+	done
 
-$(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB_DIR)/* $(EPUB_TEMPLATE)*
-	#
-	# create directory structure and copy template
-	mkdir -p $(TARGET_EPUB_DIR) && cp -avr $(EPUB_TEMPLATE)/* $(TARGET_EPUB_DIR)/
-	#
-	# copy images
-	cp -av $(TARGET_EPS_DIR)/*.jpg $(EPUB_HTML_DIR)/images
-	#cp -av $(TARGET_EPS_DIR)/*.png $(EPUB_HTML_DIR)/
+$(EPUB_HTML_DIR)/images/*.jpg:: img/*.jpg
+	cp -v $? $(@D)/
+
+$(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB) $(EPUB)*
 	#
 	# execute tex4ht process
 	$(HTLATEX) $(EPUB_DIR)/$(TARGET).tex "$(EPUB_DIR)/$(TARGET)" " -cunihtf -utf8" "-d$(EPUB_HTML_DIR)/"
