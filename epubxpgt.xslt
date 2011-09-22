@@ -30,6 +30,9 @@
  <xsl:copy>
     <xsl:apply-templates select="@*|node()"/>
     <xsl:attribute name="width"><xsl:text>100%</xsl:text></xsl:attribute>
+    <xsl:if test="contains(@src,'uzor_end')">
+        <xsl:attribute name="width"><xsl:text>160px</xsl:text></xsl:attribute>
+    </xsl:if>
  </xsl:copy>
 </xsl:template>
 

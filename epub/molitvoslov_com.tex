@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 \usepackage{graphicx}
-\graphicspath{{target/eps/}}
+\graphicspath{{target/img/}}
 
 \usepackage{wrapfig}
 \usepackage{indentfirst}
@@ -90,8 +90,6 @@
 %\newenvironment{mymulticols}[1]{\begin{multicols}{#1}}{\end{multicols}}
 \newenvironment{mymulticols}[1]{}{}
 
-\renewcommand\thepart{}
-
 \newcommand{\myfig}[2][0.41]{
     \begin{wrapfigure}{l}{0pt}
     \includegraphics[width=#1\textwidth]{#2}
@@ -123,7 +121,7 @@
 }
 
 \newcommand{\mychapterending}[1][uzor_end_3]{%
-%\begin{center}\includegraphics[width=0.33\textwidth]{#1}\end{center}
+\begin{center}\includegraphics[width=0.33\textwidth]{#1}\end{center}
 }
 
 \newcommand\longpage[1][1]{}
@@ -145,7 +143,7 @@
 
 \maketitle \tableofcontents
 
-%\nopagebreak\bigskip\bigskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
+\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
 
 \renewcommand{\ornament}{uzor_begin_5}
 

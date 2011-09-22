@@ -8,7 +8,7 @@ EPUB_DIR=epub
 EPUB_TEMPLATE=$(EPUB_DIR)/template
 
 TARGET_EPUB_DIR=$(TARGET_DIR)/epub
-TARGET_EPS_DIR=$(TARGET_DIR)/eps
+TARGET_IMG_DIR=$(TARGET_DIR)/img
 EPUB_HTML_DIR=$(TARGET_EPUB_DIR)/OEBPS
 EPUB_META_DIR=$(TARGET_EPUB_DIR)/META-INF
 
@@ -34,17 +34,18 @@ all: clean pdf epub
 
 pdf: $(TARGET_DIR)/$(TARGET).pdf
 
-epub: $(TARGET_EPUB_DIR) | eps images $(TARGET_DIR)/$(TARGET).epub
+epub: $(TARGET_EPUB_DIR) eps images $(TARGET_DIR)/$(TARGET).epub
 
-eps: $(TARGET_EPS_DIR)/*.eps
+eps: $(TARGET_IMG_DIR)/*.eps $(TARGET_IMG_DIR)/*.jpg
 
 images: $(EPUB_HTML_DIR)/images/*.jpg
 
-$(TARGET_EPUB_DIR):  $(EPUB_TEMPLATE)
+$(TARGET_EPUB_DIR):  $(EPUB_DIR)/*
 	#
 	# create directory structure and copy template
-	mkdir -p $(TARGET_EPUB_DIR) && cp -avr $(EPUB_TEMPLATE)/* $(TARGET_EPUB_DIR)/
-	mkdir -p $(TARGET_EPS_DIR)
+	mkdir -p $(TARGET_EPUB_DIR)
+	cp -avr $(EPUB_TEMPLATE)/* $(TARGET_EPUB_DIR)/
+	mkdir -p $(TARGET_IMG_DIR)
 
 $(TARGET_DIR)/$(TARGET).pdf: *.tex img/* header/* uzory/*
 	mkdir -p $(TARGET_DIR)
@@ -60,22 +61,25 @@ $(TARGET_DIR)/$(TARGET).pdf: *.tex img/* header/* uzory/*
 		done
 	mv $(TARGET).pdf $(TARGET_DIR)/
 
-$(TARGET_EPS_DIR)/%.eps: img/%.jpg uzory/%.pdf
+$(TARGET_IMG_DIR)/*.eps: img/*.jpg uzory/*.pdf
 	for file in $?; do \
 		fname=`basename $$file`; \
 		cnv="convert $$file $(@D)/$${fname%.*}.eps"; \
 		echo $$cnv; $$cnv; \
 	done
 
-$(EPUB_HTML_DIR)/images/*.jpg:: uzory/*.pdf
-	for file in $?; do \
+$(TARGET_IMG_DIR)/*.jpg: img/*.jpg uzory/*.pdf
+	for file in $(filter %.jpg, $?); do \
+		cp -v $$file $(@D); \
+	done
+	for file in $(filter %.pdf, $?); do \
 		fname=`basename $$file`; \
 		cnv="convert $$file $(@D)/$${fname%.*}.jpg"; \
 		echo $$cnv; $$cnv; \
 	done
 
-$(EPUB_HTML_DIR)/images/*.jpg:: img/*.jpg
-	cp -v $? $(@D)/
+$(EPUB_HTML_DIR)/images/*.jpg: $(TARGET_IMG_DIR)/*.jpg
+	cp -v $? $(@D); \
 
 $(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB) $(EPUB)*
 	#
@@ -94,7 +98,7 @@ $(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB) $(EPUB)*
 	  xsltproc -o $(EPUB_HTML_DIR)/toc.ncx epubmkncx.xslt $(EPUB_HTML_DIR)/$(TARGET).html
 	#
 	# rename image paths
-	sed -i "s;$(TARGET_EPS_DIR);images;" $(EPUB_HTML_DIR)/$(TARGET)*.html
+	sed -i "s;$(TARGET_IMG_DIR);images;" $(EPUB_HTML_DIR)/$(TARGET)*.html
 	#
 	# copy our own css
 	cp -av $(EPUB_DIR)/$(TARGET).css $(EPUB_HTML_DIR)/

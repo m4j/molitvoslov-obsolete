@@ -13,7 +13,7 @@
   </xsl:template>
 
   <xsl:template match="xhtml:div[@class='tableofcontents']">
-    <ncx>
+    <ncx version="2005-1">
         <head xmlns="http://www.daisy.org/z3986/2005/ncx/">
            <meta name="dtb:uid" content="http://www.hxa7241.org/articles/content/epup-guide_hxa7241_2007_1.epub"/>
         </head>
