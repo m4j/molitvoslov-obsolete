@@ -36,16 +36,17 @@ pdf: $(TARGET_DIR)/$(TARGET).pdf
 
 epub: $(TARGET_EPUB_DIR) eps images $(TARGET_DIR)/$(TARGET).epub
 
-eps: $(TARGET_IMG_DIR)/*.eps $(TARGET_IMG_DIR)/*.jpg
+eps: $(TARGET_IMG_DIR)/tall/*.eps $(TARGET_IMG_DIR)/wide/*.eps $(TARGET_IMG_DIR)/*.eps $(TARGET_IMG_DIR)/tall/*.jpg $(TARGET_IMG_DIR)/wide/*.jpg $(TARGET_IMG_DIR)/*.jpg
 
-images: $(EPUB_HTML_DIR)/images/*.jpg
+images: $(EPUB_HTML_DIR)/images/tall/*.jpg $(EPUB_HTML_DIR)/images/wide/*.jpg $(EPUB_HTML_DIR)/images/*.jpg
 
 $(TARGET_EPUB_DIR):  $(EPUB_DIR)/*
 	#
 	# create directory structure and copy template
 	mkdir -p $(TARGET_EPUB_DIR)
 	cp -avr $(EPUB_TEMPLATE)/* $(TARGET_EPUB_DIR)/
-	mkdir -p $(TARGET_IMG_DIR)
+	mkdir -p $(TARGET_IMG_DIR)/tall
+	mkdir -p $(TARGET_IMG_DIR)/wide
 
 $(TARGET_DIR)/$(TARGET).pdf: *.tex img/* header/* uzory/*
 	mkdir -p $(TARGET_DIR)
@@ -68,6 +69,20 @@ $(TARGET_IMG_DIR)/*.eps: img/*.jpg uzory/*.pdf
 		echo $$cnv; $$cnv; \
 	done
 
+$(TARGET_IMG_DIR)/tall/*.eps: img/tall/*.jpg
+	for file in $?; do \
+		fname=`basename $$file`; \
+		cnv="convert $$file $(@D)/$${fname%.*}.eps"; \
+		echo $$cnv; $$cnv; \
+	done
+
+$(TARGET_IMG_DIR)/wide/*.eps: img/wide/*.jpg
+	for file in $?; do \
+		fname=`basename $$file`; \
+		cnv="convert $$file $(@D)/$${fname%.*}.eps"; \
+		echo $$cnv; $$cnv; \
+	done
+
 $(TARGET_IMG_DIR)/*.jpg: img/*.jpg uzory/*.pdf
 	for file in $(filter %.jpg, $?); do \
 		cp -v $$file $(@D); \
@@ -78,7 +93,19 @@ $(TARGET_IMG_DIR)/*.jpg: img/*.jpg uzory/*.pdf
 		echo $$cnv; $$cnv; \
 	done
 
+$(TARGET_IMG_DIR)/tall/*.jpg: img/tall/*.jpg
+	cp -v $? $(@D)/
+
+$(TARGET_IMG_DIR)/wide/*.jpg: img/wide/*.jpg
+	cp -v $? $(@D)/
+
 $(EPUB_HTML_DIR)/images/*.jpg: $(TARGET_IMG_DIR)/*.jpg
+	cp -v $? $(@D); \
+
+$(EPUB_HTML_DIR)/images/tall/*.jpg: $(TARGET_IMG_DIR)/tall/*.jpg
+	cp -v $? $(@D); \
+
+$(EPUB_HTML_DIR)/images/wide/*.jpg: $(TARGET_IMG_DIR)/wide/*.jpg
 	cp -v $? $(@D); \
 
 $(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB) $(EPUB)*

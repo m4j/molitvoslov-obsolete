@@ -45,28 +45,68 @@
                 <xsl:text>icon</xsl:text>
             </xsl:attribute>
         </xsl:when>
-        <xsl:otherwise>
+        <!--xsl:otherwise>
          <xsl:attribute name="width">
             <xsl:text>70%</xsl:text>
          </xsl:attribute>
+        </xsl:otherwise-->
+    </xsl:choose>
+ </xsl:copy>
+</xsl:template>
+
+<!--
+Assign class for the div with chapter ending ornament
+-->
+<xsl:template match="xhtml:div[@class='center']">
+ <xsl:copy>
+    <xsl:choose>
+        <xsl:when test="contains(xhtml:p/xhtml:img/@src,'uzor_end')">
+            <xsl:attribute name="class">
+                <xsl:text>mychapterending</xsl:text>
+            </xsl:attribute>
+            <xsl:apply-templates select="node()"/>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:apply-templates select="@*|node()"/>
         </xsl:otherwise>
     </xsl:choose>
  </xsl:copy>
 </xsl:template>
 
-<xsl:template match="xhtml:div[@class='center']">
+<!--
+Assign div class based on image shape, the shape of the image is determined
+by its placement in a subdirectory, e. g. tall images go into tall/ or wide/
+-->
+<xsl:template match="xhtml:div[contains(@class, 'wrapfig')]">
  <xsl:copy>
-    <xsl:if test="contains(xhtml:p/xhtml:img/@src,'uzor_end')">
-        <xsl:attribute name="class">
-            <xsl:text>mychapterending</xsl:text>
-        </xsl:attribute>
-    </xsl:if>
-    <xsl:apply-templates select="node()"/>
+    <xsl:choose>
+        <xsl:when test="contains(xhtml:img/@src,'tall')">
+            <xsl:attribute name="class">
+                <xsl:value-of select="concat(@class,'t')"/>
+            </xsl:attribute>
+            <xsl:apply-templates select="node()"/>
+        </xsl:when>
+        <xsl:when test="contains(xhtml:img/@src,'wide')">
+            <xsl:attribute name="class">
+                <xsl:value-of select="concat(@class,'w')"/>
+            </xsl:attribute>
+            <xsl:apply-templates select="node()"/>
+        </xsl:when>
+        <xsl:otherwise>
+            <xsl:apply-templates select="@*|node()"/>
+        </xsl:otherwise>
+    </xsl:choose>
  </xsl:copy>
 </xsl:template>
 
+<!--
+Remove titlemark, e. g. "Part" wording
+-->
 <xsl:template match="xhtml:span[@class='titlemark']" />
 
+<!--
+Remove crosslinks at the bottom and at the top of the page
+-->
 <xsl:template match="xhtml:div[@class='crosslinks']" />
 
 <!-- template for the body section. Only needed if we want to change, delete or add nodes. In our case we need it to add a div element containing a menu of navigation. -->
