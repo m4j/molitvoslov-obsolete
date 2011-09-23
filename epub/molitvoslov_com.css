@@ -15,6 +15,9 @@ dd.enumerate {margin-left: 2em;}
 dt.enumerate {float:left; clear:left; margin-right:0.5em; margin-left:0.5em; text-align:right; }
 div.minipage{width:100%;}
 div.center {text-align: center;}
+div.mychapterending {text-align: center; width:100%; margin-top: 1em; page-break-before: avoid}
+img.ornamentlast {width: 50%}
+img.icon {width: 100%}
 /* div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:1em;} */ 
 span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
 div.footnotes{border-top:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2ex; font-size:85%;}
@@ -33,11 +36,11 @@ h1.partHead{text-align: center}
  .chapterToc ~ .sectionToc {margin-left:2em;}
 .subsubsectionToc {margin-left:6em;}
  .likesubsectionToc ~ .subsubsectionToc, .subsectionToc ~ .subsubsectionToc, {margin-left:2em;}
- .wrapfig-r {float:right; text-align:left; margin-left:0.5em; width:40%} 
- .wrapfig-l {float:left; text-align:left; margin-right:0.5em; width:40%} 
+ .wrapfig-r {float:right; text-align:left; margin-left:0.5em; width:50%} 
+ .wrapfig-l {float:left; text-align:left; margin-right:0.5em; width:50%} 
 h2.chapterHead {text-align:center; color:red}
-h5.subsubsectionHead {margin-top:1em; margin-bottom:1em}
-body { text-align: justify; font-family: MainFont;}
+h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em}
+body { font-family: MainFont;}
 a,h2,h3,h4,h5 { text-align: left }
 .chapterTOCS, .tableofcontents { text-align: left }
 span.titlemark { line-height: 300% }

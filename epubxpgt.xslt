@@ -29,10 +29,39 @@
 <xsl:template match="xhtml:img">
  <xsl:copy>
     <xsl:apply-templates select="@*|node()"/>
-    <xsl:attribute name="width"><xsl:text>100%</xsl:text></xsl:attribute>
-    <xsl:if test="contains(@src,'uzor_end')">
-        <xsl:attribute name="width"><xsl:text>160px</xsl:text></xsl:attribute>
+    <xsl:choose>
+        <xsl:when test="contains(@src,'uzor_end')">
+            <xsl:attribute name="class">
+                <xsl:text>ornamentlast</xsl:text>
+            </xsl:attribute>
+        </xsl:when>
+        <xsl:when test="contains(@src,'uzor_end')">
+            <xsl:attribute name="class">
+                <xsl:text>ornamentfirst</xsl:text>
+            </xsl:attribute>
+        </xsl:when>
+        <xsl:when test="contains(../@class, 'wrapfig')">
+            <xsl:attribute name="class">
+                <xsl:text>icon</xsl:text>
+            </xsl:attribute>
+        </xsl:when>
+        <xsl:otherwise>
+         <xsl:attribute name="width">
+            <xsl:text>70%</xsl:text>
+         </xsl:attribute>
+        </xsl:otherwise>
+    </xsl:choose>
+ </xsl:copy>
+</xsl:template>
+
+<xsl:template match="xhtml:div[@class='center']">
+ <xsl:copy>
+    <xsl:if test="contains(xhtml:p/xhtml:img/@src,'uzor_end')">
+        <xsl:attribute name="class">
+            <xsl:text>mychapterending</xsl:text>
+        </xsl:attribute>
     </xsl:if>
+    <xsl:apply-templates select="node()"/>
  </xsl:copy>
 </xsl:template>
 
