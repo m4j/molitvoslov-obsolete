@@ -1,0 +1,154 @@
+\documentclass[11pt,oneside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\graphicspath{{target/img/}}
+
+\usepackage{wrapfig}
+\usepackage{indentfirst}
+\usepackage{url}
+\usepackage{color}
+
+\renewcommand\sectionmark[1]{}
+\newcommand{\ornament}{uzor_begin_2}
+
+% calculate header offset from text body
+\setlength\headheight{14pt}
+\newlength\headoff
+\addtolength\headoff{\headheight}
+\addtolength\headoff{\headsep}
+\addtolength\headoff{14pt}
+
+% position chapter and toc headings higher
+%\makeatletter
+
+%\def\@part[#1]#2{%
+    %\ifnum \c@secnumdepth >-2\relax
+      %\refstepcounter{part}%
+      %\addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+    %\else
+      %\addcontentsline{toc}{part}{#1}%
+    %\fi
+    %%\addtocontents{toc}{\protect\mbox{}\protect\hrulefill\par}
+    %\markboth{}{}%
+    %{\centering
+     %\interlinepenalty \@M
+     %\normalfont
+     %%~ \ifnum \c@secnumdepth >-2\relax
+       %%~ \huge\bfseries \partname\nobreakspace\thepart
+       %%~ \par
+       %%~ \vskip 20\p@
+     %%~ \fi
+     %\includegraphics[width=0.2\textwidth]{cross}
+     %\par
+     %\vskip 20\p@
+     %\Huge \bfseries #2\par}%
+    %\@endpart}
+    
+%\def\@makechapterhead#1{%
+  %{\parindent \z@ \raggedright \normalfont
+    %\ifnum \c@secnumdepth >\m@ne
+        %\LARGE\bfseries \@chapapp\space \thechapter
+        %\par\nobreak
+        %\vskip 20\p@
+    %\fi
+    %\includegraphics[width=\textwidth]{\ornament}
+    %\interlinepenalty\@M
+    %\LARGE \bfseries \centering \color{red} #1\par\nobreak
+    %\vskip 20\p@
+  %}}
+%\def\@makeschapterhead#1{%
+  %{\parindent \z@ \raggedright
+    %\vspace*{-\headoff}
+    %\includegraphics[width=\textwidth]{\ornament}
+    %\normalfont
+    %\interlinepenalty\@M
+    %\vskip 30\p@
+    %\Huge \bfseries \centering \color{red}  #1\par\nobreak
+    %\vskip 40\p@
+  %}}
+%\makeatother
+
+\title{Молитвослов на всякую потребу}
+\author{www.molitvoslov.com}
+\date{2011-06-16}
+\setcounter{secnumdepth}{-3}
+%\setcounter{tocdepth}{-1}
+
+\newcommand{\mypart}[1]{
+    \part{#1}
+}
+
+\newcommand{\mychapter}[1]{
+    \chapter{#1}
+}
+
+\newcommand\mysubsubsection[1]{
+    \subsubsection{#1}
+}
+
+%\newenvironment{mymulticols}[1]{\begin{multicols}{#1}}{\end{multicols}}
+\newenvironment{mymulticols}[1]{}{}
+
+\newcommand{\myfig}[2][0.41]{
+    \begin{wrapfigure}{l}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+}
+
+\newcommand{\myfigh}[3][0.41]{
+    \begin{wrapfigure}[#3]{l}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+}
+
+\newcommand{\myfigr}[2][0.41]{
+    \begin{wrapfigure}{r}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+}
+
+\newcommand{\myfigrh}[3][0.41]{
+    \begin{wrapfigure}[#3]{r}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+}
+
+\newcommand{\myfigure}[2][0.43]{
+    \begin{center}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{center}
+}
+
+\newcommand{\mychapterending}[1][uzor_end_3]{%
+\begin{center}\includegraphics[width=0.33\textwidth]{#1}\end{center}
+}
+
+\newcommand\longpage[1][1]{}
+\newcommand\shortpage[1][1]{}
+
+% save the value of current parindent to be used
+% later in minipage environments
+\newlength\myparindent
+\setlength\myparindent{\parindent}
+\newcommand\noparindent{\setlength\parindent{0pt}}
+\newcommand\restoreparindent{\setlength\parindent{\myparindent}}
+
+\long\def\symbolfootnote[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
+
+\begin{document}
+
+%\input{secondpage}
+
+\maketitle \tableofcontents
+
+\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
+
+\renewcommand{\ornament}{uzor_begin_5}
+
+\input{root}
+
+\input{changes}
+
+\end{document}
