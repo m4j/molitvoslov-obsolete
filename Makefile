@@ -121,8 +121,8 @@ $(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB) $(EPUB)*
 	#
 	# apply XSL transformation, generate NCX file
 	export XML_CATALOG_FILES=$(XML_CATALOG); \
-	  ./epubapplyxslt.sh $(TARGET) $(EPUB_HTML_DIR) epubxpgt.xslt && \
-	  xsltproc -o $(EPUB_HTML_DIR)/toc.ncx epubmkncx.xslt $(EPUB_HTML_DIR)/$(TARGET).html
+	  xsltproc -o $(EPUB_HTML_DIR)/toc.ncx epubmkncx.xslt $(EPUB_HTML_DIR)/$(TARGET).html && \
+	  ./epubapplyxslt.sh $(TARGET) $(EPUB_HTML_DIR) epubxpgt.xslt
 	#
 	# rename image paths
 	sed -i "s;$(TARGET_IMG_DIR);images;" $(EPUB_HTML_DIR)/$(TARGET)*.html
