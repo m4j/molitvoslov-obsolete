@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   xmlns="http://www.w3.org/1999/xhtml"
@@ -7,8 +6,11 @@
   exclude-result-prefixes="xhtml xsl">
   
   <xsl:strip-space  elements="*"/>
+<!--
+  <xsl:preserve-space elements="span"/>
+-->
 
-<xsl:output method="xml" version="1.0" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//RU" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" indent="no"/>
+<xsl:output method="xml" version="1.0" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//RU" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" indent="yes"/>
 
 <!-- the identity template; also removes empty elements -->
 <xsl:template match="@*|node()">
@@ -126,7 +128,7 @@ Remove crosslinks at the bottom and at the top of the page
 <xsl:template match="xhtml:div[@class='tableofcontents']">
   <ul>
     <xsl:apply-templates select="@*"/>
-    <xsl:apply-templates select="child::xhtml:span"/>
+    <xsl:apply-templates select="child::xhtml:span[@class='partToc']"/>
   </ul>
 </xsl:template>
 
@@ -136,11 +138,34 @@ Remove crosslinks at the bottom and at the top of the page
   </li>
 </xsl:template>
 
+<xsl:template match="xhtml:div[@class='partTOCS']">
+  <ul>
+    <xsl:apply-templates select="@*"/>
+    <xsl:for-each select="child::xhtml:span">
+<!--
+        <xsl:if test="@class='chapterToc'">
+-->
+            <li>
+                <xsl:apply-templates select="@*|node()"/>
+            </li>
+<!--
+        </xsl:if>
+-->
+    </xsl:for-each>
+  </ul>
+</xsl:template>
+
+<!--
 <xsl:template match="xhtml:span[@class='chapterToc' and ../@class='tableofcontents']" />
 
 <xsl:template match="xhtml:span[@class='sectionToc' and ../@class='tableofcontents']" />
+-->
 
 <xsl:template match="comment()"/>
+
+<!--
+<xsl:template match="xhtml:p[@class='noindent' and ../@class='tableofcontents']" />
+-->
 
 <!--
 <xsl:template match="text()">
