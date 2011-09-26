@@ -126,43 +126,51 @@ Remove crosslinks at the bottom and at the top of the page
 -->
 
 <xsl:template match="xhtml:div[@class='tableofcontents']">
-  <dl>
+  <div>
     <xsl:apply-templates select="@*"/>
     <xsl:apply-templates select="child::xhtml:span[@class='partToc']"/>
-  </dl>
+  </div>
 </xsl:template>
 
 <xsl:template match="xhtml:span[@class='partToc']">
     <div class="partToc">
+<!--
         <dt>§</dt>
+-->
+        <xsl:text>§ </xsl:text>
+<!--
         <dd>
+-->
             <xsl:apply-templates select="node()"/>
+<!--
         </dd>
+-->
     </div>
 </xsl:template>
 
 <xsl:template match="xhtml:div[@class='partTOCS']">
-    <dl>
+    <div>
         <xsl:apply-templates select="@*"/>
         <xsl:apply-templates select="child::xhtml:span"/>
-    </dl>
+    </div>
 </xsl:template>
 
 <xsl:template match="xhtml:span[@class='chapterToc']">
-    <div>
-        <dt>§</dt>
+    <div class="chapterToc">
+        <xsl:text>§ </xsl:text>
+<!--
         <dd>
-            <xsl:apply-templates select="@*|node()"/>
+-->
+            <xsl:apply-templates select="node()"/>
+<!--
         </dd>
+-->
     </div>
 </xsl:template>
 
 <xsl:template match="xhtml:span[@class='sectionToc']">
-    <div>
-        <dt>•</dt>
-        <dd>
-            <xsl:apply-templates select="@*|node()"/>
-        </dd>
+    <div class="sectionToc">
+        <xsl:apply-templates select="node()"/>
     </div>
 </xsl:template>
 

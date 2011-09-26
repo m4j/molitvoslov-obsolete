@@ -33,10 +33,11 @@ h2.titleHead{text-align:center;}
 div.maketitle{ margin-bottom: 2em; }
 div.author, div.date {text-align:center;}
 h1.partHead{text-align: center}
- .chapterToc {margin-left:0em;}
- .chapterToc ~ .sectionToc {margin-left:2em; list-style:circle}
+.sectionToc {margin-left:2.5em; text-indent: -1em;}
 .subsubsectionToc {margin-left:6em;}
+/*
  .likesubsectionToc ~ .subsubsectionToc, .subsectionToc ~ .subsubsectionToc, {margin-left:2em;}
+*/
  .wrapfig-r {float:right; margin-left:0.5em; width:50%} 
  .wrapfig-rt {float:right; margin-left:0.5em; width:38%} 
  .wrapfig-rw {float:right; margin-left:0.5em; width:70%} 
@@ -44,10 +45,10 @@ h1.partHead{text-align: center}
  .wrapfig-lt {float:left; margin-right:0.5em; width:38%} 
  .wrapfig-lw {float:left; margin-right:0.5em; width:70%} 
 h2.chapterHead {text-align:center; color:red}
-h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em}
+h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; color:red; font-weight: bold;}
 body { font-family: MainFont;}
 a,h2,h3,h4,h5 { text-align: left }
-.partTOCS, .tableofcontents { text-align: left; margin-left:0; padding-left:1em; }
+.partTOCS, .tableofcontents { text-align: left; margin-left:0; margin-bottom:1.5em;}
 span.titlemark { line-height: 300% }
 p { margin: 0px; }
 @font-face { font-style: normal; font-family: MainFont; src: url(fonts/PTF55F.ttf); }
