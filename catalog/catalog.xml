@@ -4,4 +4,6 @@
            uri="xhtml1-transitional.dtd"/>
    <public publicId="-//W3C//DTD XHTML 1.0 Transitional//RU"
            uri="xhtml1-transitional.dtd"/>
+   <public publicId="-//W3C//DTD XHTML 1.1//EN"
+           uri="xhtml11.dtd"/>
 </catalog>

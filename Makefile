@@ -6,6 +6,8 @@ TARGET_DIR=target
 
 EPUB_DIR=epub
 EPUB_TEMPLATE=$(EPUB_DIR)/template
+EPUBCHECK_JAR=$(wildcard $(EPUB_DIR)/epubcheck/epubcheck*jar)
+JAVA=java
 
 TARGET_EPUB_DIR=$(TARGET_DIR)/epub
 TARGET_IMG_DIR=$(TARGET_DIR)/img
@@ -139,6 +141,9 @@ $(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB) $(EPUB)*
 	# move the result and display contents
 	mv $(TARGET_EPUB_DIR)/$(TARGET).epub $(TARGET_DIR)/
 	unzip -l $(TARGET_DIR)/$(TARGET).epub
+
+epubcheck: $(EPUBCHECK_JAR)
+	$(JAVA) -jar $(EPUBCHECK_JAR) $(TARGET_DIR)/$(TARGET).epub
 
 clean:
 	rm -rf *.ps *.dvi *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.ptc* *.mtc* *.maf *.4ct *.4tc *.css *.html *.idv *.lg *.tmp *.xref $(TARGET_DIR)

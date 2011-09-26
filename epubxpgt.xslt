@@ -10,7 +10,7 @@
   <xsl:preserve-space elements="span"/>
 -->
 
-<xsl:output method="xml" version="1.0" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//RU" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" indent="yes"/>
+<xsl:output method="xml" version="1.0" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" indent="yes"/>
 
 <!-- the identity template; also removes empty elements -->
 <xsl:template match="@*|node()">
@@ -30,6 +30,9 @@
   </xsl:copy>
 </xsl:template>
 
+<!--
+Assign class for images
+-->
 <xsl:template match="xhtml:img">
  <xsl:copy>
     <xsl:apply-templates select="@*|node()"/>
@@ -39,7 +42,7 @@
                 <xsl:text>ornamentlast</xsl:text>
             </xsl:attribute>
         </xsl:when>
-        <xsl:when test="contains(@src,'uzor_end')">
+        <xsl:when test="contains(@src,'uzor_begin')">
             <xsl:attribute name="class">
                 <xsl:text>ornamentfirst</xsl:text>
             </xsl:attribute>
@@ -49,11 +52,13 @@
                 <xsl:text>icon</xsl:text>
             </xsl:attribute>
         </xsl:when>
-        <!--xsl:otherwise>
+<!--
+        <xsl:otherwise>
          <xsl:attribute name="width">
             <xsl:text>70%</xsl:text>
          </xsl:attribute>
-        </xsl:otherwise-->
+        </xsl:otherwise>
+-->
     </xsl:choose>
  </xsl:copy>
 </xsl:template>
@@ -158,13 +163,7 @@ Remove crosslinks at the bottom and at the top of the page
 <xsl:template match="xhtml:span[@class='chapterToc']">
     <div class="chapterToc">
         <xsl:text>§ </xsl:text>
-<!--
-        <dd>
--->
             <xsl:apply-templates select="node()"/>
-<!--
-        </dd>
--->
     </div>
 </xsl:template>
 
@@ -177,14 +176,29 @@ Remove crosslinks at the bottom and at the top of the page
 <xsl:template match="comment()"/>
 
 <!--
-<xsl:template match="xhtml:p[@class='noindent' and ../@class='tableofcontents']" />
+Remove empty links
 -->
+<!--
+<xsl:template match="xhtml:a[count(node()) = 0]" />
+-->
+
+<!--
+Remove empty paragraphs
+-->
+<xsl:template match="xhtml:p[count(node()) = 0]" />
 
 <!--
 <xsl:template match="text()">
     <xsl:value-of select="normalize-space(.)" />
 </xsl:template>
 -->
+
+<!--
+This removes "clear" attribute from <br>
+-->
+<xsl:template match="xhtml:br">
+    <br/>
+</xsl:template>
 
 
 </xsl:stylesheet>

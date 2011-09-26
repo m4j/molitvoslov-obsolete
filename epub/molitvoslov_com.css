@@ -18,10 +18,11 @@ dt.enumerate {width:3.5em;}
 div.minipage{width:100%;}
 div.center {text-align: center;}
 div.mychapterending {text-align: center; width:100%; margin-top: 1em; page-break-before: avoid}
+img {width: 50%}
 img.ornamentlast {width: 50%}
 img.icon {width: 100%}
 /* div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:1em;} */ 
-span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
+span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; line-height:1em;}
 div.footnotes{border-top:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2em; font-size:85%;}
 div.footnotes p{margin-top:0; margin-bottom:0; text-indent:0;}
 .partToc a, .partToc, .chapterToc a, .chapterToc {font-weight:bold; margin-top:0.5em; page-break-inside: avoid}
@@ -48,9 +49,10 @@ h2.chapterHead {text-align:center; color:red}
 h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; color:red; font-weight: bold;}
 body { font-family: MainFont;}
 a,h2,h3,h4,h5 { text-align: left }
+a { text-decoration: none }
 .partTOCS, .tableofcontents { text-align: left; margin-left:0; margin-bottom:1.5em;}
 span.titlemark { line-height: 300% }
-p { margin: 0px; }
+p { margin: 0px; line-height:1.5em;}
 @font-face { font-style: normal; font-family: MainFont; src: url(fonts/PTF55F.ttf); }
 @font-face { font-style: italic; font-family: MainFont; src: url(fonts/PTF56F.ttf); }
 @font-face { font-weight: bold; font-family: MainFont; src: url(fonts/PTF75F.ttf); }

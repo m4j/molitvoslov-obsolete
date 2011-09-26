@@ -58,15 +58,15 @@ for file in ${TARGET}???*\.html; do
 done
 
 # output images
-for file in images/*.png; do
+for file in `find images -type f -name "*.png"`; do
     print_item "img`basename $file`" $file "image/png"
 done
-for file in images/*.jpg; do
+for file in `find images -type f -name "*.jpg"`; do
     print_item "img`basename $file`" $file "image/jpeg"
 done
 
-#cd back to our base dir
-cd -
+#cd back to our base dir, suppress output
+cd ->/dev/null
 
 
 cat <<EOF
