@@ -11,8 +11,10 @@
 .labx-0900{font-size:81%;font-weight: bold;}
 p.noindent { text-indent: 0em }
 p.indent{ text-indent: 1.5em }
+dd {margin-left: 1em;}
 dd.enumerate {margin-left: 4em;}
-dt.enumerate {float:left; clear:left; margin-right:0.5em; text-align:right; width:3.5em;}
+dt {float:left; clear:left; margin-right:0.5em; text-align:right;}
+dt.enumerate {width:3.5em;}
 div.minipage{width:100%;}
 div.center {text-align: center;}
 div.mychapterending {text-align: center; width:100%; margin-top: 1em; page-break-before: avoid}
@@ -22,7 +24,7 @@ img.icon {width: 100%}
 span.footnote-mark sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; }
 div.footnotes{border-top:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2em; font-size:85%;}
 div.footnotes p{margin-top:0; margin-bottom:0; text-indent:0;}
-.partToc a, .partToc, .chapterToc a, .chapterToc {font-weight:bold; margin-top:0.5em;}
+.partToc a, .partToc, .chapterToc a, .chapterToc {font-weight:bold; margin-top:0.5em; page-break-inside: avoid}
 h1.partHead{text-align: center}
 .quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify;}
 .verse{white-space:nowrap; margin-left:2em}
