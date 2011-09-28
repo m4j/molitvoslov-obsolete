@@ -46,7 +46,7 @@ $(TARGET_EPUB_DIR):  $(EPUB_DIR)/*
 	#
 	# create directory structure and copy template
 	mkdir -p $(TARGET_EPUB_DIR)
-	cp -avr $(EPUB_TEMPLATE)/* $(TARGET_EPUB_DIR)/
+	cp -vr $(EPUB_TEMPLATE)/* $(TARGET_EPUB_DIR)/
 	mkdir -p $(TARGET_IMG_DIR)/tall
 	mkdir -p $(TARGET_IMG_DIR)/wide
 
@@ -110,7 +110,7 @@ $(EPUB_HTML_DIR)/images/tall/*.jpg: $(TARGET_IMG_DIR)/tall/*.jpg
 $(EPUB_HTML_DIR)/images/wide/*.jpg: $(TARGET_IMG_DIR)/wide/*.jpg
 	cp -v $? $(@D); \
 
-$(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB) $(EPUB)*
+$(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB)*
 	#
 	# execute tex4ht process
 	$(HTLATEX) $(EPUB_DIR)/$(TARGET).tex "$(EPUB_DIR)/$(TARGET)" " -cunihtf -utf8" "-d$(EPUB_HTML_DIR)/"
@@ -131,7 +131,7 @@ $(TARGET_DIR)/$(TARGET).epub: *.tex $(EPUB) $(EPUB)*
 	sed -i "s;$(TARGET_IMG_DIR);images;" $(EPUB_HTML_DIR)/$(TARGET)*.html
 	#
 	# copy our own css
-	cp -av $(EPUB_DIR)/$(TARGET).css $(EPUB_HTML_DIR)/
+	cp -v $(EPUB_DIR)/$(TARGET).css $(EPUB_HTML_DIR)/
 	#
 	# package everything
 	cd $(TARGET_EPUB_DIR); \

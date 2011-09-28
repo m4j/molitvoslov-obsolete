@@ -135,13 +135,23 @@
 \newcommand\restoreparindent{\setlength\parindent{\myparindent}}
 
 \long\def\symbolfootnote[#1]#2{\begingroup%
-\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
+\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
+
+% tex4ht partitioning commands for
+\newcommand\SetupCutAtSection{
+\CutAt{section}
+\TocAt{chapter,section}
+}
 
 \begin{document}
 
 %\input{secondpage}
 
-\maketitle \tableofcontents
+\maketitle
+
+\input{secondpage}
+
+\tableofcontents
 
 \begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
 

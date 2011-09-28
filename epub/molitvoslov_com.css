@@ -2,13 +2,13 @@
 .latt-1095{font-family: monospace;}
 .lati-1095{font-style: italic;}
 .labx-1095{font-weight: bold;}
-.labx-1095{font-weight: bold;}
 .cmmi-10x-x-109{font-style: italic;}
 .cmsy-10x-x-109{}
 .larm-1000{font-size:90%;}
 .larm-0900{font-size:81%;}
 .lati-0900{font-size:81%;font-style: italic;}
 .labx-0900{font-size:81%;font-weight: bold;}
+.labx-1440{font-size:127%;font-weight: bold;}
 p.noindent { text-indent: 0em }
 p.indent{ text-indent: 1.5em }
 dd {margin-left: 1em;}
@@ -22,8 +22,8 @@ img {width: 50%}
 img.ornamentlast {width: 50%}
 img.icon {width: 100%}
 /* div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:0.7em;} */ 
-span.footnote-mark, sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; line-height:1em;}
-div.footnotes{border-top:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2em; font-size:85%;}
+span.footnote-mark, sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; line-height:0.8em;}
+div.footnotes{border-top:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2em; font-size:85%; text-align: left;}
 div.footnotes p{margin-top:0; margin-bottom:0; text-indent:0;}
 .partToc a, .partToc, .chapterToc a, .chapterToc {font-weight:bold; margin-top:0.5em; page-break-inside: avoid}
 h1.partHead{text-align: center}
