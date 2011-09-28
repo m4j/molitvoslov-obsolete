@@ -43,8 +43,8 @@ h1.partHead{text-align: center}
  .wrapfig-rt {float:right; margin-left:0.5em; width:38%} 
  .wrapfig-rw {float:right; margin-left:0.5em; width:70%} 
  .wrapfig-l {float:left; margin-right:0.5em; margin-top: 0.4em; width:50%} 
- .wrapfig-lt {float:left; margin-right:0.5em; width:38%} 
- .wrapfig-lw {float:left; margin-right:0.5em; width:70%} 
+ .wrapfig-lt {float:left; margin-right:0.5em; margin-top: 0.4em; width:38%} 
+ .wrapfig-lw {float:left; margin-right:0.5em; margin-top: 0.4em; width:70%} 
 h2.chapterHead {text-align:center; color:red}
 h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; color:red; font-weight: bold;}
 body { font-family: MainFont; text-align:justify;}
