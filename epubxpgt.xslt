@@ -153,7 +153,7 @@ Remove crosslinks at the bottom and at the top of the page
     </div>
 </xsl:template>
 
-<xsl:template match="xhtml:div[@class='partTOCS']">
+<xsl:template match="xhtml:div[@class='partTOCS' or @class='chapterTOCS']">
     <div>
         <xsl:apply-templates select="@*"/>
         <xsl:apply-templates select="child::xhtml:span"/>

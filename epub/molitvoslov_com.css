@@ -34,7 +34,7 @@ h2.titleHead{text-align:center;}
 div.maketitle{ margin-bottom: 2em; }
 div.author, div.date {text-align:center;}
 h1.partHead{text-align: center}
-.sectionToc {margin-left:2.5em; text-indent: -1em;}
+.sectionToc {margin-left:2.5em; text-indent: -1em; float: inherit}
 .subsubsectionToc {margin-left:6em;}
 /*
  .likesubsectionToc ~ .subsubsectionToc, .subsectionToc ~ .subsubsectionToc, {margin-left:2em;}
@@ -50,7 +50,8 @@ h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; color:red; font-wei
 body { font-family: MainFont; text-align:justify;}
 a,h2,h3,h4,h5 { text-align: left }
 a { text-decoration: none }
-.partTOCS, .tableofcontents { text-align: left; margin-left:0; margin-bottom:1.5em;}
+.partTOCS, .chapterTOCS, .tableofcontents { text-align: left; margin-left:0; margin-bottom:1.5em;}
+.chapterTOCS {float: left}
 span.titlemark { line-height: 300% }
 p { margin: 0px; line-height:1.3em;}
 @font-face { font-style: normal; font-family: MainFont; src: url(fonts/PTF55F.ttf); }
