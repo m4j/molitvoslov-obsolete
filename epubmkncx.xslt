@@ -23,12 +23,12 @@
             </text>
         </docTitle>
         <navMap>
-          <xsl:apply-templates select="xhtml:span"/>
+          <xsl:apply-templates select="xhtml:div"/>
         </navMap>
     </ncx>
   </xsl:template>
  
-  <xsl:template match="xhtml:span[@class='partToc']">
+  <xsl:template match="xhtml:div[@class='partToc']">
 <!--
     <xsl:variable name="count">
         <xsl:number/>
@@ -43,7 +43,7 @@
             The following expression with count is taken from here
             http://stackoverflow.com/questions/833118/in-xslt-how-do-i-increment-a-global-variable-from-a-different-scope
 -->
-            <xsl:value-of select = "count(preceding-sibling::xhtml:span[@class='partToc']) + 1"/>
+            <xsl:value-of select = "count(preceding-sibling::xhtml:div[@class='partToc']) + 1"/>
         </xsl:attribute>
         <navLabel>
             <text>

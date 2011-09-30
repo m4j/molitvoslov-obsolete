@@ -268,8 +268,9 @@ pdfsubject=, pdfkeywords=}
 \medskip\hspace{-\parindent}{\bfseries\color{red} #1}\nopagebreak\medskip
 }
 
-% tex4ht partitioning commands
-\newcommand\SetupCutAtSection{%no implementation
+% sectioning for dictionary
+\newcommand\letter[1]{
+    \section*{#1}
 }
 
 \begin{document}

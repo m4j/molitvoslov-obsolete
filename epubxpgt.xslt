@@ -130,47 +130,20 @@ Remove crosslinks at the bottom and at the top of the page
 </xsl:template>
 -->
 
+<!--
+Parts only in the main table of contents
+-->
 <xsl:template match="xhtml:div[@class='tableofcontents']">
   <div>
     <xsl:apply-templates select="@*"/>
-    <xsl:apply-templates select="child::xhtml:span[@class='partToc']"/>
+    <xsl:apply-templates select="child::xhtml:div[@class='partToc']"/>
   </div>
 </xsl:template>
 
-<xsl:template match="xhtml:span[@class='partToc']">
-    <div class="partToc">
-<!--
-        <dt>§</dt>
--->
-        <xsl:text>§ </xsl:text>
-<!--
-        <dd>
--->
-            <xsl:apply-templates select="node()"/>
-<!--
-        </dd>
--->
-    </div>
-</xsl:template>
-
-<xsl:template match="xhtml:div[@class='partTOCS' or @class='chapterTOCS']">
-    <div>
-        <xsl:apply-templates select="@*"/>
-        <xsl:apply-templates select="child::xhtml:span"/>
-    </div>
-</xsl:template>
-
-<xsl:template match="xhtml:span[@class='chapterToc']">
-    <div class="chapterToc">
-        <xsl:text>§ </xsl:text>
-            <xsl:apply-templates select="node()"/>
-    </div>
-</xsl:template>
-
-<xsl:template match="xhtml:span[@class='sectionToc']">
-    <div class="sectionToc">
-        <xsl:apply-templates select="node()"/>
-    </div>
+<xsl:template match="xhtml:div[@class='partToc']">
+  <xsl:copy>
+    <xsl:apply-templates select="@*|node()"/>
+  </xsl:copy>
 </xsl:template>
 
 <xsl:template match="comment()"/>
@@ -192,13 +165,5 @@ Remove empty paragraphs
     <xsl:value-of select="normalize-space(.)" />
 </xsl:template>
 -->
-
-<!--
-This removes "clear" attribute from <br>
--->
-<xsl:template match="xhtml:br">
-    <br/>
-</xsl:template>
-
 
 </xsl:stylesheet>
