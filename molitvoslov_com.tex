@@ -21,7 +21,7 @@
 \renewcommand{\cftaftertoctitle}{\hfill}
 \renewcommand{\cftpartpresnum}{\S\ }
 
-\makeatletter
+\makeatbukva
 \renewcommand{\@pnumwidth}{3em} \renewcommand{\@tocrmarg}{4em}
 \makeatother
 
@@ -53,7 +53,7 @@
 \addtolength\headoff{14pt}
 
 % position chapter and toc headings higher
-\makeatletter
+\makeatbukva
 \def\@part[#1]#2{%
     \ifnum \c@secnumdepth >-2\relax
       \refstepcounter{part}%
@@ -269,7 +269,7 @@ pdfsubject=, pdfkeywords=}
 }
 
 % sectioning for dictionary
-\newcommand\letter[1]{
+\newcommand\bukva[1]{
     \section*{#1}
 }
 

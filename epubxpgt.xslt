@@ -14,11 +14,15 @@
 
 <!-- the identity template; also removes empty elements -->
 <xsl:template match="@*|node()">
-    <xsl:if test="normalize-space(.) != '' or ./@* != ''">
+<!--
+    <xsl:if test="count(node()) != 0 or ./@* != ''">
+-->
       <xsl:copy>
         <xsl:apply-templates select="@*|node()"/>
       </xsl:copy>
+<!--
     </xsl:if>
+-->
 </xsl:template>
 
 <!-- template for the head section. Only needed if we want to change, delete or add nodes. In our case we need it to add a link element pointing to an external CSS stylesheet. -->
