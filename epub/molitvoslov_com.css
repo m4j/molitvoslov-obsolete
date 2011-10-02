@@ -1,43 +1,44 @@
-.larm-1200{font-size:109%;}
-.latt-1095{font-family: monospace;}
-.lati-1095{font-style: italic;}
-.labx-1095{font-weight: bold;}
-.cmmi-10x-x-109{font-style: italic;}
+.larm-1200{font-size:109%}
+.latt-1095{font-family: monospace}
+.lati-1095{font-style: italic}
+.labx-1095{font-weight: bold}
+.cmmi-10x-x-109{font-style: italic}
 .cmsy-10x-x-109{}
-.larm-1000{font-size:90%;}
-.larm-0900{font-size:81%;}
-.lati-0900{font-size:81%;font-style: italic;}
-.labx-0900{font-size:81%;font-weight: bold;}
-.labx-1440{font-size:127%;font-weight: bold;}
+.larm-1000{font-size:90%}
+.larm-0900{font-size:81%}
+.lati-0900{font-size:81%;font-style: italic}
+.labx-0900{font-size:81%;font-weight: bold}
+.labx-1440{font-size:127%;font-weight: bold}
 p.noindent { text-indent: 0em }
-p.indent{ text-indent: 1.5em }
-dd {margin-left: 1em;}
-dd.enumerate {margin-left: 4em;}
-dt {float:left; clear:left; margin-right:0.5em; text-align:right;}
-dt.enumerate {width:3.5em;}
-div.minipage{width:100%;}
-div.center {text-align: center;}
-div.mychapterending {text-align: center; width:100%; margin-top: 1em; page-break-before: avoid}
+p.indent{ text-indent: 1.3em }
+dd {margin-left: 1em}
+dd.enumerate {margin-left: 4em}
+dt {float:left; clear:left; margin-right:0.5em; text-align:right}
+dt.enumerate {width:3.5em}
+div.minipage{width:100%}
+div.center {text-align: center}
+div.mychapterending {text-align: center; width:100%; margin-top: 1.5em; page-break-before: avoid}
 img {width: 50%}
 img.ornamentlast {width: 50%}
 img.icon {width: 100%}
-/* div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:0.7em;} */ 
-span.footnote-mark, sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; line-height:0.8em;}
-div.footnotes{border-top:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2em; font-size:85%; text-align: left;}
-div.footnotes p{margin-top:0; margin-bottom:0; text-indent:0;}
+/* div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:0.7em} */ 
+span.footnote-mark, sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; line-height:0.8em}
+div.footnotes{border-top:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2em; font-size:85%; text-align: left}
+div.footnotes p{margin-top:0; margin-bottom:0; text-indent:0}
 .partToc a, .partToc, .chapterToc a, .chapterToc {font-weight:bold; margin-top:0.5em; page-break-inside: avoid}
 h1.partHead{text-align: center}
-.quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify;}
+.quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify}
 .verse{white-space:nowrap; margin-left:2em}
-div.maketitle {text-align:center;}
-h2.titleHead{text-align:center;}
-div.maketitle{ margin-bottom: 2em; }
-div.author, div.date {text-align:center;}
+div.maketitle {text-align:center}
+h2.titleHead{text-align:center}
+div.maketitle{ margin-bottom: 2em}
+div.author, div.date {text-align:center}
 h1.partHead{text-align: center}
-.sectionToc {margin-left:2.5em; text-indent: -1em; float: inherit}
-.subsubsectionToc {margin-left:6em;}
+.sectionToc, .bukvaToc {margin-left:2.5em; text-indent: -1em}
+.bukvaToc {float: left; text-align: right}
+.subsubsectionToc {margin-left:6em}
 /*
- .likesubsectionToc ~ .subsubsectionToc, .subsectionToc ~ .subsubsectionToc, {margin-left:2em;}
+ .likesubsectionToc ~ .subsubsectionToc, .subsectionToc ~ .subsubsectionToc, {margin-left:2em}
 */
  .wrapfig-r {float:right; margin-left:0.5em; margin-top: 0.4em; width:50%} 
  .wrapfig-rt {float:right; margin-left:0.5em; width:38%} 
@@ -46,17 +47,17 @@ h1.partHead{text-align: center}
  .wrapfig-lt {float:left; margin-right:0.5em; margin-top: 0.4em; width:38%} 
  .wrapfig-lw {float:left; margin-right:0.5em; margin-top: 0.4em; width:70%} 
 h2.chapterHead {text-align:center; color:red}
-h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; color:red; font-weight: bold;}
-body { font-family: MainFont; text-align:justify;}
+h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; color:red; font-weight: bold}
+body { font-family: MainFont; text-align:justify}
 a,h2,h3,h4,h5 { text-align: left }
 a { text-decoration: none }
-.partTOCS, .chapterTOCS, .tableofcontents { text-align: left; margin-left:0; margin-bottom:1.5em;}
-.chapterTOCS {float: left}
+.partTOCS, .chapterTOCS, .tableofcontents { text-align: left; margin-left:0; margin-bottom:1.5em}
 span.titlemark { line-height: 300% }
-p { margin: 0px; line-height:1.3em;}
-@font-face { font-style: normal; font-family: MainFont; src: url(fonts/PTF55F.ttf); }
-@font-face { font-style: italic; font-family: MainFont; src: url(fonts/PTF56F.ttf); }
-@font-face { font-weight: bold; font-family: MainFont; src: url(fonts/PTF75F.ttf); }
-@font-face { font-weight: bold; font-style: italic; font-family: MainFont; src: url(fonts/PTF76F.ttf); }
+p { margin: 0px; line-height:1.3em}
+li.itemize {text-align: left; margin-left: -0.3em;}
+@font-face { font-style: normal; font-family: MainFont; src: url(fonts/PTF55F.ttf)}
+@font-face { font-style: italic; font-family: MainFont; src: url(fonts/PTF56F.ttf)}
+@font-face { font-weight: bold; font-family: MainFont; src: url(fonts/PTF75F.ttf)}
+@font-face { font-weight: bold; font-style: italic; font-family: MainFont; src: url(fonts/PTF76F.ttf)}
 
 

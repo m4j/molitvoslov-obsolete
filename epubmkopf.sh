@@ -33,14 +33,17 @@ cat <<EOF
       <dc:date>$DATE</dc:date>
       <dc:subject></dc:subject>
       <dc:description></dc:description>
-      <dc:rights>NONE</dc:rights>
+      <dc:rights>Public domain</dc:rights>
       <dc:identifier id="bookid">$BOOK_ID</dc:identifier>
       <dc:language>$BOOK_LANG</dc:language>
+      <meta name="cover" content="cover-image"/>
   </metadata>
   <manifest>
     <item id="pt" href="page-template.xpgt" media-type="application/vnd.adobe-page-template+xml"/>
     <item id="style" href="$TARGET.css" media-type="text/css" />
     <item id="cover" href="cover.html" media-type="application/xhtml+xml" />
+    <item id="cover-image" href="cover.png" media-type="image/png" />
+    <item id="cover-thumb" href="thumb.jpg" media-type="image/jpg" />
     <item id="toc" href="$TARGET.html" media-type="application/xhtml+xml" />
     <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
 EOF
@@ -84,9 +87,10 @@ cat <<EOF
   </spine>
   <guide>
     <reference type="toc" title="Оглавление" href="$TARGET.html" />
-    <reference type="other.ms-coverimage-standard" title="Cover" href="images/cover.png" />
-    <reference type="other.ms-thumbimage-standard" title="ThumbImageStandard" href="images/cover.png" />
-    <reference type="other.ms-thumbimage" title="PPCThumbnailImage" href="images/thumb.jpg" />
+    <reference type="cover" title="Cover" href="cover.html"/>
+    <reference type="other.ms-coverimage-standard" title="Cover" href="cover.png" />
+    <reference type="other.ms-thumbimage-standard" title="ThumbImageStandard" href="cover.png" />
+    <reference type="other.ms-thumbimage" title="PPCThumbnailImage" href="thumb.jpg" />
     <!--
     <reference type="copyright" title="Copyright" href="bano_9781411432963_oeb_cop_r1.html" />
     <reference type="beginreading" title="Begin reading" href="bano_9781411432963_oeb_p01_r1.html" />

@@ -81,7 +81,9 @@
 }
 
 \newcommand{\mychapter}[1]{
+    \renewcommand{\thechapter}{}
     \chapter{#1}
+    % Prevent tex4ht to prepend chapter names with 0s
 }
 
 \newcommand\mysubsubsection[1]{
@@ -122,8 +124,10 @@
 }
 
 \newcommand{\mychapterending}[1][uzor_end_3]{%
-\begin{center}\includegraphics[width=0.33\textwidth]{#1}\end{center}
+    \begin{center}\includegraphics[width=0.33\textwidth]{#1}\end{center}
 }
+
+\newcommand{\bukvaending}{\mychapterending}
 
 \newcommand\longpage[1][1]{}
 \newcommand\shortpage[1][1]{}
@@ -138,11 +142,6 @@
 \long\def\symbolfootnote[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
 
-% sectioning for dictionary
-%~ \newcommand\bukva[1]{
-    %~ \section*{#1}
-%~ }
-
 \begin{document}
 
 %~ \input{secondpage}
@@ -151,10 +150,10 @@
 
 \input{secondpage}
 
-\tableofcontents[part,chapter,section,bukva]
+\tableofcontents[part,chapter,section,bukva]\mychapterending
 %~ \tableofcontents
 
-\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
+%~ \begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
 
 \renewcommand{\ornament}{uzor_begin_5}
 

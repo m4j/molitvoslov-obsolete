@@ -153,6 +153,16 @@ Parts only in the main table of contents
 <xsl:template match="comment()"/>
 
 <!--
+Remove bukva sections from local part TOCs
+-->
+<xsl:template match="xhtml:div[@class='bukvaToc' and ../@class='partTOCS']"/>
+
+<!--
+Remove empty chapterTOCS divs
+-->
+<xsl:template match="xhtml:div[@class='chapterTOCS' and count(node()) = 0]"/>
+
+<!--
 Remove empty links
 -->
 <!--
@@ -169,5 +179,11 @@ Remove empty paragraphs
     <xsl:value-of select="normalize-space(.)" />
 </xsl:template>
 -->
+<!--
+Remove "clear" attribute from <br>
+-->
+<xsl:template match="xhtml:br">
+    <br />
+</xsl:template>
 
 </xsl:stylesheet>
