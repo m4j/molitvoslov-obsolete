@@ -36,9 +36,9 @@ all: clean pdf epub
 
 pdf: $(TARGET_DIR)/$(TARGET).pdf
 
-epub: $(TARGET_EPUB_DIR) eps images $(TARGET_DIR)/$(TARGET).epub
+epub: eps images $(TARGET_DIR)/$(TARGET).epub
 
-eps: $(TARGET_IMG_DIR)/tall/*.eps $(TARGET_IMG_DIR)/wide/*.eps $(TARGET_IMG_DIR)/*.eps $(TARGET_IMG_DIR)/tall/*.jpg $(TARGET_IMG_DIR)/wide/*.jpg $(TARGET_IMG_DIR)/*.jpg
+eps: $(TARGET_EPUB_DIR) $(TARGET_IMG_DIR)/tall/*.eps $(TARGET_IMG_DIR)/wide/*.eps $(TARGET_IMG_DIR)/*.eps $(TARGET_IMG_DIR)/tall/*.jpg $(TARGET_IMG_DIR)/wide/*.jpg $(TARGET_IMG_DIR)/*.jpg
 
 images: $(EPUB_HTML_DIR)/images/tall/*.jpg $(EPUB_HTML_DIR)/images/wide/*.jpg $(EPUB_HTML_DIR)/images/*.jpg
 
