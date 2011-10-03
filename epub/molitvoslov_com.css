@@ -46,10 +46,11 @@ h1.partHead{text-align: center}
  .wrapfig-l {float:left; margin-right:0.5em; margin-top: 0.4em; width:50%} 
  .wrapfig-lt {float:left; margin-right:0.5em; margin-top: 0.4em; width:38%} 
  .wrapfig-lw {float:left; margin-right:0.5em; margin-top: 0.4em; width:70%} 
-h2.chapterHead {text-align:center; color:red}
-h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; color:red; font-weight: bold}
-body { font-family: MainFont; text-align:justify}
+h2.chapterHead {text-align:center}
+h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; font-weight: bold}
+body { font-family: MainFont}
 a,h2,h3,h4,h5 { text-align: left }
+h2,h3,h4,h5 { color: red }
 a { text-decoration: none }
 .partTOCS, .chapterTOCS, .tableofcontents { text-align: left; margin-left:0; margin-bottom:1.5em}
 span.titlemark { line-height: 300% }

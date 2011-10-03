@@ -43,6 +43,7 @@ cat <<EOF
     <item id="style" href="$TARGET.css" media-type="text/css" />
     <item id="cover" href="cover.html" media-type="application/xhtml+xml" />
     <item id="cover-image" href="cover.png" media-type="image/png" />
+    <item id="cover-vect" href="cover.svg" media-type="image/svg+xml" />
     <item id="cover-thumb" href="thumb.jpg" media-type="image/jpg" />
     <item id="toc" href="$TARGET.html" media-type="application/xhtml+xml" />
     <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
