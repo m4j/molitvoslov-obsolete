@@ -21,23 +21,23 @@
 \addtolength\headoff{14pt}
 
 % position chapter and toc headings higher
-\makeatletter
-
-\def\@makechapterhead#1{%
-  {\parindent \z@ \raggedright
-    \normalfont
-    \interlinepenalty\@M
-    \includegraphics[width=\textwidth]{\ornament}
-    \Huge \bfseries \centering \color{red}  #1\par\nobreak
-  }}
-\def\@makeschapterhead#1{%
-  {\parindent \z@ \raggedright
-    \normalfont
-    \interlinepenalty\@M
-    \includegraphics[width=\textwidth]{\ornament}
-    \Huge \bfseries \centering \color{red}  #1\par\nobreak
-  }}
-\makeatother
+%~ \makeatletter
+%~ 
+%~ \def\@makechapterhead#1{%
+  %~ {\parindent \z@ \raggedright
+    %~ \normalfont
+    %~ \interlinepenalty\@M
+    %~ \includegraphics[width=\textwidth]{\ornament}
+    %~ \Huge \bfseries \centering \color{red}  #1\par\nobreak
+  %~ }}
+%~ \def\@makeschapterhead#1{%
+  %~ {\parindent \z@ \raggedright
+    %~ \normalfont
+    %~ \interlinepenalty\@M
+    %~ \includegraphics[width=\textwidth]{\ornament}
+    %~ \Huge \bfseries \centering \color{red}  #1\par\nobreak
+  %~ }}
+%~ \makeatother
 
 \title{Молитвослов на всякую потребу}
 \author{www.molitvoslov.com}
@@ -52,7 +52,7 @@
 \newcommand{\mychapter}[1]{
     \renewcommand{\thechapter}{}
     %~ \begin{center}\includegraphics[width=\textwidth]{\ornament}\end{center}
-    \chapter{#1}
+    \chapter[#1]{\includegraphics[width=\textwidth]{\ornament}\\ #1}
     % Prevent tex4ht to prepend chapter names with 0s
 }
 

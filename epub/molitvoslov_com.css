@@ -19,6 +19,7 @@ div.minipage{width:100%}
 div.center {text-align: center}
 div.mychapterending {text-align: center; width:100%; margin-top: 1.5em; page-break-before: avoid}
 img {width: 50%}
+img.ornamentfirst {width: 80%}
 img.ornamentlast {width: 50%}
 img.icon {width: 100%}
 /* div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:0.7em} */ 
@@ -26,14 +27,13 @@ span.footnote-mark, sup.textsuperscript, span.footnote-mark a sup.textsuperscrip
 div.footnotes{border-top:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2em; font-size:85%; text-align: left}
 div.footnotes p{margin-top:0; margin-bottom:0; text-indent:0}
 .partToc a, .partToc, .chapterToc a, .chapterToc {font-weight:bold; margin-top:0.5em; page-break-inside: avoid}
-h1.partHead{text-align: center}
+.partHead, .chapterHead, .likechapterHead {text-align: center}
 .quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify}
 .verse{white-space:nowrap; margin-left:2em}
 div.maketitle {text-align:center}
 h2.titleHead{text-align:center}
 div.maketitle{ margin-bottom: 2em}
 div.author, div.date {text-align:center}
-h1.partHead{text-align: center}
 .sectionToc, .bukvaToc {margin-left:2.5em; text-indent: -1em}
 .bukvaToc {float: left; text-align: right}
 .subsubsectionToc {margin-left:6em}
@@ -46,11 +46,10 @@ h1.partHead{text-align: center}
  .wrapfig-l {float:left; margin-right:0.5em; margin-top: 0.4em; width:50%} 
  .wrapfig-lt {float:left; margin-right:0.5em; margin-top: 0.4em; width:38%} 
  .wrapfig-lw {float:left; margin-right:0.5em; margin-top: 0.4em; width:70%} 
-h2.chapterHead {text-align:center}
 h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; font-weight: bold}
 body { font-family: MainFont}
 a,h2,h3,h4,h5 { text-align: left }
-h2,h3,h4,h5 { color: red }
+h1,h2,h3,h4,h5 { color: red }
 a { text-decoration: none }
 .partTOCS, .chapterTOCS, .tableofcontents { text-align: left; margin-left:0; margin-bottom:1.5em}
 span.titlemark { line-height: 300% }

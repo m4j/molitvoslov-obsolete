@@ -110,7 +110,7 @@ $(EPUB_HTML_DIR)/images/tall/*.jpg: $(TARGET_IMG_DIR)/tall/*.jpg
 $(EPUB_HTML_DIR)/images/wide/*.jpg: $(TARGET_IMG_DIR)/wide/*.jpg
 	cp -v $? $(@D); \
 
-$(EPUB_HTML_DIR)/*.html: *.tex *.xslt $(EPUB_DIR)/*
+$(EPUB_HTML_DIR)/*.html: *.tex *.xslt $(EPUB_DIR)/$(TARGET).cfg $(EPUB_DIR)/$(TARGET).tex
 	#
 	# execute tex4ht process
 	$(HTLATEX) $(EPUB_DIR)/$(TARGET).tex "$(EPUB_DIR)/$(TARGET)" " -cunihtf -utf8" "-d$(EPUB_HTML_DIR)/"
@@ -138,7 +138,7 @@ $(EPUB_HTML_DIR)/$(TARGET).css: $(EPUB_DIR)/*.css
 	# copy our own css
 	cp -v $(EPUB_DIR)/$(TARGET).css $(EPUB_HTML_DIR)/
 
-$(TARGET_DIR)/$(TARGET).epub: $(EPUB_HTML_DIR)/*.html $(EPUB_META_DIR)
+$(TARGET_DIR)/$(TARGET).epub: $(EPUB_HTML_DIR)/*.html $(EPUB_HTML_DIR)/$(TARGET).css $(EPUB_META_DIR)
 	#
 	# package everything
 	cd $(TARGET_EPUB_DIR); \
