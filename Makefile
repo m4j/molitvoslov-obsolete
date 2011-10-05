@@ -116,12 +116,12 @@ $(EPUB_HTML_DIR)/images/tall/*.jpg: $(TARGET_IMG_DIR)/tall/*.jpg
 $(EPUB_HTML_DIR)/images/wide/*.jpg: $(TARGET_IMG_DIR)/wide/*.jpg
 	cp -v $? $(@D)/
 
-*.html: *.tex $(EPUB_DIR)/$(TARGET).cfg $(EPUB_DIR)/$(TARGET).tex
+$(TARGET)*.html: *.tex $(EPUB_DIR)/$(TARGET).cfg $(EPUB_DIR)/$(TARGET).tex
 	#
 	# execute tex4ht process
 	$(HTLATEX) $(EPUB_DIR)/$(TARGET).tex "$(EPUB_DIR)/$(TARGET)" " -cunihtf -utf8" ""
 
-$(EPUB_HTML_DIR)/*.html: $(TARGET)*.html epub*.xslt epub*sh
+$(EPUB_HTML_DIR)/$(TARGET)*.html: $(TARGET)*.html epub*.xslt epub*sh
 	#
 	# generate OPF file
 	export XML_CATALOG_FILES=$(XML_CATALOG); \
@@ -143,7 +143,7 @@ $(EPUB_HTML_DIR)/$(TARGET).css: $(EPUB_DIR)/$(TARGET).css
 	# copy our own css
 	cp -v $(EPUB_DIR)/$(TARGET).css $(EPUB_HTML_DIR)/
 
-$(TARGET_DIR)/$(TARGET).epub: $(EPUB_HTML_DIR)/* $(EPUB_HTML_DIR)/images/* $(EPUB_META_DIR)/*
+$(TARGET_DIR)/$(TARGET).epub: $(EPUB_HTML_DIR)/$(TARGET)*.html $(EPUB_HTML_DIR)/$(TARGET).css $(EPUB_HTML_DIR)/images/*.jpg $(EPUB_META_DIR)/*
 	#
 	# package everything
 	cd $(TARGET_EPUB_DIR); \
