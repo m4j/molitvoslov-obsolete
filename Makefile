@@ -40,7 +40,7 @@ epub: eps images $(TARGET_DIR)/$(TARGET).epub
 
 eps: $(TARGET_EPUB_DIR) $(TARGET_IMG_DIR)/tall/*.eps $(TARGET_IMG_DIR)/wide/*.eps $(TARGET_IMG_DIR)/*.eps $(TARGET_IMG_DIR)/tall/*.jpg $(TARGET_IMG_DIR)/wide/*.jpg $(TARGET_IMG_DIR)/*.jpg
 
-images: $(EPUB_HTML_DIR)/images/tall/*.jpg $(EPUB_HTML_DIR)/images/wide/*.jpg $(EPUB_HTML_DIR)/images/*.jpg
+images: $(EPUB_HTML_DIR)/images/tall/*.jpg $(EPUB_HTML_DIR)/images/wide/*.jpg $(EPUB_HTML_DIR)/images/*.jpg $(EPUB_HTML_DIR)/images/*.svg
 
 $(TARGET_EPUB_DIR):  $(EPUB_DIR)/*
 	#
@@ -101,19 +101,27 @@ $(TARGET_IMG_DIR)/tall/*.jpg: img/tall/*.jpg
 $(TARGET_IMG_DIR)/wide/*.jpg: img/wide/*.jpg
 	cp -v $? $(@D)/
 
+$(TARGET_IMG_DIR)/%.svg: uzory/%.svg
+	cp -v $? $(@D)/
+
+$(EPUB_HTML_DIR)/images/*.svg: $(TARGET_IMG_DIR)/*.svg
+	cp -v $? $(@D)/
+
 $(EPUB_HTML_DIR)/images/*.jpg: $(TARGET_IMG_DIR)/*.jpg
-	cp -v $? $(@D); \
+	cp -v $? $(@D)/
 
 $(EPUB_HTML_DIR)/images/tall/*.jpg: $(TARGET_IMG_DIR)/tall/*.jpg
-	cp -v $? $(@D); \
+	cp -v $? $(@D)/
 
 $(EPUB_HTML_DIR)/images/wide/*.jpg: $(TARGET_IMG_DIR)/wide/*.jpg
-	cp -v $? $(@D); \
+	cp -v $? $(@D)/
 
-$(EPUB_HTML_DIR)/*.html: *.tex *.xslt $(EPUB_DIR)/$(TARGET).cfg $(EPUB_DIR)/$(TARGET).tex
+*.html: *.tex $(EPUB_DIR)/$(TARGET).cfg $(EPUB_DIR)/$(TARGET).tex
 	#
 	# execute tex4ht process
-	$(HTLATEX) $(EPUB_DIR)/$(TARGET).tex "$(EPUB_DIR)/$(TARGET)" " -cunihtf -utf8" "-d$(EPUB_HTML_DIR)/"
+	$(HTLATEX) $(EPUB_DIR)/$(TARGET).tex "$(EPUB_DIR)/$(TARGET)" " -cunihtf -utf8" ""
+
+$(EPUB_HTML_DIR)/*.html: $(TARGET)*.html epub*.xslt epub*sh
 	#
 	# generate OPF file
 	export XML_CATALOG_FILES=$(XML_CATALOG); \
@@ -124,21 +132,18 @@ $(EPUB_HTML_DIR)/*.html: *.tex *.xslt $(EPUB_DIR)/$(TARGET).cfg $(EPUB_DIR)/$(TA
 	#
 	# apply XSL transformation, generate NCX file
 	export XML_CATALOG_FILES=$(XML_CATALOG); \
-	  xsltproc -o $(EPUB_HTML_DIR)/toc.ncx epubmkncx.xslt $(EPUB_HTML_DIR)/$(TARGET).html && \
+	  xsltproc -o $(EPUB_HTML_DIR)/toc.ncx epubmkncx.xslt $(TARGET).html && \
 	  ./epubapplyxslt.sh $(TARGET) $(EPUB_HTML_DIR) epubxpgt.xslt
 	#
 	# rename image paths
 	sed -i "s;$(TARGET_IMG_DIR);images;" $(EPUB_HTML_DIR)/$(TARGET)*.html
-	#
-	# copy our own css
-	cp -v $(EPUB_DIR)/$(TARGET).css $(EPUB_HTML_DIR)/
 	
-$(EPUB_HTML_DIR)/$(TARGET).css: $(EPUB_DIR)/*.css
+$(EPUB_HTML_DIR)/$(TARGET).css: $(EPUB_DIR)/$(TARGET).css
 	#
 	# copy our own css
 	cp -v $(EPUB_DIR)/$(TARGET).css $(EPUB_HTML_DIR)/
 
-$(TARGET_DIR)/$(TARGET).epub: $(EPUB_HTML_DIR)/*.html $(EPUB_HTML_DIR)/$(TARGET).css $(EPUB_META_DIR)
+$(TARGET_DIR)/$(TARGET).epub: $(EPUB_HTML_DIR)/* $(EPUB_HTML_DIR)/images/* $(EPUB_META_DIR)/*
 	#
 	# package everything
 	cd $(TARGET_EPUB_DIR); \

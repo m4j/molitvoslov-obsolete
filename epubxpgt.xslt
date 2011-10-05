@@ -6,9 +6,7 @@
   exclude-result-prefixes="xhtml xsl">
   
   <xsl:strip-space  elements="*"/>
-<!--
-  <xsl:preserve-space elements="span"/>
--->
+  <xsl:preserve-space elements="title"/>
 
 <xsl:output method="xml" version="1.0" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" indent="yes"/>
 

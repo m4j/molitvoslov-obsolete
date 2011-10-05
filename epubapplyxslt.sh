@@ -19,16 +19,14 @@ if [ -z "$DATE" ]; then
 fi
 
 # transform all matching html files in the directory
-for file in ${HTML_DIR}/${TARGET}*.html; do
+for file in $TARGET*.html; do
     printf 'Transforming %s...' "$file"
-    mv "$file" "$file~" && xsltproc -o "$file" "$XSLT" "$file~"
+    xsltproc -o "$HTML_DIR/$file" "$XSLT" "$file"
     rc=$?
     if [ $rc -ne 0 ]; then
         # if something went wrong, restore previous order
         printf 'failed with error code %s\n' $rc
-        mv "$file~" "$file"
         exit $rc
     fi
-    rm -f "$file~"
     printf 'done\n'
 done

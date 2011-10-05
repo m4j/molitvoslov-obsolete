@@ -44,6 +44,7 @@
 
 \renewcommand\sectionmark[1]{}
 \newcommand{\ornament}{uzor_begin_2_red}
+\newcommand{\ornamentending}{uzor_end_3}
 
 % calculate header offset from text body
 \setlength\headheight{14pt}
@@ -163,8 +164,8 @@
 
 \newenvironment{mymulticols}[1]{\begin{multicols}{#1}}{\end{multicols}}
 
-\newcommand{\mychapterending}[1][uzor_end_3]{\nopagebreak\begin{center}\raisebox{0pt}[1.5\baselineskip][0pt]{
-\includegraphics[width=0.4\textwidth]{#1}}\end{center}}
+\newcommand{\mychapterending}{\nopagebreak\begin{center}\raisebox{0pt}[1.5\baselineskip][0pt]{
+\includegraphics[width=0.4\textwidth]{\ornamentending}}\end{center}}
 
 \usepackage{microtype}
 \SetProtrusion

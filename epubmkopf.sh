@@ -49,29 +49,30 @@ cat <<EOF
     <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
 EOF
 
-cd $HTML_DIR
+( cd $HTML_DIR
 
 # output fonts
 for file in fonts/*ttf; do
     print_item `basename $file` $file "application/x-font-ttf"
 done
 
-# output chapters
-for file in ${TARGET}???*\.html; do
-    print_item $file $file "application/xhtml+xml"
-done
-
 # output images
 for file in `find images -type f -name "*.png"`; do
     print_item "img`basename $file`" $file "image/png"
 done
-for file in `find images -type f -name "*.jpg"`; do
-    print_item "img`basename $file`" $file "image/jpeg"
+
+for file in `find images -type f -name "*.svg"`; do
+    print_item "img`basename $file`" $file "image/svg+xml"
 done
 
-#cd back to our base dir, suppress output
-cd ->/dev/null
+for file in `find images -type f -name "*.jpg"`; do
+    print_item "img`basename $file`" $file "image/jpeg"
+done )
 
+# output chapters
+for file in ${TARGET}???*\.html; do
+    print_item $file $file "application/xhtml+xml"
+done
 
 cat <<EOF
   </manifest>
@@ -81,7 +82,7 @@ cat <<EOF
 EOF
 
 # output itemrefs
-xsltproc "$SPINE_XSLT" "$HTML_DIR/$TARGET.html"
+xsltproc "$SPINE_XSLT" "$TARGET.html" || exit
 
 cat <<EOF
 

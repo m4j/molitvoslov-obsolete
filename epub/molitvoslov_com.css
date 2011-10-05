@@ -17,17 +17,18 @@ dt {float:left; clear:left; margin-right:0.5em; text-align:right}
 dt.enumerate {width:3.5em}
 div.minipage{width:100%}
 div.center {text-align: center}
-div.mychapterending {text-align: center; width:100%; margin-top: 1.5em; page-break-before: avoid}
+div.ornamentHead {text-align: center; width:100%; page-break-after: avoid}
+div.ornamentFoot {clear: left; text-align: center; width:100%; margin-top: 1.5em; page-break-before: avoid}
 img {width: 50%}
-img.ornamentfirst {width: 80%}
-img.ornamentlast {width: 50%}
-img.icon {width: 100%}
+.ornamentfirst {max-width: 100%}
+.ornamentlast {width: 50%}
+.icon {width: 100%}
 /* div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:0.7em} */ 
 span.footnote-mark, sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; line-height:0.8em}
 div.footnotes{border-top:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2em; font-size:85%; text-align: left}
 div.footnotes p{margin-top:0; margin-bottom:0; text-indent:0}
 .partToc a, .partToc, .chapterToc a, .chapterToc {font-weight:bold; margin-top:0.5em; page-break-inside: avoid}
-.partHead, .chapterHead, .likechapterHead {text-align: center}
+.partHead, .chapterHead, .likechapterHead {text-align: center; margin-top:0}
 .quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify}
 .verse{white-space:nowrap; margin-left:2em}
 div.maketitle {text-align:center}
