@@ -6,7 +6,7 @@
   exclude-result-prefixes="xhtml xsl">
   
   <xsl:strip-space  elements="*"/>
-  <xsl:preserve-space elements="title"/>
+  <xsl:preserve-space elements="xhtml:p"/>
 
 <xsl:output method="xml" version="1.0" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" indent="yes"/>
 
@@ -170,7 +170,25 @@ Remove empty links
 <!--
 Remove empty paragraphs
 -->
-<xsl:template match="xhtml:p[count(node()) = 0]" />
+<xsl:template match="xhtml:p[count(node()) = 0 or normalize-space(.) = '' or normalize-space(.) = '&#160;&#160;&#160;&#160;']" />
+
+<!--
+Remove empty links
+-->
+<!--
+<xsl:template match="xhtml:a[count(node()) = 0 or normalize-space(.) = '' or normalize-space(.) = '&#160;&#160;&#160;&#160;']" />
+-->
+
+<!--
+Remove empty links
+-->
+<xsl:template match="text()">
+    <xsl:if test="normalize-space(.) != '&#160;&#160;&#160;&#160;'">
+      <xsl:copy>
+        <xsl:apply-templates select="@*|node()"/>
+      </xsl:copy>
+    </xsl:if>
+</xsl:template>
 
 <!--
 <xsl:template match="text()">

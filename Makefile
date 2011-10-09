@@ -143,7 +143,7 @@ $(EPUB_HTML_DIR)/$(TARGET).css: $(EPUB_DIR)/$(TARGET).css
 	# copy our own css
 	cp -v $(EPUB_DIR)/$(TARGET).css $(EPUB_HTML_DIR)/
 
-$(TARGET_DIR)/$(TARGET).epub: $(EPUB_HTML_DIR)/$(TARGET)*.html $(EPUB_HTML_DIR)/$(TARGET).css $(EPUB_HTML_DIR)/images/*.jpg $(EPUB_META_DIR)/*
+$(TARGET_DIR)/$(TARGET).epub: $(EPUB_HTML_DIR)/$(TARGET)*.html $(EPUB_HTML_DIR)/$(TARGET).css $(EPUB_HTML_DIR)/images/*.jpg
 	#
 	# package everything
 	cd $(TARGET_EPUB_DIR); \
