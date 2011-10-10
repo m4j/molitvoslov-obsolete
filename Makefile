@@ -31,6 +31,8 @@ endif
 
 ARGS = "\nonstopmode $(INCLUDEONLY) \input{$(TARGET)}"
 
+.PHONY: all pdf epub eps images
+
 all: clean pdf epub
 
 pdf: $(TARGET_DIR)/$(TARGET).pdf
@@ -90,7 +92,7 @@ $(TARGET_IMG_DIR)/wide/*.eps: img/wide/*.jpg
 $(EPUB_HTML_DIR)/images/*.png: uzory/*.pdf
 	for file in $?; do \
 		fname=`basename $$file`; \
-		cnv="convert $$file -resize 800x800 $(@D)/$${fname%.*}.png"; \
+		cnv="convert $$file -depth 2 -resize 800x800 $(@D)/$${fname%.*}.png"; \
 		echo $$cnv; $$cnv; \
 	done
 
