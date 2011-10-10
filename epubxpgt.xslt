@@ -39,28 +39,11 @@ Assign class for images
  <xsl:copy>
     <xsl:apply-templates select="@*|node()"/>
     <xsl:choose>
-        <xsl:when test="contains(@src,'uzor_end')">
-            <xsl:attribute name="class">
-                <xsl:text>ornamentlast</xsl:text>
-            </xsl:attribute>
-        </xsl:when>
-        <xsl:when test="contains(@src,'uzor_begin')">
-            <xsl:attribute name="class">
-                <xsl:text>ornamentfirst</xsl:text>
-            </xsl:attribute>
-        </xsl:when>
         <xsl:when test="contains(../@class, 'wrapfig')">
             <xsl:attribute name="class">
                 <xsl:text>icon</xsl:text>
             </xsl:attribute>
         </xsl:when>
-<!--
-        <xsl:otherwise>
-         <xsl:attribute name="width">
-            <xsl:text>70%</xsl:text>
-         </xsl:attribute>
-        </xsl:otherwise>
--->
     </xsl:choose>
  </xsl:copy>
 </xsl:template>

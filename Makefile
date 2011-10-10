@@ -25,7 +25,6 @@ XML_CATALOG=catalog/catalog.xml
 	#cd $$fdir; \
 	#../cnv2tex.py 0 http://www.molitvoslov.com '[["/o-molitve"], "/content/soderzhanie", ["/slovar.php"]]'
 
-
 ifdef ONLY
 	INCLUDEONLY = \includeonly{$(ONLY)}
 endif
@@ -36,11 +35,11 @@ all: clean pdf epub
 
 pdf: $(TARGET_DIR)/$(TARGET).pdf
 
-epub: eps images $(TARGET_DIR)/$(TARGET).epub
+epub: $(TARGET_DIR)/$(TARGET).epub
 
-eps: $(TARGET_EPUB_DIR) $(TARGET_IMG_DIR)/tall/*.eps $(TARGET_IMG_DIR)/wide/*.eps $(TARGET_IMG_DIR)/*.eps $(TARGET_IMG_DIR)/tall/*.jpg $(TARGET_IMG_DIR)/wide/*.jpg $(TARGET_IMG_DIR)/*.jpg
+eps: $(TARGET_EPUB_DIR) $(TARGET_IMG_DIR)/tall/*.eps $(TARGET_IMG_DIR)/wide/*.eps $(TARGET_IMG_DIR)/*.eps
 
-images: $(EPUB_HTML_DIR)/images/tall/*.jpg $(EPUB_HTML_DIR)/images/wide/*.jpg $(EPUB_HTML_DIR)/images/*.jpg $(EPUB_HTML_DIR)/images/*.svg
+images: $(EPUB_HTML_DIR)/images/tall/*.jpg $(EPUB_HTML_DIR)/images/wide/*.jpg $(EPUB_HTML_DIR)/images/*.jpg $(EPUB_HTML_DIR)/images/*.png
 
 $(TARGET_EPUB_DIR):  $(EPUB_DIR)/*
 	#
@@ -65,6 +64,7 @@ $(TARGET_DIR)/$(TARGET).pdf: *.tex img/* header/* uzory/*
 	mv $(TARGET).pdf $(TARGET_DIR)/
 
 $(TARGET_IMG_DIR)/*.eps: img/*.jpg uzory/*.pdf
+	cp $? $(@D)/
 	for file in $?; do \
 		fname=`basename $$file`; \
 		cnv="convert $$file $(@D)/$${fname%.*}.eps"; \
@@ -72,6 +72,7 @@ $(TARGET_IMG_DIR)/*.eps: img/*.jpg uzory/*.pdf
 	done
 
 $(TARGET_IMG_DIR)/tall/*.eps: img/tall/*.jpg
+	cp $? $(@D)/
 	for file in $?; do \
 		fname=`basename $$file`; \
 		cnv="convert $$file $(@D)/$${fname%.*}.eps"; \
@@ -79,44 +80,30 @@ $(TARGET_IMG_DIR)/tall/*.eps: img/tall/*.jpg
 	done
 
 $(TARGET_IMG_DIR)/wide/*.eps: img/wide/*.jpg
+	cp $? $(@D)/
 	for file in $?; do \
 		fname=`basename $$file`; \
 		cnv="convert $$file $(@D)/$${fname%.*}.eps"; \
 		echo $$cnv; $$cnv; \
 	done
 
-$(TARGET_IMG_DIR)/*.jpg: img/*.jpg uzory/*.pdf
-	for file in $(filter %.jpg, $?); do \
-		cp -v $$file $(@D); \
-	done
-	for file in $(filter %.pdf, $?); do \
+$(EPUB_HTML_DIR)/images/*.png: uzory/*.pdf
+	for file in $?; do \
 		fname=`basename $$file`; \
-		cnv="convert $$file $(@D)/$${fname%.*}.jpg"; \
+		cnv="convert $$file -resize 800x800 $(@D)/$${fname%.*}.png"; \
 		echo $$cnv; $$cnv; \
 	done
 
-$(TARGET_IMG_DIR)/tall/*.jpg: img/tall/*.jpg
+$(EPUB_HTML_DIR)/images/tall/*.jpg: img/tall/*.jpg
 	cp -v $? $(@D)/
 
-$(TARGET_IMG_DIR)/wide/*.jpg: img/wide/*.jpg
+$(EPUB_HTML_DIR)/images/wide/*.jpg: img/wide/*.jpg
 	cp -v $? $(@D)/
 
-$(TARGET_IMG_DIR)/%.svg: uzory/%.svg
+$(EPUB_HTML_DIR)/images/*.jpg: img/*.jpg
 	cp -v $? $(@D)/
 
-$(EPUB_HTML_DIR)/images/*.svg: $(TARGET_IMG_DIR)/*.svg
-	cp -v $? $(@D)/
-
-$(EPUB_HTML_DIR)/images/*.jpg: $(TARGET_IMG_DIR)/*.jpg
-	cp -v $? $(@D)/
-
-$(EPUB_HTML_DIR)/images/tall/*.jpg: $(TARGET_IMG_DIR)/tall/*.jpg
-	cp -v $? $(@D)/
-
-$(EPUB_HTML_DIR)/images/wide/*.jpg: $(TARGET_IMG_DIR)/wide/*.jpg
-	cp -v $? $(@D)/
-
-$(TARGET)*.html: *.tex $(EPUB_DIR)/$(TARGET).cfg $(EPUB_DIR)/$(TARGET).tex
+$(TARGET)*.html: *.tex $(EPUB_DIR)/$(TARGET).cfg $(EPUB_DIR)/$(TARGET).tex eps
 	#
 	# execute tex4ht process
 	$(HTLATEX) $(EPUB_DIR)/$(TARGET).tex "$(EPUB_DIR)/$(TARGET)" " -cunihtf -utf8" ""
@@ -143,7 +130,7 @@ $(EPUB_HTML_DIR)/$(TARGET).css: $(EPUB_DIR)/$(TARGET).css
 	# copy our own css
 	cp -v $(EPUB_DIR)/$(TARGET).css $(EPUB_HTML_DIR)/
 
-$(TARGET_DIR)/$(TARGET).epub: $(EPUB_HTML_DIR)/$(TARGET)*.html $(EPUB_HTML_DIR)/$(TARGET).css $(EPUB_HTML_DIR)/images/*.jpg
+$(TARGET_DIR)/$(TARGET).epub: $(EPUB_HTML_DIR)/$(TARGET)*.html $(EPUB_HTML_DIR)/$(TARGET).css images
 	#
 	# package everything
 	cd $(TARGET_EPUB_DIR); \

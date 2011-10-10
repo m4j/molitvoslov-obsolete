@@ -30,7 +30,7 @@ span.footnote-mark, sup.textsuperscript, span.footnote-mark a sup.textsuperscrip
 div.footnotes{border-top:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2em; font-size:85%; text-align: left}
 div.footnotes p{margin-top:0; margin-bottom:0; text-indent:0}
 .partToc a, .partToc, .chapterToc a, .chapterToc {font-weight:bold; margin-top:0.5em; page-break-inside: avoid}
-.partHead, .chapterHead, .likechapterHead {text-align: center; margin-top:0; line-height: 1em;}
+.partHead, .chapterHead, .likechapterHead {text-align: center; margin-top:0.5em; line-height: 1em;}
 .quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify}
 .verse{white-space:nowrap; margin-left:2em}
 div.maketitle {text-align:center}
