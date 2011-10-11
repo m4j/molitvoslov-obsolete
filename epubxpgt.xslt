@@ -185,4 +185,10 @@ Remove "clear" attribute from <br>
     <br />
 </xsl:template>
 
+<!--
+Remove "shape" attribute and normalize "href". Someday i will
+learn how to fix that in tex4ht...
+-->
+<xsl:template match="@shape"/>
+
 </xsl:stylesheet>

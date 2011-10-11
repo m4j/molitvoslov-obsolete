@@ -4,10 +4,10 @@
 .labx-1095{font-weight: bold}
 .cmmi-10x-x-109{font-style: italic}
 .cmsy-10x-x-109{}
-.larm-1000{font-size:90%}
-.larm-0900{font-size:81%}
-.lati-0900{font-size:81%;font-style: italic}
-.labx-0900{font-size:81%;font-weight: bold}
+.larm-1000{font-size:92%}
+.larm-0900{font-size:85%}
+.lati-0900{font-size:85%;font-style: italic}
+.labx-0900{font-size:85%;font-weight: bold}
 .labx-1440{font-size:127%;font-weight: bold}
 p.noindent { text-indent: 0em }
 p.indent{ text-indent: 1.3em }
@@ -18,12 +18,13 @@ dt.enumerate {width:3.5em}
 div.minipage{width:100%}
 div.center {text-align: center}
 div.ornamentHead {text-align: center; width:100%; page-break-after: avoid}
+div.partOrnamentHead {text-align: center; width:100%; page-break-after: avoid}
 div.ornamentFoot {clear: left; text-align: center; width:100%; margin-top: 1.5em; page-break-before: avoid}
 /*
 img {width: 50%}
 */
 .ornamentfirst {max-width: 90%}
-.ornamentlast {width: 50%}
+.ornamentlast {max-width: 50%}
 .icon {width: 100%}
 /* div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:0.7em} */ 
 span.footnote-mark, sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; line-height:0.8em}

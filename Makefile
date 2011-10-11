@@ -92,7 +92,11 @@ $(TARGET_IMG_DIR)/wide/*.eps: img/wide/*.jpg
 $(EPUB_HTML_DIR)/images/*.png: uzory/*.pdf
 	for file in $?; do \
 		fname=`basename $$file`; \
-		cnv="convert $$file -depth 8 -quality 10 -resize 800x800 $(@D)/$${fname%.*}.png"; \
+		resize_to="600x600"; \
+		if expr "$$file" : ".*end"; then \
+			resize_to="250x250"; \
+		fi; \
+		cnv="convert $$file -depth 8 -quality 10 -resize $${resize_to} $(@D)/$${fname%.*}.png"; \
 		echo $$cnv; $$cnv; \
 	done
 
