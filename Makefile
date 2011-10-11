@@ -37,11 +37,11 @@ all: clean pdf epub
 
 pdf: $(TARGET_DIR)/$(TARGET).pdf
 
-epub: $(TARGET_DIR)/$(TARGET).epub
+epub: eps images $(TARGET_DIR)/$(TARGET).epub
 
 eps: $(TARGET_EPUB_DIR) $(TARGET_IMG_DIR)/tall/*.eps $(TARGET_IMG_DIR)/wide/*.eps $(TARGET_IMG_DIR)/*.eps
 
-images: $(EPUB_HTML_DIR)/images/tall/*.jpg $(EPUB_HTML_DIR)/images/wide/*.jpg $(EPUB_HTML_DIR)/images/*.jpg $(EPUB_HTML_DIR)/images/*.png
+images: $(TARGET_EPUB_DIR) $(EPUB_HTML_DIR)/images/tall/*.jpg $(EPUB_HTML_DIR)/images/wide/*.jpg $(EPUB_HTML_DIR)/images/*.jpg $(EPUB_HTML_DIR)/images/*.png
 
 $(TARGET_EPUB_DIR):  $(EPUB_DIR)/*
 	#
@@ -92,7 +92,7 @@ $(TARGET_IMG_DIR)/wide/*.eps: img/wide/*.jpg
 $(EPUB_HTML_DIR)/images/*.png: uzory/*.pdf
 	for file in $?; do \
 		fname=`basename $$file`; \
-		cnv="convert $$file -depth 2 -resize 800x800 $(@D)/$${fname%.*}.png"; \
+		cnv="convert $$file -depth 8 -quality 10 -resize 800x800 $(@D)/$${fname%.*}.png"; \
 		echo $$cnv; $$cnv; \
 	done
 
@@ -105,7 +105,7 @@ $(EPUB_HTML_DIR)/images/wide/*.jpg: img/wide/*.jpg
 $(EPUB_HTML_DIR)/images/*.jpg: img/*.jpg
 	cp -v $? $(@D)/
 
-$(TARGET)*.html: *.tex $(EPUB_DIR)/$(TARGET).cfg $(EPUB_DIR)/$(TARGET).tex eps
+$(TARGET)*.html: *.tex $(EPUB_DIR)/$(TARGET).cfg $(EPUB_DIR)/$(TARGET).tex
 	#
 	# execute tex4ht process
 	$(HTLATEX) $(EPUB_DIR)/$(TARGET).tex "$(EPUB_DIR)/$(TARGET)" " -cunihtf -utf8" ""

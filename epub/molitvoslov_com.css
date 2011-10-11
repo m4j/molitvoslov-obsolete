@@ -50,7 +50,7 @@ div.author, div.date {text-align:center}
  .wrapfig-lt {float:left; margin-right:0.5em; margin-top: 0.5em; width:37%} 
  .wrapfig-lw {float:left; margin-right:0.5em; margin-top: 0.5em; width:70%} 
 h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; font-weight: bold}
-body { font-family: MainFont}
+body { font-family: "PT Serif"}
 a,h2,h3,h4,h5 { text-align: left }
 h1,h2,h3,h4,h5 { color: red }
 a { text-decoration: none }
@@ -58,9 +58,15 @@ a { text-decoration: none }
 span.titlemark { line-height: 300% }
 p { margin: 0px; line-height:1.3em}
 li.itemize {text-align: left; margin-left: -0.3em;}
-@font-face { font-style: normal; font-family: MainFont; src: url(fonts/PTF55F.ttf)}
-@font-face { font-style: italic; font-family: MainFont; src: url(fonts/PTF56F.ttf)}
-@font-face { font-weight: bold; font-family: MainFont; src: url(fonts/PTF75F.ttf)}
-@font-face { font-weight: bold; font-style: italic; font-family: MainFont; src: url(fonts/PTF76F.ttf)}
+@font-face { font-style: normal; font-family: "PT Serif"; src: url(fonts/PTF55F.ttf)}
+@font-face { font-style: italic; font-family: "PT Serif"; src: url(fonts/PTF56F.ttf)}
+@font-face { font-weight: bold; font-family: "PT Serif"; src: url(fonts/PTF75F.ttf)}
+@font-face { font-weight: bold; font-style: italic; font-family: "PT Serif"; src: url(fonts/PTF76F.ttf)}
 
+/*
+@font-face { font-style: normal; font-family: "DejaVu Serif Condensed"; src: url(fonts/DejaVuSerifCondensed.ttf)}
+@font-face { font-style: italic; font-family: "DejaVu Serif Condensed"; src: url(fonts/DejaVuSerifCondensed-Italic.ttf)}
+@font-face { font-weight: bold; font-family: "DejaVu Serif Condensed"; src: url(fonts/DejaVuSerifCondensed-Bold.ttf)}
+@font-face { font-weight: bold; font-style: italic; font-family: "DejaVu Serif Condensed"; src: url(fonts/DejaVuSerifCondensed-BoldItalic.ttf)}
+*/
 
