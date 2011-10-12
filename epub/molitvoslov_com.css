@@ -23,9 +23,10 @@ div.ornamentFoot {clear: left; text-align: center; width:100%; margin-top: 1.5em
 /*
 img {width: 50%}
 */
-.ornamentfirst {max-width: 90%}
-.ornamentlast {max-width: 50%}
-.icon {width: 100%}
+img.ornamentfirst {max-width: 90%}
+img.ornamentlast {max-width: 50%}
+img.icon {width: 100%}
+img.centered-icon {width: 50%}
 /* div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:0.7em} */ 
 span.footnote-mark, sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; line-height:0.8em}
 div.footnotes{border-top:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2em; font-size:85%; text-align: left}
@@ -59,6 +60,13 @@ a { text-decoration: none }
 span.titlemark { line-height: 300% }
 p { margin: 0px; line-height:1.3em}
 li.itemize {text-align: left; margin-left: -0.3em;}
+#secondpagewarning h4 {
+    color: black;
+}
+#secondpagewarning {
+    page-break-after: always;
+}
+
 @font-face { font-style: normal; font-family: "PT Serif"; src: url(fonts/PTF55F.ttf)}
 @font-face { font-style: italic; font-family: "PT Serif"; src: url(fonts/PTF56F.ttf)}
 @font-face { font-weight: bold; font-family: "PT Serif"; src: url(fonts/PTF75F.ttf)}

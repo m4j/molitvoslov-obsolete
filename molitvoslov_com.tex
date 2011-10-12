@@ -165,6 +165,12 @@
 
 \newenvironment{mymulticols}[1]{\begin{multicols}{#1}}{\end{multicols}}
 
+% the idea of identity environment is to provide a mechanism
+% to assign some id to the element it surrounds. Its main use is
+% with htlatex configs
+\newcommand\myid{}
+\newenvironment{identity}[1]{}{}
+
 \newcommand{\mychapterending}{\nopagebreak\begin{center}\raisebox{0pt}[1.5\baselineskip][0pt]{
 \includegraphics[width=0.4\textwidth]{\ornamentending}}\end{center}}
 

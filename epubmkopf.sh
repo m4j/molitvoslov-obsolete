@@ -29,11 +29,11 @@ cat <<EOF
       <dc:title>$TITLE</dc:title>
       <dc:creator>$AUTHOR</dc:creator>
       <dc:publisher>$PUBLISHER</dc:publisher>
-      <dc:format></dc:format>
+      <dc:format>$FORMAT</dc:format>
       <dc:date>$DATE</dc:date>
-      <dc:subject></dc:subject>
-      <dc:description></dc:description>
-      <dc:rights>Public domain</dc:rights>
+      <dc:subject>$SUBJECT</dc:subject>
+      <dc:description>$DESCRIPTION</dc:description>
+      <dc:rights>$RIGHTS</dc:rights>
       <dc:identifier id="bookid">$BOOK_ID</dc:identifier>
       <dc:language>$BOOK_LANG</dc:language>
       <meta name="cover" content="cover-image"/>

@@ -48,6 +48,12 @@
 %\newenvironment{mymulticols}[1]{\begin{multicols}{#1}}{\end{multicols}}
 \newenvironment{mymulticols}[1]{}{}
 
+% the idea of identity environment is to provide a mechanism
+% to assign some id to the element it surrounds. Its main use is
+% with htlatex configs
+\newcommand\myid{}
+\newenvironment{identity}{}{}
+
 \newcommand{\myfig}[2][0.41]{
     \begin{wrapfigure}{l}{0pt}
     \includegraphics[width=#1\textwidth]{#2}
