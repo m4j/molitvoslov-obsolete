@@ -82,7 +82,7 @@ cat <<EOF
 EOF
 
 # output itemrefs
-xsltproc "$SPINE_XSLT" "$TARGET.html" || exit
+xsltproc --nonet "$SPINE_XSLT" "$TARGET.html" || exit
 
 cat <<EOF
 

@@ -21,7 +21,7 @@ fi
 # transform all matching html files in the directory
 for file in $TARGET*.html; do
     printf 'Transforming %s...' "$file"
-    xsltproc -o "$HTML_DIR/$file" "$XSLT" "$file"
+    xsltproc --nonet -o "$HTML_DIR/$file" "$XSLT" "$file"
     rc=$?
     if [ $rc -ne 0 ]; then
         # if something went wrong, restore previous order

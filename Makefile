@@ -8,6 +8,7 @@ EPUB_DIR=epub
 EPUB_TEMPLATE=$(EPUB_DIR)/template
 EPUBCHECK_JAR=$(wildcard $(EPUB_DIR)/epubcheck/epubcheck*jar)
 JAVA=java
+XSLTPROC=xsltproc --nonet
 
 TARGET_EPUB_DIR=$(TARGET_DIR)/epub
 TARGET_IMG_DIR=$(TARGET_DIR)/img
@@ -125,7 +126,7 @@ $(EPUB_HTML_DIR)/$(TARGET)*.html: $(TARGET)*.html epub*.xslt epub*sh
 	#
 	# apply XSL transformation, generate NCX file
 	export XML_CATALOG_FILES=$(XML_CATALOG); \
-	  xsltproc -o $(EPUB_HTML_DIR)/toc.ncx epubmkncx.xslt $(TARGET).html && \
+	  $(XSLTPROC) -o $(EPUB_HTML_DIR)/toc.ncx epubmkncx.xslt $(TARGET).html && \
 	  ./epubapplyxslt.sh $(TARGET) $(EPUB_HTML_DIR) epubxpgt.xslt
 	#
 	# rename image paths

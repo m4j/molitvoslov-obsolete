@@ -10,7 +10,7 @@
 
 <xsl:output method="xml" version="1.0" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" indent="yes"/>
 
-<!-- the identity template; also removes empty elements -->
+<!-- the identity template -->
 <xsl:template match="@*|node()">
 <!--
     <xsl:if test="count(node()) != 0 or ./@* != ''">
@@ -131,6 +131,9 @@ Parts only in the main table of contents
   </xsl:copy>
 </xsl:template>
 
+<!--
+Remove comments
+-->
 <xsl:template match="comment()"/>
 
 <!--
@@ -151,9 +154,11 @@ Remove empty links
 -->
 
 <!--
-Remove empty paragraphs
+Remove paragraphs containing only whitespace or non-breaking space
+match if only one node and that node is text and whitespace
 -->
-<xsl:template match="xhtml:p[count(node()) = 0 or normalize-space(.) = '' or normalize-space(.) = '&#160;&#160;&#160;&#160;']" />
+<xsl:template id="remove_empty_pars" 
+    match="xhtml:p[count(node()) = 1 and child::node()[1][self::text() and (normalize-space(.) = '' or normalize-space(.) = '&#160;&#160;&#160;&#160;')]]" />
 
 <!--
 Remove empty links
