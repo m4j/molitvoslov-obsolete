@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 \usepackage{graphicx}
-\graphicspath{{img/},{uzory/}}
+\graphicspath{{img/},{img/tall/},{img/wide/},{uzory/}}
 
 \usepackage{wrapfig}
 \usepackage{fancyhdr}
@@ -43,7 +43,9 @@
 \renewcommand{\headrulewidth}{0.4pt}
 
 \renewcommand\sectionmark[1]{}
-\newcommand{\ornament}{uzor_begin_2}
+\newcommand{\partornament}{cross}
+\newcommand{\ornament}{uzor_begin_10}
+\newcommand{\ornamentending}{uzor_end_3}
 
 % calculate header offset from text body
 \setlength\headheight{14pt}
@@ -71,7 +73,7 @@
        %~ \par
        %~ \vskip 20\p@
      %~ \fi
-     \includegraphics[width=0.2\textwidth]{cross}
+     \includegraphics[width=\textwidth]{\partornament}
      \par
      \vskip 20\p@
      \Huge \bfseries #2\par}%
@@ -161,8 +163,16 @@
 \part{#1}
 \markright{#1}}
 
-\newcommand{\mychapterending}[1][uzor_end_3]{\nopagebreak[4]\begin{center}\raisebox{0pt}[1.5\baselineskip][0pt]{
-\includegraphics[width=0.33\textwidth]{#1}}\end{center}}
+\newenvironment{mymulticols}[1]{\begin{multicols}{#1}}{\end{multicols}}
+
+% the idea of identity environment is to provide a mechanism
+% to assign some id to the element it surrounds. Its main use is
+% with htlatex configs
+\newcommand\myid{}
+\newenvironment{identity}[1]{}{}
+
+\newcommand{\mychapterending}{\nopagebreak\begin{center}\raisebox{0pt}[1.5\baselineskip][0pt]{
+\includegraphics[width=0.4\textwidth]{\ornamentending}}\end{center}}
 
 \usepackage{microtype}
 \SetProtrusion
@@ -263,8 +273,14 @@ pdfsubject=, pdfkeywords=}
 }
 
 \newcommand\mysubsubsection[1]{
-\medskip\hspace{-\parindent}\bfseries #1\normalfont{}\nopagebreak\medskip
+\medskip\hspace{-\parindent}{\bfseries\color{red} #1}\nopagebreak\medskip
 }
+
+% sectioning for dictionary
+\newcommand\bukva[1]{
+    \section*{#1}
+}
+\newcommand{\bukvaending}{}
 
 \begin{document}
 
@@ -291,21 +307,21 @@ pdfsubject=, pdfkeywords=}
 \setlength\cftbeforepartskip{3pt}
 \clearpage
 \shorttableofcontents{Краткое оглавление}{-1}
-\thispagestyle{empty}\longpage[6]{}
-\nopagebreak\medskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
+\thispagestyle{empty}\longpage[6]{}\mychapterending
+%~ \nopagebreak\medskip\begin{center}\includegraphics[width=0.20\textwidth]{uzor_end_2}\end{center}
 
 \clearpage
+\renewcommand{\ornament}{uzor_begin_10_red}
 {\noparindent
 \vspace*{-\headoff}
 \includegraphics[width=\textwidth]{\ornament}}
 \setlength\cftbeforepartskip{\savebeforepartskip}
 \addtolength\cftbeforechapskip{-5pt}
 
-\tableofcontents
+\tableofcontents\mychapterending
+%~ \nopagebreak\bigskip\bigskip\begin{center}\includegraphics[width=0.20\textwidth]{uzor_end_2}\end{center}
 
-\nopagebreak\bigskip\bigskip\begin{center}\includegraphics[width=0.10\textwidth]{uzor_end_2}\end{center}
-
-\renewcommand{\ornament}{uzor_begin_5}
+\renewcommand{\ornament}{uzor_begin_5_red}
 
 \input{root}
 

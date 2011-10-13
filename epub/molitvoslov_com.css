@@ -1,0 +1,81 @@
+.larm-1200{font-size:109%}
+.latt-1095{font-family: monospace}
+.lati-1095{font-style: italic}
+.labx-1095{font-weight: bold}
+.cmmi-10x-x-109{font-style: italic}
+.cmsy-10x-x-109{}
+.larm-1000{font-size:92%}
+.larm-0900{font-size:85%}
+.lati-0900{font-size:85%;font-style: italic}
+.labx-0900{font-size:85%;font-weight: bold}
+.labx-1440{font-size:127%;font-weight: bold}
+p.noindent { text-indent: 0em }
+p.indent{ text-indent: 1.3em }
+dd {margin-left: 1em}
+dd.enumerate {margin-left: 4em}
+dt {float:left; clear:left; margin-right:0.5em; text-align:right}
+dt.enumerate {width:3.5em}
+div.minipage{width:100%}
+div.center {text-align: center}
+div.ornamentHead {text-align: center; width:100%; page-break-after: avoid}
+div.partOrnamentHead {text-align: center; width:100%; page-break-after: avoid}
+div.ornamentFoot {clear: left; text-align: center; width:100%; margin-top: 1.5em; page-break-before: avoid}
+/*
+img {width: 50%}
+*/
+img.ornamentfirst {max-width: 90%}
+img.ornamentlast {max-width: 50%}
+img.icon {width: 100%}
+img.centered-icon {width: 50%}
+/* div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:0.7em} */ 
+span.footnote-mark, sup.textsuperscript, span.footnote-mark a sup.textsuperscript{ font-size:80%; line-height:0.8em}
+div.footnotes{border-top:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2em; font-size:85%; text-align: left}
+div.footnotes p{margin-top:0; margin-bottom:0; text-indent:0}
+.partToc a, .partToc, .chapterToc a, .chapterToc {font-weight:bold; margin-top:0.5em; page-break-inside: avoid}
+.partHead, .chapterHead, .likechapterHead {text-align: center; margin-top:0.5em; line-height: 1em;}
+.quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify}
+.verse{white-space:nowrap; margin-left:2em}
+div.maketitle {text-align:center}
+h2.titleHead{text-align:center}
+div.maketitle{ margin-bottom: 2em}
+div.author, div.date {text-align:center}
+.sectionToc, .bukvaToc {margin-left:2.5em; text-indent: -1em}
+.bukvaToc {float: left; text-align: right}
+.subsubsectionToc {margin-left:6em}
+/*
+ .likesubsectionToc ~ .subsubsectionToc, .subsectionToc ~ .subsubsectionToc, {margin-left:2em}
+*/
+ .wrapfig-r {float:right; margin-left:0.5em; margin-top: 0.5em; width:50%} 
+ .wrapfig-rt {float:right; margin-left:0.5em; margin-top: 0.5em;width:37%} 
+ .wrapfig-rw {float:right; margin-left:0.5em; margin-top: 0.5em;width:70%} 
+ .wrapfig-l {float:left; margin-right:0.5em; margin-top: 0.5em; width:50%} 
+ .wrapfig-lt {float:left; margin-right:0.5em; margin-top: 0.5em; width:37%} 
+ .wrapfig-lw {float:left; margin-right:0.5em; margin-top: 0.5em; width:70%} 
+h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; font-weight: bold}
+body { font-family: "PT Serif"}
+a,h2,h3,h4,h5 { text-align: left }
+h1,h2,h3,h4,h5 { color: red }
+a { text-decoration: none }
+.partTOCS, .chapterTOCS, .tableofcontents { text-align: left; margin-left:0; margin-bottom:1.5em}
+span.titlemark { line-height: 300% }
+p { margin: 0px; line-height:1.3em}
+li.itemize {text-align: left; margin-left: -0.3em;}
+#secondpagewarning h4 {
+    color: black;
+}
+#secondpagewarning {
+    page-break-after: always;
+}
+
+@font-face { font-style: normal; font-family: "PT Serif"; src: url(fonts/PTF55F.ttf)}
+@font-face { font-style: italic; font-family: "PT Serif"; src: url(fonts/PTF56F.ttf)}
+@font-face { font-weight: bold; font-family: "PT Serif"; src: url(fonts/PTF75F.ttf)}
+@font-face { font-weight: bold; font-style: italic; font-family: "PT Serif"; src: url(fonts/PTF76F.ttf)}
+
+/*
+@font-face { font-style: normal; font-family: "DejaVu Serif Condensed"; src: url(fonts/DejaVuSerifCondensed.ttf)}
+@font-face { font-style: italic; font-family: "DejaVu Serif Condensed"; src: url(fonts/DejaVuSerifCondensed-Italic.ttf)}
+@font-face { font-weight: bold; font-family: "DejaVu Serif Condensed"; src: url(fonts/DejaVuSerifCondensed-Bold.ttf)}
+@font-face { font-weight: bold; font-style: italic; font-family: "DejaVu Serif Condensed"; src: url(fonts/DejaVuSerifCondensed-BoldItalic.ttf)}
+*/
+

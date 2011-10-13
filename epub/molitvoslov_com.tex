@@ -1,0 +1,118 @@
+\documentclass[11pt,oneside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\graphicspath{{target/img/},{target/img/tall/},{target/img/wide/}}
+
+\usepackage{wrapfig}
+\usepackage{indentfirst}
+\usepackage{url}
+\usepackage{color}
+
+\renewcommand\sectionmark[1]{}
+\newcommand{\partornament}{cross}
+\newcommand{\ornament}{uzor_begin_10}
+\newcommand{\ornamentending}{uzor_end_3}
+
+% calculate header offset from text body
+\setlength\headheight{14pt}
+\newlength\headoff
+\addtolength\headoff{\headheight}
+\addtolength\headoff{\headsep}
+\addtolength\headoff{14pt}
+
+\title{Молитвослов на всякую потребу}
+\author{www.molitvoslov.com}
+\date{2011-06-16}
+\setcounter{secnumdepth}{-3}
+%\setcounter{tocdepth}{-1}
+
+\newcommand{\mypart}[1]{
+    \part{#1}
+}
+
+\newcommand{\mychapter}[1]{
+    \renewcommand{\thechapter}{}
+    \chapter{#1}
+}
+
+%~ \newcommand{\bukva}[1]{
+    %~ \section{#1}
+%~ }
+
+\newcommand\mysubsubsection[1]{
+    \subsubsection{#1}
+}
+
+%\newenvironment{mymulticols}[1]{\begin{multicols}{#1}}{\end{multicols}}
+\newenvironment{mymulticols}[1]{}{}
+
+% the idea of identity environment is to provide a mechanism
+% to assign some id to the element it surrounds. Its main use is
+% with htlatex configs
+\newcommand\myid{}
+\newenvironment{identity}{}{}
+
+\newcommand{\myfig}[2][0.41]{
+    \begin{wrapfigure}{l}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+}
+
+\newcommand{\myfigh}[3][0.41]{
+    \begin{wrapfigure}[#3]{l}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+}
+
+\newcommand{\myfigr}[2][0.41]{
+    \begin{wrapfigure}{r}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+}
+
+\newcommand{\myfigrh}[3][0.41]{
+    \begin{wrapfigure}[#3]{r}{0pt}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{wrapfigure}
+}
+
+\newcommand{\myfigure}[2][0.43]{
+    \begin{center}
+    \includegraphics[width=#1\textwidth]{#2}
+    \end{center}
+}
+
+\newcommand{\mychapterending}{}
+
+\newcommand{\bukvaending}{\mychapterending}
+
+\newcommand\longpage[1][1]{}
+\newcommand\shortpage[1][1]{}
+
+% save the value of current parindent to be used
+% later in minipage environments
+\newlength\myparindent
+\setlength\myparindent{\parindent}
+\newcommand\noparindent{\setlength\parindent{0pt}}
+\newcommand\restoreparindent{\setlength\parindent{\myparindent}}
+
+\long\def\symbolfootnote[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
+
+\begin{document}
+
+\renewcommand{\ornament}{uzor_psaltyr}
+
+\input{secondpage}
+
+\tableofcontents[part,chapter,section,bukva]
+
+\renewcommand{\ornament}{uzor_begin_10}
+
+\input{root}
+
+\input{changes}
+
+\end{document}
