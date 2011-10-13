@@ -36,6 +36,7 @@ except ImportError:
 from BeautifulSoup import BeautifulSoup, NavigableString, Tag
 from urlparse import urlparse
 from datetime import datetime
+from urllib2 import urlopen, URLError, HTTPError
 
 # enable utf-8 output
 sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout)
@@ -147,18 +148,24 @@ class Fetcher:
                 self.outputElement(el)
             elif el.name == 'a' and el.get('class') == 'icona':
                 file_name = self.findAndSaveBigIcon(el)
-                self.myprint('\\myfig{' + file_name + '}')
-                sys.stdout.write(', ' + file_name)
+                if file_name != None:
+                    self.myprint('\\myfig{' + file_name + '}')
+                    sys.stdout.write(', ' + file_name)
                 
     def findAndSaveBigIcon(self, el_a):
         bi_soup = self.getSoup(el_a['href'])
         bi_div = bi_soup.find('div', { 'class' : 'big-icon' })
         img_src = bi_div.img['src']
-        file_name = 'img/' + img_src.split('/')[-1]
-        img = urllib2.urlopen(img_src)
-        out = open(file_name, 'wb')
-        out.write(img.read())
-        out.close()
+        file_name = None
+        try:
+            img = urlopen(img_src)
+            file_name = 'img/' + img_src.split('/')[-1]
+            out = open(file_name, 'wb')
+            out.write(img.read())
+            out.close()
+        except HTTPError, e:
+            sys.stdout.write('\nThe server couldn\'t fulfill the request for ' + img_src)
+            sys.stdout.write('\nError code: ' + str(e.code))
         return file_name
 
     def writeText(self, el_str):
@@ -179,7 +186,7 @@ class Fetcher:
         
     def getSoup(self, path = '/'):
         #sys.stdout.write('\n' + self.baseUrl + path)
-        page = urllib2.urlopen(self.baseUrl + path)
+        page = urlopen(self.baseUrl + path)
         return BeautifulSoup(page)
 
     def getMyFile(self):

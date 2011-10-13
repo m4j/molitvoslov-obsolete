@@ -14,7 +14,7 @@ fetch:
 	if [ "$$fdir" == "" ]; then \
 		fdir=import_`date '+%Y%m%d'`; \
 	fi; \
-	mkdir -p $$fdir; \
+	mkdir -p $$fdir/img; \
 	cd $$fdir && ../cnv2tex.py 0 http://www.molitvoslov.com '[["/o-molitve"], "/content/soderzhanie", ["/slovar.php"]]'
 
 all: clean pdf
