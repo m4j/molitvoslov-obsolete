@@ -2,6 +2,7 @@
 \usepackage[a4paper]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
+\usepackage[usenames,dvipsnames]{color}
 \usepackage{graphicx}
 \graphicspath{{img/},{img/tall/},{img/wide/},{uzory/}}
 
@@ -12,12 +13,16 @@
 \usepackage{shorttoc}
 \usepackage{multicol}
 
+\newcommand\myheadingcolor{\color{red}}
+\newcommand\mychaptercolor{\color{red}}
+\newcommand\myframecolor{\color{BrickRed}}
+
 \usepackage{tocloft}
 \tocloftpagestyle{empty}
 % fill with dots after chapter titles
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 % centered TOC title
-\renewcommand{\cfttoctitlefont}{\hfill\Huge\bfseries\color{red}}
+\renewcommand{\cfttoctitlefont}{\hfill\Huge\bfseries\mychaptercolor}
 \renewcommand{\cftaftertoctitle}{\hfill}
 \renewcommand{\cftpartpresnum}{\S\ }
 
@@ -28,19 +33,63 @@
 %\usepackage{pscyr}
 \usepackage{PTSerif}
 %\usepackage{PTSans}
-\usepackage{calc}
+\usepackage{calc,layouts}
 \usepackage{eso-pic}
+\usepackage{pifont}
 %\usepackage{etoolbox}
 
 \pagestyle{fancy}
-\chead{}
-\rhead{\thepage}
-\lhead{\truncate{0.95\textwidth}{\itshape\textbf{\rightmark}}}
+\lhead{} \chead{\itshape\myheadingcolor\textbf{\rightmark}} \rhead{}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\headrule}{{\myheadingcolor%
+%\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
 
-\cfoot{}
-\rfoot{}
-\lfoot{}
-\renewcommand{\headrulewidth}{0.4pt}
+\lfoot{} \cfoot{---~\thepage~---} \rfoot{}
+
+\newcommand{\wb}[2]{\fontsize{#1}{#2}\usefont{U}{webo}{xl}{n}}
+
+% What follows has been elaborated starting from an original
+% post of Piet van Oostrum <piet@cs.uu.nl> on comp.text.tex .
+%
+% A4 pages are 210 mm wide and 297 mm high, i.e. about 595
+% bp wide and 842 bp high.  Allowing a 1 in (72 bp) white
+% margin on all sides (predefined inside TeX), that accounts
+% for a decoration border 451 bp wide and 698 bp high.  If
+% we want to use WeboMints characters in square cells with
+% 12 bp side, we need 37 cells (2 angles and 35 border) in
+% the X direction, for a total of 37*12 = 444 bp; and 58
+% cells in the Y direction, for a total of 58*12 = 696 bp.
+% The two white sides have a real dimension of (595-444)/2 =
+% 75 and (842-696)/2 = 73 bp's.
+
+%\fancyhf{}
+%\pagestyle{fancy}
+\newcommand\myborderding{\myframecolor\ding{68}}
+\newcommand\mycornerding{\myframecolor\ding{107}}
+\newcommand{\fancypageframe}{%
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\unitlength}{1bp}
+
+\fancyhead[HL]{\wb{15bp}{15bp}%         Offset (48,-16), found
+  \begin{picture}(0,0)(25,-32)%           by trial and error.
+    \put(0,0){\mycornerding}%                       Upper left corner
+    \multiput(12,0)(12,0){37}{\myborderding}%       Upper border
+    \put(456,0){\mycornerding}%                     Upper right corner
+    \multiput(0,-12)(0,-12){56}{\myborderding}%     Left border
+    \put(0,-684){\mycornerding}%                    Lower left corner
+    \multiput(12,-684)(12,0){37}{\myborderding}%    Lower border
+    \multiput(456,-12)(0,-12){56}{\myborderding}%   Right border
+    \put(456,-684){\mycornerding}%                  Lower right corner
+\end{picture}}}
+
+\fancypageframe
+
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[C]{ ---~\thepage~--- } % except the center
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypageframe}
 
 \renewcommand\sectionmark[1]{}
 \newcommand{\partornament}{cross}
@@ -48,11 +97,12 @@
 \newcommand{\ornamentending}{uzor_end_3}
 
 % calculate header offset from text body
-\setlength\headheight{14pt}
+\normalsize
+\setlength\headheight{2\baselineskip}
 \newlength\headoff
 \addtolength\headoff{\headheight}
 \addtolength\headoff{\headsep}
-\addtolength\headoff{14pt}
+\addtolength\headoff{18pt}
 
 % position chapter and toc headings higher
 \makeatletter
@@ -65,6 +115,7 @@
     \fi
     %\addtocontents{toc}{\protect\mbox{}\protect\hrulefill\par}
     \markboth{}{}%
+    \thispagestyle{empty}
     {\centering
      \interlinepenalty \@M
      \normalfont
@@ -88,7 +139,7 @@
         \vskip 20\p@
     \fi
     \interlinepenalty\@M
-    \LARGE \bfseries \centering \color{red} #1\par\nobreak
+    \LARGE \bfseries \centering \mychaptercolor #1\par\nobreak
     \vskip 20\p@
   }}
 \def\@makeschapterhead#1{%
@@ -97,10 +148,17 @@
     \includegraphics[width=\textwidth]{\ornament}
     \normalfont
     \interlinepenalty\@M
-    \vskip 30\p@
-    \Huge \bfseries \centering \color{red}  #1\par\nobreak
-    \vskip 40\p@
+    \vskip 10\p@
+    \Huge \bfseries \centering \mychaptercolor  #1\par\nobreak
+    \vskip 20\p@
   }}
+
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\Large\bfseries\myheadingcolor}}
+
+
 \makeatother
 
 \title{\Huge\bfseries Молитвослов}
@@ -161,7 +219,8 @@
 
 \newcommand{\mypart}[1]{
 \part{#1}
-\markright{#1}}
+\markright{#1}
+}
 
 \newenvironment{mymulticols}[1]{\begin{multicols}{#1}}{\end{multicols}}
 
@@ -171,8 +230,10 @@
 \newcommand\myid{}
 \newenvironment{identity}[1]{}{}
 
-\newcommand{\mychapterending}{\nopagebreak\begin{center}\raisebox{0pt}[1.5\baselineskip][0pt]{
-\includegraphics[width=0.4\textwidth]{\ornamentending}}\end{center}}
+\newcommand{\mychapterending}[1][2.5]{%
+    \nopagebreak[4]\par\centerline{%
+        \raisebox{0pt}[#1\baselineskip][0pt]{%
+            \includegraphics[width=0.4\textwidth]{\ornamentending}}}}
 
 \usepackage{microtype}
 \SetProtrusion
@@ -247,7 +308,7 @@ pdfsubject=, pdfkeywords=}
 \long\def\symbolfootnote[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
 
-\setlength\footskip{60pt}
+\setlength\footskip{6\baselineskip}
 
 % Make more compact lists
 \setlength\itemsep{2pt}
@@ -273,7 +334,7 @@ pdfsubject=, pdfkeywords=}
 }
 
 \newcommand\mysubsubsection[1]{
-\medskip\hspace{-\parindent}{\bfseries\color{red} #1}\nopagebreak\medskip
+\medskip\hspace{-\parindent}{\bfseries\myheadingcolor #1}\nopagebreak\medskip
 }
 
 % sectioning for dictionary
@@ -306,22 +367,36 @@ pdfsubject=, pdfkeywords=}
 \setlength\savebeforepartskip{\cftbeforepartskip}
 \setlength\cftbeforepartskip{3pt}
 \clearpage
+\renewcommand{\ornament}{uzor_psaltyr}
 \shorttableofcontents{Краткое оглавление}{-1}
 \thispagestyle{empty}\longpage[6]{}\mychapterending
 %~ \nopagebreak\medskip\begin{center}\includegraphics[width=0.20\textwidth]{uzor_end_2}\end{center}
 
 \clearpage
-\renewcommand{\ornament}{uzor_begin_10_red}
+\renewcommand{\ornament}{uzor_begin_2}
 {\noparindent
 \vspace*{-\headoff}
 \includegraphics[width=\textwidth]{\ornament}}
 \setlength\cftbeforepartskip{\savebeforepartskip}
 \addtolength\cftbeforechapskip{-5pt}
 
-\tableofcontents\mychapterending
-%~ \nopagebreak\bigskip\bigskip\begin{center}\includegraphics[width=0.20\textwidth]{uzor_end_2}\end{center}
+% redefine empty pagestyle to include frame
+\fancypagestyle{empty}{%
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypageframe}
 
-\renewcommand{\ornament}{uzor_begin_5_red}
+\tableofcontents\mychapterending
+
+% set empty pagestyle back to defaults
+\fancypagestyle{empty}{%
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+
+\renewcommand{\ornament}{uzor_begin_10}
 
 \input{root}
 
