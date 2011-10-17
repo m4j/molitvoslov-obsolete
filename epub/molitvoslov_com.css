@@ -20,9 +20,6 @@ div.center {text-align: center}
 div.ornamentHead {text-align: center; width:100%; page-break-after: avoid}
 div.partOrnamentHead {text-align: center; width:100%; page-break-after: avoid}
 div.ornamentFoot {clear: left; text-align: center; width:100%; margin-top: 1.5em; page-break-before: avoid}
-/*
-img {width: 50%}
-*/
 img.ornamentfirst {max-width: 90%}
 img.ornamentlast {max-width: 50%}
 img.icon {width: 100%}
@@ -52,6 +49,12 @@ div.author, div.date {text-align:center}
  .wrapfig-lt {float:left; margin-right:0.5em; margin-top: 0.5em; width:37%} 
  .wrapfig-lw {float:left; margin-right:0.5em; margin-top: 0.5em; width:70%} 
 h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; font-weight: bold}
+/*
+h5.subsubsectionHead + a p{ text-indent: 1.3em }
+*/
+/*
+h5.subsubsectionHead + a + p{ text-indent: 1.3em }
+*/
 body { font-family: "PT Serif"}
 a,h2,h3,h4,h5 { text-align: left }
 h1,h2,h3,h4,h5 { color: red }

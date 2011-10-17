@@ -146,17 +146,17 @@
    guidetolerance="10"
    inkscape:pageopacity="0"
    inkscape:pageshadow="2"
-   inkscape:window-width="1280"
-   inkscape:window-height="727"
+   inkscape:window-width="1648"
+   inkscape:window-height="1030"
    id="namedview5250"
    showgrid="false"
    inkscape:snap-grids="true"
    inkscape:snap-to-guides="true"
-   inkscape:zoom="1.0391125"
-   inkscape:cx="354.29568"
-   inkscape:cy="242.59157"
-   inkscape:window-x="0"
-   inkscape:window-y="24"
+   inkscape:zoom="0.84474249"
+   inkscape:cx="407.77637"
+   inkscape:cy="528.21246"
+   inkscape:window-x="31"
+   inkscape:window-y="0"
    inkscape:window-maximized="1"
    inkscape:current-layer="Layer_1"
    inkscape:object-nodes="false"
@@ -308,6 +308,7 @@
      id="tspan5276"
      x="235.1145"
      y="573.73627" /></text>
+
 
 
 
@@ -1769,6 +1770,7 @@
 
 
 
+
 <path
    sodipodi:nodetypes="cccc"
    id="path4963"
@@ -1792,6 +1794,7 @@
 
 
 
+
 <text
    transform="matrix(0.9541924,0,0,0.9541924,16.896138,4.2028854)"
    sodipodi:linespacing="125%"
@@ -1804,6 +1807,7 @@
    dx="0 -0.26752079"
    id="tspan5280"
    style="font-size:29.74445724px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#463133;fill-opacity:1;font-family:Cotlin;-inkscape-font-specification:Cotlin">Православный</tspan></textPath></text>
+
 
 
 
@@ -1843,6 +1847,7 @@
 
 
 
+
 <text
    sodipodi:linespacing="100%"
    id="text6436"
@@ -1854,6 +1859,7 @@
      x="336.24997"
      id="tspan6438"
      sodipodi:role="line">ПОТРЕБУ</tspan></text>
+
 
 
 
@@ -1909,6 +1915,7 @@
 
 
 
+
 <g
    transform="translate(132.77821,-252.73177)"
    id="g12067"><g
@@ -1941,13 +1948,14 @@
      x="372.17203"
      y="964.46857" /><tspan
      sodipodi:role="line"
-     x="372.17203"
+     x="373.64371"
      y="975.46857"
-     id="tspan5924">версия 20110709</tspan><tspan
+     id="tspan5924">версия 20111013 </tspan><tspan
      sodipodi:role="line"
      x="372.17203"
      y="986.46857"
      id="tspan4739" /></text>
+
 
 
 
@@ -1964,6 +1972,7 @@
      id="textPath5128"><tspan
    id="tspan5117"
    style="fill:#463133;fill-opacity:1">www.molitvoslov.com</tspan></textPath></text>
+
 
 
 

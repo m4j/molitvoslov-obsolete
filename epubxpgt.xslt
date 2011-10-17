@@ -157,6 +157,19 @@ Those a's are not used anyway, so it seems to be safe to remove them...
 -->
 <xsl:template match="xhtml:body/xhtml:a" />
 
+<!--
+Assign div class based on image shape, the shape of the image is determined
+by its placement in a subdirectory, e. g. tall images go into tall/ and wide
+images go under wide/, other images just go under images/
+-->
+<xsl:template match="xhtml:p[@class='noindent' and preceding-sibling::*[@class='subsubsectionHead' or @class='sectionHead']]">
+    <xsl:copy>
+        <xsl:attribute name="class">
+            <xsl:text>indent</xsl:text>
+        </xsl:attribute>
+        <xsl:apply-templates select="node()"/>
+    </xsl:copy>
+</xsl:template>
 
 <!--
 ======================================================================
