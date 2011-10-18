@@ -15,8 +15,8 @@ SPINE_XSLT=epubmkspine.xslt
 if [ -z "$TITLE" ]; then
     TITLE=`get_latex_field title $TARGET.tex`
 fi
-if [ -z "$AUTHOR" ]; then
-    AUTHOR=`get_latex_field author $TARGET.tex`
+if [ -z "$CREATOR" ]; then
+    CREATOR=`get_latex_field author $TARGET.tex`
 fi
 if [ -z "$DATE" ]; then
     DATE=`get_latex_field date $TARGET.tex`
@@ -25,9 +25,10 @@ fi
 cat <<EOF
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" version="2.0">
-  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
       <dc:title>$TITLE</dc:title>
-      <dc:creator>$AUTHOR</dc:creator>
+      <dc:creator>$CREATOR</dc:creator>
+      <dc:contributor opf:role="bkp">$CONTRIBUTOR_BKP</dc:contributor>
       <dc:publisher>$PUBLISHER</dc:publisher>
       <dc:format>$FORMAT</dc:format>
       <dc:date>$DATE</dc:date>

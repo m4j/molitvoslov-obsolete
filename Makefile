@@ -121,6 +121,9 @@ $(EPUB_HTML_DIR)/$(TARGET)*.html: $(TARGET)*.html epub*.xslt epub*sh
 	# generate OPF file
 	export XML_CATALOG_FILES=$(XML_CATALOG); \
 	export BOOK_ID="http://www.molitvoslov.com/"; \
+	export CREATOR="www.molitvoslov.com"; \
+	export PUBLISHER="www.molitvoslov.com"; \
+	export RIGHTS="Public domain"; \
 	export TITLE="Молитвослов на всякую потребу"; \
 	  export BOOK_LANG="ru"; \
 	  ./epubmkopf.sh $(TARGET) $(EPUB_HTML_DIR) >$(EPUB_HTML_DIR)/content.opf
