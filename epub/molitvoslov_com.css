@@ -19,9 +19,9 @@ div.minipage{width:100%}
 div.center {text-align: center}
 div.ornamentHead {text-align: center; width:100%; page-break-after: avoid}
 div.partOrnamentHead {text-align: center; width:100%; page-break-after: avoid}
-div.ornamentFoot {clear: left; text-align: center; width:100%; margin-top: 1.5em; page-break-before: avoid}
+div.ornamentFoot {clear: left; text-align: center; width:50%; margin-top: 1.5em; margin-right: 25%; margin-left: 25%; page-break-before: avoid}
 img.ornamentfirst {max-width: 90%}
-img.ornamentlast {max-width: 50%}
+img.ornamentlast {max-width: 100%}
 img.icon {width: 100%}
 img.centered-icon {width: 50%}
 /* div.center, div.center div.center {text-align: center; margin-left:1em; margin-right:0.7em} */ 
@@ -42,12 +42,12 @@ div.author, div.date {text-align:center}
 /*
  .likesubsectionToc ~ .subsubsectionToc, .subsectionToc ~ .subsubsectionToc, {margin-left:2em}
 */
- .wrapfig-r {float:right; margin-left:0.5em; margin-top: 0.5em; width:50%} 
- .wrapfig-rt {float:right; margin-left:0.5em; margin-top: 0.5em;width:37%} 
- .wrapfig-rw {float:right; margin-left:0.5em; margin-top: 0.5em;width:70%} 
- .wrapfig-l {float:left; margin-right:0.5em; margin-top: 0.5em; width:50%} 
- .wrapfig-lt {float:left; margin-right:0.5em; margin-top: 0.5em; width:37%} 
- .wrapfig-lw {float:left; margin-right:0.5em; margin-top: 0.5em; width:70%} 
+ .wrapfig-r {text-align: left; float:right; margin-left:0.5em; margin-top: 0.5em; width:50%} 
+ .wrapfig-rt {text-align: left; float:right; margin-left:0.5em; margin-top: 0.5em;width:37%} 
+ .wrapfig-rw {text-align: left; float:right; margin-left:0.5em; margin-top: 0.5em;width:70%} 
+ .wrapfig-l {text-align: right; float:left; margin-right:0.5em; margin-top: 0.5em; width:50%} 
+ .wrapfig-lt {text-align: right; float:left; margin-right:0.5em; margin-top: 0.5em; width:37%} 
+ .wrapfig-lw {text-align: right; float:left; margin-right:0.5em; margin-top: 0.5em; width:70%} 
 h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; font-weight: bold}
 /*
 h5.subsubsectionHead + a p{ text-indent: 1.3em }
