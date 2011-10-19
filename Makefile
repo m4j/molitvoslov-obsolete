@@ -91,7 +91,7 @@ $(TARGET_IMG_DIR)/wide/*.eps: img/wide/*.jp*g
 		echo $$cnv; $$cnv; \
 	done
 
-$(EPUB_HTML_DIR)/images/*.png: uzory/*.pdf
+$(EPUB_HTML_DIR)/images/*.png: uzory/uzor_begin_10.pdf uzory/uzor_begin_4.pdf uzory/uzor_begin_9.pdf uzory/uzor_end_3.pdf uzory/uzor_psaltyr.pdf uzory/cross.pdf
 	for file in $?; do \
 		fname=`basename $$file`; \
 		resize_to="600x600"; \
@@ -109,7 +109,12 @@ $(EPUB_HTML_DIR)/images/wide/*.jp*g: img/wide/*.jp*g
 	cp -v $? $(@D)/
 
 $(EPUB_HTML_DIR)/images/*.jp*g: img/*.jp*g
-	cp -v $? $(@D)/
+	for file in $?; do \
+		fname=`basename $$file`; \
+		resize_to="600x600<"; \
+		cnv="convert $$file -resize $${resize_to} $(@D)/$$fname"; \
+		echo $$cnv; $$cnv; \
+	done
 
 $(TARGET)*.html: *.tex $(EPUB_DIR)/$(TARGET).cfg $(EPUB_DIR)/$(TARGET).tex
 	#
