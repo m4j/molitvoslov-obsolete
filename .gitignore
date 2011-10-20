@@ -5,6 +5,7 @@
 *.out
 *.toc
 /*.pdf
+/*.epub
 *.dvi
 *.ps
 *.ptc*

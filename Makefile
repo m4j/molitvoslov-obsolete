@@ -98,7 +98,7 @@ $(EPUB_HTML_DIR)/images/*.png: uzory/uzor_begin_10.pdf uzory/uzor_begin_4.pdf uz
 		if expr "$$file" : ".*end"; then \
 			resize_to="250x250"; \
 		fi; \
-		cnv="convert $$file -transparent white -quality 10 -resize $${resize_to} $(@D)/$${fname%.*}.png"; \
+		cnv="convert $$file -depth 8 -quality 10 -resize $${resize_to} $(@D)/$${fname%.*}.png"; \
 		echo $$cnv; $$cnv; \
 	done
 
@@ -143,7 +143,8 @@ $(EPUB_HTML_DIR)/$(TARGET)*.html: $(TARGET)*.html epub*.xslt epub*sh
 		--stringparam dtb_uid "$$BOOK_ID" \
 		--stringparam docTitle "$$TITLE" \
 		--stringparam docAuthor "$$CREATOR" \
-		--stringparam docTitlePage "$(TARGET).html" \
+		--stringparam docFirstPage "$(TARGET).html" \
+		--stringparam docFirstPageLabel "Оглавление" \
 		-o $(EPUB_HTML_DIR)/toc.ncx epubmkncx.xslt $(TARGET).html && \
 	./epubapplyxslt.sh $(TARGET) $(EPUB_HTML_DIR) epubxpgt.xslt
 	#

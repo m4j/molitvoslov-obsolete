@@ -11,7 +11,8 @@
     <xsl:param name="xml_lang">en</xsl:param>
     <xsl:param name="docTitle">Book Title</xsl:param>
     <xsl:param name="docAuthor">Book Author</xsl:param>
-    <xsl:param name="docTitlePage">Title Page</xsl:param>
+    <xsl:param name="docFirstPage">Title Page</xsl:param>
+    <xsl:param name="docFirstPageLabel">Title Page</xsl:param>
  
   <!-- the identity template -->
   <xsl:template match="@*|node()">
@@ -51,17 +52,17 @@
         <navMap>
             <navPoint>
                 <xsl:attribute name = "id">
-                    <xsl:value-of select = "$docTitlePage"/> 
+                    <xsl:value-of select = "$docFirstPage"/> 
                 </xsl:attribute>
                 <xsl:attribute name = "playOrder">
                     <xsl:value-of select = "1"/>
                 </xsl:attribute>
                 <navLabel>
-                    <text>Титульный лист</text>
+                    <text><xsl:value-of select = "$docFirstPageLabel"/></text>
                 </navLabel>
                 <content>
                     <xsl:attribute name = "src">
-                        <xsl:value-of select = "$docTitlePage"/> 
+                        <xsl:value-of select = "$docFirstPage"/> 
                     </xsl:attribute>
                 </content>
             </navPoint>
