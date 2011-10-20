@@ -98,12 +98,17 @@ $(EPUB_HTML_DIR)/images/*.png: uzory/uzor_begin_10.pdf uzory/uzor_begin_4.pdf uz
 		if expr "$$file" : ".*end"; then \
 			resize_to="250x250"; \
 		fi; \
-		cnv="convert $$file -depth 8 -quality 10 -resize $${resize_to} $(@D)/$${fname%.*}.png"; \
+		cnv="convert $$file -transparent white -quality 10 -resize $${resize_to} $(@D)/$${fname%.*}.png"; \
 		echo $$cnv; $$cnv; \
 	done
 
 $(EPUB_HTML_DIR)/images/tall/*.jp*g: img/tall/*.jp*g
-	cp -v $? $(@D)/
+	for file in $?; do \
+		fname=`basename $$file`; \
+		resize_to="500x500<"; \
+		cnv="convert $$file -resize $${resize_to} $(@D)/$$fname"; \
+		echo $$cnv; $$cnv; \
+	done
 
 $(EPUB_HTML_DIR)/images/wide/*.jp*g: img/wide/*.jp*g
 	cp -v $? $(@D)/
@@ -111,7 +116,7 @@ $(EPUB_HTML_DIR)/images/wide/*.jp*g: img/wide/*.jp*g
 $(EPUB_HTML_DIR)/images/*.jp*g: img/*.jp*g
 	for file in $?; do \
 		fname=`basename $$file`; \
-		resize_to="600x600<"; \
+		resize_to="500x500<"; \
 		cnv="convert $$file -resize $${resize_to} $(@D)/$$fname"; \
 		echo $$cnv; $$cnv; \
 	done
@@ -123,20 +128,24 @@ $(TARGET)*.html: *.tex $(EPUB_DIR)/$(TARGET).cfg $(EPUB_DIR)/$(TARGET).tex
 
 $(EPUB_HTML_DIR)/$(TARGET)*.html: $(TARGET)*.html epub*.xslt epub*sh
 	#
-	# generate OPF file
+	# generate OPF and NCX files
 	export XML_CATALOG_FILES=$(XML_CATALOG); \
 	export BOOK_ID="http://www.molitvoslov.com/"; \
 	export CREATOR="www.molitvoslov.com"; \
 	export PUBLISHER="www.molitvoslov.com"; \
 	export RIGHTS="Public domain"; \
 	export TITLE="Молитвослов на всякую потребу"; \
-	  export BOOK_LANG="ru"; \
-	  ./epubmkopf.sh $(TARGET) $(EPUB_HTML_DIR) >$(EPUB_HTML_DIR)/content.opf
-	#
-	# apply XSL transformation, generate NCX file
+	export BOOK_LANG="ru"; \
+		./epubmkopf.sh $(TARGET) $(EPUB_HTML_DIR) >$(EPUB_HTML_DIR)/content.opf && \
 	export XML_CATALOG_FILES=$(XML_CATALOG); \
-	  $(XSLTPROC) -o $(EPUB_HTML_DIR)/toc.ncx epubmkncx.xslt $(TARGET).html && \
-	  ./epubapplyxslt.sh $(TARGET) $(EPUB_HTML_DIR) epubxpgt.xslt
+	$(XSLTPROC) \
+		--stringparam xml_lang "$$BOOK_LANG" \
+		--stringparam dtb_uid "$$BOOK_ID" \
+		--stringparam docTitle "$$TITLE" \
+		--stringparam docAuthor "$$CREATOR" \
+		--stringparam docTitlePage "$(TARGET).html" \
+		-o $(EPUB_HTML_DIR)/toc.ncx epubmkncx.xslt $(TARGET).html && \
+	./epubapplyxslt.sh $(TARGET) $(EPUB_HTML_DIR) epubxpgt.xslt
 	#
 	# rename image paths
 	sed -i "s;$(TARGET_IMG_DIR);images;" $(EPUB_HTML_DIR)/$(TARGET)*.html

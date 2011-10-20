@@ -54,6 +54,8 @@
 \newcommand\myid{}
 \newenvironment{identity}{}{}
 
+\newenvironment{centericon}{}{}
+
 \newcommand{\myfig}[2][0.41]{
     \begin{wrapfigure}{l}{0pt}
     \includegraphics[width=#1\textwidth]{#2}
@@ -79,9 +81,9 @@
 }
 
 \newcommand{\myfigure}[2][0.43]{
-    \begin{center}
+    \begin{centericon}
     \includegraphics[width=#1\textwidth]{#2}
-    \end{center}
+    \end{centericon}
 }
 
 \newcommand{\mychapterending}[1][2.5]{}

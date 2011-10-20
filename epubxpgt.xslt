@@ -43,7 +43,7 @@ Assign class for images
                 <xsl:text>icon</xsl:text>
             </xsl:attribute>
         </xsl:when>
-        <xsl:when test="ancestor::xhtml:div[@class='center']">
+        <xsl:when test="ancestor::xhtml:div[@class='centericon']">
             <xsl:attribute name="class">
                 <xsl:text>centered-icon</xsl:text>
             </xsl:attribute>
