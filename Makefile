@@ -2,6 +2,7 @@ TARGET = molitvoslov_com
 INCLUDEONLY = 
 LATEX = pdflatex
 HTLATEX = htlatex
+INKSCAPE=inkscape -z
 TARGET_DIR=target
 
 EPUB_DIR=epub
@@ -45,7 +46,7 @@ eps: $(TARGET_EPUB_DIR) $(TARGET_IMG_DIR)/tall/*.eps $(TARGET_IMG_DIR)/wide/*.ep
 
 images: $(TARGET_EPUB_DIR) $(EPUB_HTML_DIR)/images/tall/*.jp*g $(EPUB_HTML_DIR)/images/wide/*.jp*g $(EPUB_HTML_DIR)/images/*.jp*g $(EPUB_HTML_DIR)/images/*.png
 
-$(TARGET_EPUB_DIR):  $(EPUB_DIR)/*
+$(TARGET_EPUB_DIR): $(EPUB_DIR)/*
 	#
 	# create directory structure and copy template
 	mkdir -p $(TARGET_EPUB_DIR)
@@ -53,7 +54,17 @@ $(TARGET_EPUB_DIR):  $(EPUB_DIR)/*
 	mkdir -p $(TARGET_IMG_DIR)/tall
 	mkdir -p $(TARGET_IMG_DIR)/wide
 
-$(TARGET_DIR)/$(TARGET).pdf: *.tex img/* header/* uzory/*
+$(TARGET_DIR)/header:
+	mkdir -p $(TARGET_DIR)/header
+
+$(TARGET_DIR)/header/%.pdf: header/%.svg VERSION
+	if [ -z "$$VERSION" ]; then \
+		export VERSION=`cat VERSION`; \
+	fi; \
+	sed "s/MY_VERSION/$$VERSION/" $< >$(TARGET_DIR)/header/$(<F)
+	$(INKSCAPE) $(TARGET_DIR)/header/$(<F) --export-pdf=$@
+
+$(TARGET_DIR)/$(TARGET).pdf: *.tex img/* $(TARGET_DIR)/header $(TARGET_DIR)/header/title_page_a4.pdf uzory/*
 	mkdir -p $(TARGET_DIR)
 	$(LATEX) $(ARGS)
 	#makeindex $(TARGET).idx
