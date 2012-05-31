@@ -146,6 +146,8 @@ class Fetcher:
                 self.myprint('\\normalfont{}')
             elif el.name == 'font':
                 self.outputElement(el)
+            elif el.name == 'span':
+                self.outputElement(el)
             elif el.name == 'a' and el.get('class') == 'icona':
                 file_name = self.findAndSaveBigIcon(el)
                 if file_name != None:
