@@ -1,5 +1,5 @@
 TARGET = molitvoslov_com
-INCLUDEONLY = 
+INCLUDEONLY =
 LATEX = pdflatex
 HTLATEX = htlatex
 INKSCAPE=inkscape -z
@@ -18,6 +18,10 @@ EPUB_META_DIR=$(TARGET_EPUB_DIR)/META-INF
 
 XML_CATALOG=catalog/catalog.xml
 
+ifdef ONLY
+INCLUDEONLY=\includeonly{$(ONLY)}
+endif
+
 #FETCH_DIR = import_`date '+%Y%m%d'`
 
 .PHONY: all pdf epub eps images fetch
@@ -29,10 +33,6 @@ fetch:
 	fi; \
 	mkdir -p $$fdir/img && \
 	cd $$fdir && ../cnv2tex.py 0 http://www.molitvoslov.com '[["/o-molitve"], "/content/soderzhanie", ["/slovar.php"]]'
-
-ifdef ONLY
-	INCLUDEONLY = \includeonly{$(ONLY)}
-endif
 
 ARGS = "\nonstopmode $(INCLUDEONLY) \input{$(TARGET)}"
 
@@ -161,7 +161,7 @@ $(EPUB_HTML_DIR)/$(TARGET)*.html: $(TARGET)*.html epub*.xslt epub*sh
 	#
 	# rename image paths
 	sed -i "s;$(TARGET_IMG_DIR);images;" $(EPUB_HTML_DIR)/$(TARGET)*.html
-	
+
 $(EPUB_HTML_DIR)/$(TARGET).css: $(EPUB_DIR)/$(TARGET).css
 	#
 	# copy our own css
