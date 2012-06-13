@@ -38,8 +38,8 @@
 \makeatother
 
 %\usepackage{pscyr}
-\usepackage{paratype}
-%\usepackage{PTSans}
+%\usepackage{paratype}
+\usepackage{PTSerif}
 \usepackage{calc,layouts}
 \usepackage{eso-pic}
 \usepackage{pifont}
@@ -243,34 +243,35 @@
             \includegraphics[width=0.4\textwidth]{\ornamentending}}}}
 
 \usepackage{microtype}
-\SetProtrusion
-{
-encoding = T2A,
-family = *
-}
-{
-« = {600,      },
-» = {    ,  600},
-„ = {1000,     },
-“ = {    , 1000},
-( = {600,      },
-) = {    ,  600},
-! = {    , 1000},
-? = {    ,  600},
-: = {    , 1000},
-; = {    , 1000},
-. = {    , 1000},
-- = {    , 800},
-%— = {    ,  500},
-%– = {    ,  500},
-{,}= {    , 1000}
-}
-\DeclareMicrotypeSet{t2atext}{encoding=T2A}
-\UseMicrotypeSet{t2atext}
+\UseMicrotypeSet[protrusion]{basictext}
+%~ \SetProtrusion
+%~ {
+%~ encoding = T2A,
+%~ family = *
+%~ }
+%~ {
+%~ « = {600,      },
+%~ » = {    ,  600},
+%~ „ = {1000,     },
+%~ “ = {    , 1000},
+%~ ( = {600,      },
+%~ ) = {    ,  600},
+%~ ! = {    , 1000},
+%~ ? = {    ,  600},
+%~ : = {    , 1000},
+%~ ; = {    , 1000},
+%~ . = {    , 1000},
+%~ - = {    , 800},
+%~ %— = {    ,  500},
+%~ %– = {    ,  500},
+%~ {,}= {    , 1000}
+%~ }
+%~ \DeclareMicrotypeSet{t2atext}{encoding=T2A}
+%~ \UseMicrotypeSet{t2atext}
 
 \usepackage[unicode=true]{hyperref}
-\hypersetup{pdftex, colorlinks=true, linkcolor=black, citecolor=black, 
-filecolor=black, urlcolor=blue, pdftitle={Полный православный молитвослов}, pdfauthor={www.molitvoslov.com}, 
+\hypersetup{pdftex, colorlinks=true, linkcolor=black, citecolor=black,
+filecolor=black, urlcolor=blue, pdftitle={Полный православный молитвослов}, pdfauthor={www.molitvoslov.com},
 pdfsubject=, pdfkeywords={Православие,молитва,молитвослов,канон,акафист,правило,святой,вера,исцеление}}
 
 \sloppy
@@ -313,7 +314,7 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
 }
 
 \long\def\symbolfootnote[#1]#2{\begingroup%
-\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
+\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
 
 \setlength\footskip{6\baselineskip}
 
@@ -365,8 +366,8 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
     \vspace*{5in}
     \bfseries
     \sffamily
-    
-    
+
+
     %{\centering \large от 2011-05-03 \\ версия 0.1}
     \end{flushright}
 \end{titlepage}
