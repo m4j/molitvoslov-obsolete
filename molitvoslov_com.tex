@@ -218,9 +218,9 @@
     \end{wrapfigure}
 }
 
-\newcommand{\myfigure}[2][0.43]{
+\newcommand{\myfigure}[2][1.0]{
     \begin{center}
-    \includegraphics[width=\columnwidth]{#2}
+    \includegraphics[width=#1\columnwidth]{#2}
     \end{center}
 }
 
@@ -351,11 +351,11 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
 }
 \newcommand{\bukvaending}{}
 
-\newcommand\irmos[1]{{\small\itshape Ирм\'{о}с:\normalfont{} #1}}
-\newcommand\pripev[1]{{\small\itshape Припев:\normalfont{} #1}}
+\newcommand\pripev[2][Припев:]{{\small\itshape #1\normalfont{} #2}}
+\newcommand\irmos[1]{\pripev[Ирм\'{о}с:]{#1}}
 \newcommand\Bogorodichen[1]{\itshape Богородичен:\normalfont{} #1}
-\newcommand\slava{\small Слава Отцу и Сыну и Святому Духу.\normalfont{}}
-\newcommand\inyne{\small И ныне и присно и во веки веков. Аминь.\normalfont{}}
+\newcommand\slava{{\small Слава Отцу и Сыну и Святому Духу.}}
+\newcommand\inyne{{\small И ныне и присно и во веки веков. Аминь.}}
 
 \begin{document}
 
