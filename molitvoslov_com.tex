@@ -218,7 +218,7 @@
     \end{wrapfigure}
 }
 
-\newcommand{\myfigure}[2][1.0]{
+\newcommand{\myfigure}[2][0.7]{
     \begin{center}
     \includegraphics[width=#1\columnwidth]{#2}
     \end{center}
@@ -229,7 +229,7 @@
 \markright{#1}
 }
 
-\newenvironment{mymulticols}[1]{\begin{multicols}{#1}}{\end{multicols}}
+\newenvironment{mymulticols}[1][2]{\begin{multicols}{#1}}{\end{multicols}}
 
 % the idea of identity environment is to provide a mechanism
 % to assign some id to the element it surrounds. Its main use is
