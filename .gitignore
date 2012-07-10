@@ -13,7 +13,7 @@
 *.maf 
 vc.tex
 /*.html
-#target
-#target/*
+target
+target/*
 *~
 .~lock*
