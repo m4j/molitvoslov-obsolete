@@ -15,7 +15,8 @@
 
 \usepackage{wrapfig}
 \usepackage{fancyhdr}
-\usepackage{indentfirst}
+%\usepackage{indentfirst}
+\usepackage{lettrine}
 \usepackage{truncate}
 \usepackage{shorttoc}
 \usepackage{multicol}
@@ -163,7 +164,7 @@
 \renewcommand\section{\@startsection {section}{1}{\z@}%
                                    {-3.5ex \@plus -1ex \@minus -.2ex}%
                                    {2.3ex \@plus.2ex}%
-                                   {\normalfont\Large\bfseries\myheadingcolor}}
+                                   {\normalfont\Large\bfseries\myheadingcolor\centering}}
 
 
 \makeatother
@@ -342,7 +343,11 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
 }
 
 \newcommand\mysubsubsection[1]{
-\medskip\hspace{-\parindent}{\bfseries\myheadingcolor #1}\nopagebreak\medskip
+%\medskip\hspace{-\parindent}{\bfseries\myheadingcolor #1}\nopagebreak\medskip
+\medskip
+\hfill {\noparindent \bfseries \myheadingcolor #1} \hfill
+\nopagebreak
+\medskip
 }
 
 % sectioning for dictionary
@@ -352,7 +357,7 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
 \newcommand{\bukvaending}{}
 
 \newcommand\pripev[2][Припев:]{{\small\itshape #1\normalfont{} #2}}
-\newcommand\irmos[1]{\pripev[Ирм\'{о}с:]{#1}}
+\newcommand\irmos[1]{\pripev[Ирм\'{о}с:]{#1}\medskip}
 \newcommand\Bogorodichen[1]{\itshape Богородичен:\normalfont{} #1}
 \newcommand\slava{{\small Слава Отцу и Сыну и Святому Духу.}}
 \newcommand\inyne{{\small И ныне и присно и во веки веков. Аминь.}}
