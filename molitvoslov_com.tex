@@ -15,7 +15,7 @@
 
 \usepackage{wrapfig}
 \usepackage{fancyhdr}
-%\usepackage{indentfirst}
+\usepackage{indentfirst}
 \usepackage{lettrine}
 \usepackage{truncate}
 \usepackage{shorttoc}
@@ -172,7 +172,7 @@
 \title{Молитвослов на всякую потребу}
 \author{www.molitvoslov.com}
 \date{2011-10-13}
-\raggedbottom
+%\raggedbottom
 % widow/orphane control
 \widowpenalty=10000
 \clubpenalty=10000
@@ -344,10 +344,22 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
 
 \newcommand\mysubsubsection[1]{
 %\medskip\hspace{-\parindent}{\bfseries\myheadingcolor #1}\nopagebreak\medskip
-\medskip
-\hfill {\noparindent \bfseries \myheadingcolor #1} \hfill
-\nopagebreak
-\medskip
+\medskip{\centering \noparindent \bfseries \myheadingcolor #1
+
+}\nopagebreak\medskip
+}
+
+\newcommand\myparagraph[1]{
+%\medskip\hspace{-\parindent}{\bfseries\myheadingcolor #1}\nopagebreak\medskip
+\medskip{\small \centering \noparindent \bfseries \myheadingcolor #1
+
+}\nopagebreak\medskip
+}
+
+\newcommand\mysubsubsectionz[1]{
+\begin{center}{\bfseries \myheadingcolor #1
+
+}\end{center}\nopagebreak
 }
 
 % sectioning for dictionary
