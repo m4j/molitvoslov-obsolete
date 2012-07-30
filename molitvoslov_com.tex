@@ -342,12 +342,21 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
    }
 }
 
-\newcommand\mysubsubsection[1]{
+\newcommand\mysubsubsectionz[1]{
 %\medskip\hspace{-\parindent}{\bfseries\myheadingcolor #1}\nopagebreak\medskip
-\medskip{\centering \noparindent \bfseries \myheadingcolor #1
 
-}\nopagebreak\medskip
+\medskip
+{\centering\noparindent\bfseries\myheadingcolor #1 \\
+}\nopagebreak
 }
+
+\makeatletter
+\newcommand\mysubsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                     {-1.0ex\@plus -1ex \@minus -.2ex}%
+                                     {1.0ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries\centering\myheadingcolor}}
+\makeatother
+
 
 \newcommand\myparagraph[1]{
 %\medskip\hspace{-\parindent}{\bfseries\myheadingcolor #1}\nopagebreak\medskip
@@ -356,7 +365,7 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
 }\nopagebreak\medskip
 }
 
-\newcommand\mysubsubsectionz[1]{
+\newcommand\mysubsubsectionzz[1]{
 \begin{center}{\bfseries \myheadingcolor #1
 
 }\end{center}\nopagebreak
@@ -372,7 +381,9 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
 \newcommand\irmos[1]{\pripev[Ирм\'{о}с:]{#1}\smallskip}
 \newcommand\Bogorodichen[1]{\itshape Богородичен:\normalfont{} #1}
 \newcommand\slava{{\small Слава Отцу и Сыну и Святому Духу.}}
+\newcommand\slavan{Слава Отцу и Сыну и Святому Духу.}
 \newcommand\inyne{{\small И ныне и присно и во веки веков. Аминь.}}
+\newcommand\inynen{И ныне и присно и во веки веков. Аминь.}
 
 \begin{document}
 
