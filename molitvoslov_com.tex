@@ -219,7 +219,8 @@
     \end{wrapfigure}
 }
 
-\newcommand{\myfigure}[2][0.7]{
+% was 0.7
+\newcommand{\myfigure}[2][0.95]{
     \begin{center}
     \includegraphics[width=#1\columnwidth]{#2}
     \end{center}
@@ -238,10 +239,11 @@
 \newcommand\myid{}
 \newenvironment{identity}[1]{}{}
 
-\newcommand{\mychapterending}[1][2.5]{%
+\newcommand{\mychapterending}[2][2.5]{%
     \nopagebreak[4]\par\centerline{%
         \raisebox{0pt}[#1\baselineskip][0pt]{%
             \includegraphics[width=0.4\textwidth]{\ornamentending}}}}
+
 
 \usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basictext}
