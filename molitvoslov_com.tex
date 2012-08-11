@@ -185,12 +185,14 @@
     \addcontentsline{toc}{chapter}{#1}
     \chapter*{#1}
     \markright{#1}
-    %\thisfancyput(0pt, 0pt){\includegraphics[width=\textwidth]{uzor_begin_2}}
-      %~ \AddToShipoutPicture*{
-        %~ %\setlength{\unitlength}{1in}
-         %~ \put(\LenToUnit{\myhpos}, \LenToUnit{\myvpos}){%
-           %~ \includegraphics[width=\textwidth]{uzor_begin_2}
-       %~ }}
+}
+
+\newcommand{\mychapterz}[2]{
+    \cleardoublepage
+    \phantomsection
+    \addcontentsline{toc}{chapter}{#1}
+    \chapter*{#2}
+    \markright{#1}
 }
 
 \setlength\intextsep{0pt}
@@ -240,7 +242,7 @@
 \newenvironment{identity}[1]{}{}
 
 \newcommand{\mychapterending}[2][2.5]{%
-    \nopagebreak[4]\par\centerline{%
+    \nopagebreak[4]\centerline{%
         \raisebox{0pt}[#1\baselineskip][0pt]{%
             \includegraphics[width=0.4\textwidth]{\ornamentending}}}}
 
