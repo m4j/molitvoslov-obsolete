@@ -241,10 +241,20 @@
 \newcommand\myid{}
 \newenvironment{identity}[1]{}{}
 
-\newcommand{\mychapterending}[2][2.5]{%
+% Here's the command with two optional
+% arguments -- hight of the raisebox and width
+% of the ornament. The main command has one optional
+% argument and it relays to another command also with
+% an optional argument.
+\newcommand{\mychapterending}[1][2.5]{%
+    \def\ArgI{{#1}}% first argument
+    \mychapterendingRelay
+}
+\newcommand{\mychapterendingRelay}[1][0.4]{% second argument
     \nopagebreak[4]\centerline{%
-        \raisebox{0pt}[#1\baselineskip][0pt]{%
-            \includegraphics[width=0.4\textwidth]{\ornamentending}}}}
+        \raisebox{0pt}[\ArgI\baselineskip][0pt]{%
+            \includegraphics[width=#1\textwidth]{\ornamentending}}}
+}
 
 
 \usepackage{microtype}
