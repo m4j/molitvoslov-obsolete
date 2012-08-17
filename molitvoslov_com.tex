@@ -301,33 +301,6 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
 \newcommand\noparindent{\setlength\parindent{0pt}}
 \newcommand\restoreparindent{\setlength\parindent{\myparindent}}
 
-\newlength\firstcolumnwidth
-\newlength\secondcolumnwidth
-
-\newcommand\twocolumns[3][0.43]{
-    \setlength\firstcolumnwidth{#1\linewidth - 0.01\linewidth}
-    \setlength\secondcolumnwidth{\linewidth - \firstcolumnwidth - 0.02\linewidth}
-    \begin{figure}[h]
-    \begin{minipage}[b]{\firstcolumnwidth}
-    #2
-    \end{minipage}
-    \hspace{0.01\linewidth}
-    \begin{minipage}[b]{\secondcolumnwidth}
-    #3
-    \end{minipage}
-    \end{figure}
-}
-
-\newcommand\twocolumnss[3][0.43]{
-    \setlength\firstcolumnwidth{#1\linewidth}
-    \setlength\secondcolumnwidth{\linewidth - \firstcolumnwidth - 0.05\linewidth}
-    \begin{figure}[h]
-    \begin{tabular}{p{\firstcolumnwidth} p{\secondcolumnwidth}}
-    #2 & #3 \\
-    \end{tabular}
-    \end{figure}
-}
-
 \long\def\symbolfootnote[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
 
@@ -398,6 +371,7 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
 \newcommand\slavan{Слава Отцу и Сыну и Святому Духу.}
 \newcommand\inyne{{\small И ныне и присно и во веки веков. Аминь.}}
 \newcommand\inynen{И ныне и присно и во веки веков. Аминь.}
+\newcommand\slavainyne{{\small Слава Отцу и Сыну и Святому Духу. И ныне и присно и во веки веков. Аминь.}}
 
 \begin{document}
 
