@@ -37,12 +37,21 @@
     \chapter{#1}
 }
 
+\newcommand{\mychapterz}[2]{
+    \renewcommand{\thechapter}{}
+    \chapter[#1]{#2}
+}
+
 %~ \newcommand{\bukva}[1]{
     %~ \section{#1}
 %~ }
 
 \newcommand\mysubsubsection[1]{
     \subsubsection{#1}
+}
+
+\newcommand\myparagraph[1]{
+    \paragraph{#1}
 }
 
 %\newenvironment{mymulticols}[1]{\begin{multicols}{#1}}{\end{multicols}}
@@ -89,6 +98,15 @@
 \newcommand{\mychapterending}[1][2.5]{}
 
 \newcommand{\bukvaending}{\mychapterending}
+
+\newcommand\pripev[2][Припев:]{{\small\itshape #1\normalfont{} #2}}
+\newcommand\irmos[1]{\pripev[Ирм\'{о}с:]{#1}\smallskip}
+\newcommand\Bogorodichen[1]{\itshape Богородичен:\normalfont{} #1}
+\newcommand\slava{{\small Слава Отцу и Сыну и Святому Духу.}}
+\newcommand\slavan{Слава Отцу и Сыну и Святому Духу.}
+\newcommand\inyne{{\small И ныне и присно и во веки веков. Аминь.}}
+\newcommand\inynen{И ныне и присно и во веки веков. Аминь.}
+\newcommand\slavainyne{{\small Слава Отцу и Сыну и Святому Духу. И ныне и присно и во веки веков. Аминь.}}
 
 \newcommand\longpage[1][1]{}
 \newcommand\shortpage[1][1]{}
