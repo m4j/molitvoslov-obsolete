@@ -9,7 +9,8 @@
 \usepackage[a4paper]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
-\usepackage[usenames,dvipsnames]{color}
+\usepackage{color}
+\usepackage{pdfcolparallel}
 \usepackage{graphicx}
 \graphicspath{{img/},{img/tall/},{img/wide/},{uzory/},{target/header/}}
 
@@ -178,8 +179,8 @@
 \date{2011-10-13}
 %\raggedbottom
 % widow/orphane control
-\widowpenalty=10000
-\clubpenalty=10000
+\widowpenalty=1000
+\clubpenalty=1000
 \setcounter{secnumdepth}{-2}
 \righthyphenmin=2
 
@@ -368,6 +369,14 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
 }
 \newcommand{\bukvaending}{}
 \newcommand\myemph[1]{{\small\myheadingcolor #1}}
+\newcommand{\firstletter}[1]{#1}%{\myheadingcolor #1}}
+
+\newcommand{\minicolumns}[2]{
+  \medskip
+  \ParallelLText{#1}
+  \ParallelRText{#2}
+  \ParallelPar
+}
 
 \newcommand\pripev[2][Припев:]{{\small\myemph{#1} #2}}
 \newcommand\irmos[1]{\pripev[Ирм\'{о}с:]{#1}\smallskip}
@@ -377,6 +386,13 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
 \newcommand\inyne{{\small И ныне и присно и во веки веков. Аминь.}}
 \newcommand\inynen{И ныне и присно и во веки веков. Аминь.}
 \newcommand\slavainyne{{\small Слава Отцу и Сыну и Святому Духу. И ныне и присно и во веки веков. Аминь.}}
+
+\newcommand{\pripevc}[1]{{\small \centerline{#1} \nopagebreak}}
+\newcommand{\pripevmskipc}[1]{\medskip\pripevc{#1}}
+\newcommand{\pripevpomiluj}{\pripevmskipc{\firstletter{П}омилуй мя, Боже, помилуй мя.}}
+\newcommand{\slavac}{\pripevmskipc{\slavan}}
+\newcommand{\inynec}{\pripevmskipc{\inynen}}
+
 
 \begin{document}
 
