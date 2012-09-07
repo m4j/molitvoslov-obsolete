@@ -381,11 +381,12 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
 \newcommand\pripev[2][Припев:]{{\small\myemph{#1} #2}}
 \newcommand\irmos[1]{\pripev[Ирм\'{о}с:]{#1}\smallskip}
 \newcommand\Bogorodichen[1]{\myemph{Богородичен:} #1}
-\newcommand\slava{{\small Слава Отцу и Сыну и Святому Духу.}}
 \newcommand\slavan{Слава Отцу и Сыну и Святому Духу.}
-\newcommand\inyne{{\small И ныне и присно и во веки веков. Аминь.}}
+\newcommand\slava{{\small\slavan}}
 \newcommand\inynen{И ныне и присно и во веки веков. Аминь.}
-\newcommand\slavainyne{{\small Слава Отцу и Сыну и Святому Духу. И ныне и присно и во веки веков. Аминь.}}
+\newcommand\inyne{{\small\inynen}}
+\newcommand\slavainynen{Слава Отцу и Сыну и Святому Духу. И ныне и присно и во веки веков. Аминь.}
+\newcommand\slavainyne{{\small\slavainynen}}
 
 \newcommand{\pripevc}[1]{{\small \centerline{#1} \nopagebreak}}
 \newcommand{\pripevmskipc}[1]{\medskip\pripevc{#1}}
