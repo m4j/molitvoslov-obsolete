@@ -1,9 +1,11 @@
-TARGET = molitvoslov_com
-INCLUDEONLY =
-LATEX = pdflatex
-HTLATEX = htlatex
+TARGET=molitvoslov_com
+INCLUDEONLY=
+LATEX=pdflatex
+HTLATEX=htlatex
 INKSCAPE=inkscape -z
+PDFTK=pdftk
 TARGET_DIR=target
+VERSION_FILE=VERSION
 
 EPUB_DIR=epub
 EPUB_TEMPLATE=$(EPUB_DIR)/template
@@ -57,12 +59,13 @@ $(TARGET_EPUB_DIR): $(EPUB_DIR)/*
 $(TARGET_DIR)/header:
 	mkdir -p $(TARGET_DIR)/header
 
-$(TARGET_DIR)/header/%.pdf: header/%.svg VERSION
-	if [ -z "$$VERSION" ]; then \
-		export VERSION=`cat VERSION`; \
-	fi; \
-	sed "s/MY_VERSION/$$VERSION/" $< >$(TARGET_DIR)/header/$(<F)
-	$(INKSCAPE) $(TARGET_DIR)/header/$(<F) --export-pdf=$@
+$(TARGET_DIR)/header/%.pdf: header/%.pdf $(VERSION_FILE)
+	# Edit title page pdf:
+	# uncompress title page pdf and replace version string 0123456789 with
+	# the contents of VERSION file and then recompress into target folder
+	$(PDFTK) $< output - uncompress | sed "s/\[( 012345)3(6789)\]TJ/( `cat $(VERSION_FILE)`)Tj/" | $(PDFTK) - output $@ compress
+	#sed "s/MY_VERSION/$$VERSION/" $< >$(TARGET_DIR)/header/$(<F)
+	#$(INKSCAPE) $(TARGET_DIR)/header/$(<F) --export-pdf=$@
 
 $(TARGET_DIR)/$(TARGET).pdf: *.tex img/* $(TARGET_DIR)/header $(TARGET_DIR)/header/title_page_a4.pdf uzory/*
 	mkdir -p $(TARGET_DIR)
