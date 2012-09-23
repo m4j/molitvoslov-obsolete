@@ -162,9 +162,9 @@
     \includegraphics[width=\textwidth]{\ornament}
     \normalfont
     \interlinepenalty\@M
+    \vskip 15\p@
+    \huge \bfseries \centering \mychaptercolor  #1\par\nobreak
     \vskip 10\p@
-    \Huge \bfseries \centering \mychaptercolor  #1\par\nobreak
-    \vskip 20\p@
   }}
 
 \renewcommand\section{\@startsection {section}{1}{\z@}%
@@ -257,7 +257,7 @@
     \mychapterendingRelay
 }
 \newcommand{\mychapterendingRelay}[1][0.4]{% second argument
-    \nopagebreak[4]\centerline{%
+    \nopagebreak\centerline{%
         \raisebox{0pt}[\ArgI\baselineskip][0pt]{%
             \includegraphics[width=#1\textwidth]{\ornamentending}}}
 }
