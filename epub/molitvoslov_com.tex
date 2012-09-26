@@ -99,15 +99,6 @@
 
 \newcommand{\bukvaending}{\mychapterending}
 
-\newcommand\pripev[2][Припев:]{{\small\itshape #1\normalfont{} #2}}
-\newcommand\irmos[1]{\pripev[Ирм\'{о}с:]{#1}\smallskip}
-\newcommand\Bogorodichen[1]{\itshape Богородичен:\normalfont{} #1}
-\newcommand\slava{{\small Слава Отцу и Сыну и Святому Духу.}}
-\newcommand\slavan{Слава Отцу и Сыну и Святому Духу.}
-\newcommand\inyne{{\small И ныне и присно и во веки веков. Аминь.}}
-\newcommand\inynen{И ныне и присно и во веки веков. Аминь.}
-\newcommand\slavainyne{{\small Слава Отцу и Сыну и Святому Духу. И ныне и присно и во веки веков. Аминь.}}
-
 \newcommand\longpage[1][1]{}
 \newcommand\shortpage[1][1]{}
 
@@ -120,6 +111,8 @@
 
 \long\def\symbolfootnote[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
+
+\input{common-prayers}
 
 \begin{document}
 

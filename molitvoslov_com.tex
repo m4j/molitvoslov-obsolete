@@ -379,22 +379,13 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
   \ParallelPar
 }
 
-\newcommand\pripev[2][Припев:]{{\small\myemph{#1} #2}}
-\newcommand\irmos[1]{\pripev[Ирм\'{о}с:]{#1}\smallskip}
-\newcommand\Bogorodichen[1]{\myemph{Богородичен:} #1}
-\newcommand\slavan{Слава Отцу и Сыну и Святому Духу.}
-\newcommand\slava{{\small\slavan}}
-\newcommand\inynen{И ныне и присно и во веки веков. Аминь.}
-\newcommand\inyne{{\small\inynen}}
-\newcommand\slavainynen{Слава Отцу и Сыну и Святому Духу. И ныне и присно и во веки веков. Аминь.}
-\newcommand\slavainyne{{\small\slavainynen}}
+\newcommand{\myparsep}{%
+  \nointerlineskip \vspace{0.7\baselineskip}%
+  \hspace{\fill}\rule{0.3\linewidth}{0.7pt}\hspace{\fill}
+  \par\nointerlineskip \vspace{0.7\baselineskip}
+}
 
-\newcommand{\pripevc}[1]{{\small \centerline{#1} \nopagebreak}}
-\newcommand{\pripevmskipc}[1]{\medskip\pripevc{#1}}
-\newcommand{\pripevpomiluj}{\pripevmskipc{\firstletter{П}омилуй мя, Боже, помилуй мя.}}
-\newcommand{\slavac}{\pripevmskipc{\slavan}}
-\newcommand{\inynec}{\pripevmskipc{\inynen}}
-
+\input{common-prayers}
 
 \begin{document}
 
