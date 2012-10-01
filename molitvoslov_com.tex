@@ -335,14 +335,6 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
    }
 }
 
-\newcommand\mysubsubsectionz[1]{
-%\medskip\hspace{-\parindent}{\bfseries\myheadingcolor #1}\nopagebreak\medskip
-
-\medskip
-{\centering\noparindent\bfseries\myheadingcolor #1 \\
-}\nopagebreak
-}
-
 \makeatletter
 \newcommand\mysubsubsection{\@startsection{subsubsection}{3}{\z@}%
                                      {-1.0ex\@plus -1ex \@minus -.2ex}%
@@ -351,18 +343,8 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
 \makeatother
 
 
-\newcommand\myparagraph[1]{
-%\medskip\hspace{-\parindent}{\bfseries\myheadingcolor #1}\nopagebreak\medskip
-\medskip{\small \centering \noparindent \bfseries \myheadingcolor #1
-
-}\nopagebreak\medskip
-}
-
-\newcommand\mysubsubsectionzz[1]{
-\begin{center}{\bfseries \myheadingcolor #1
-
-}\end{center}\nopagebreak
-}
+\newcommand\myparagraph[1]{%
+{\centering\myheadingcolor\bfseries #1\par}}
 
 % sectioning for dictionary
 \newcommand\bukva[1]{
