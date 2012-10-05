@@ -239,7 +239,7 @@
 \markright{#1}
 }
 
-\newenvironment{mymulticols}[1][2]{\begin{multicols}{#1}}{\end{multicols}}
+\newenvironment{mymulticols}[1][]{\begin{multicols}{2}[#1]}{\end{multicols}}
 
 % the idea of identity environment is to provide a mechanism
 % to assign some id to the element it surrounds. Its main use is
@@ -252,16 +252,32 @@
 % of the ornament. The main command has one optional
 % argument and it relays to another command also with
 % an optional argument.
-\newcommand{\mychapterending}[1][2.5]{%
+\newcommand{\mychapterendingX}[1][2.5]{%
     \def\ArgI{{#1}}% first argument
     \mychapterendingRelay
 }
 \newcommand{\mychapterendingRelay}[1][0.4]{% second argument
+    {\nopagebreak\centering%
+        \raisebox{0pt}[\ArgI\baselineskip][0pt]{%
+            \includegraphics[width=#1\textwidth]{\ornamentending}}\par}%
+}
+
+\newcommand{\mychapterendingz}[1][2.5]{%
+    \def\ArgI{{#1}}% first argument
+    \mychapterendingRelayZ
+}
+\newcommand{\mychapterendingRelayZ}[1][0.4]{% second argument
     \nopagebreak\centerline{%
         \raisebox{0pt}[\ArgI\baselineskip][0pt]{%
             \includegraphics[width=#1\textwidth]{\ornamentending}}}
 }
 
+\newcommand{\mychapterending}[1][0.4]{% second argument
+    \vfill
+    {\nopagebreak\centering%
+        \includegraphics[width=#1\textwidth]{\ornamentending}\par}%
+    \vfill
+}
 
 \usepackage{microtype}
 \UseMicrotypeSet[protrusion]{basictext}
