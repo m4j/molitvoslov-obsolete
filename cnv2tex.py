@@ -148,11 +148,16 @@ class Fetcher:
                 self.outputElement(el)
             elif el.name == 'span':
                 self.outputElement(el)
-            elif el.name == 'a' and el.get('class') == 'icona':
-                file_name = self.findAndSaveBigIcon(el)
-                if file_name != None:
-                    self.myprint('\\myfig{' + file_name + '}')
-                    sys.stdout.write(', ' + file_name)
+            elif el.name == 'a':
+	   	if el.get('class') == 'icona':
+                    file_name = self.findAndSaveBigIcon(el)
+                    if file_name != None:
+                        self.myprint('\\myfig{' + file_name + '}')
+                        sys.stdout.write(', ' + file_name)
+                else:
+                    self.outputElement(el)
+            elif el.name == 'sup':
+                self.outputElement(el)
                 
     def findAndSaveBigIcon(self, el_a):
         bi_soup = self.getSoup(el_a['href'])

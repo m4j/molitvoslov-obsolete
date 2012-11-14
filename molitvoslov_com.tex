@@ -252,25 +252,16 @@
 % of the ornament. The main command has one optional
 % argument and it relays to another command also with
 % an optional argument.
-\newcommand{\mychapterendingX}[1][2.5]{%
-    \def\ArgI{{#1}}% first argument
-    \mychapterendingRelay
-}
-\newcommand{\mychapterendingRelay}[1][0.4]{% second argument
-    {\nopagebreak\centering%
-        \raisebox{0pt}[\ArgI\baselineskip][0pt]{%
-            \includegraphics[width=#1\textwidth]{\ornamentending}}\par}%
-}
-
-\newcommand{\mychapterendingz}[1][2.5]{%
-    \def\ArgI{{#1}}% first argument
-    \mychapterendingRelayZ
-}
-\newcommand{\mychapterendingRelayZ}[1][0.4]{% second argument
-    \nopagebreak\centerline{%
-        \raisebox{0pt}[\ArgI\baselineskip][0pt]{%
-            \includegraphics[width=#1\textwidth]{\ornamentending}}}
-}
+%
+%\newcommand{\mychapterending}[1][2.5]{%
+%    \def\ArgI{{#1}}% first argument
+%    \mychapterendingRelay
+%}
+%\newcommand{\mychapterendingRelay}[1][0.4]{% second argument
+%    {\nopagebreak\centering%
+%        \raisebox{0pt}[\ArgI\baselineskip][0pt]{%
+%            \includegraphics[width=#1\textwidth]{\ornamentending}}\par}%
+%}
 
 \newcommand{\mychapterending}[1][0.35]{% second argument
     \vfill
