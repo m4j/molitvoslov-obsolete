@@ -82,4 +82,7 @@ li.itemize {text-align: left; margin-left: -0.3em;}
 @font-face { font-weight: bold; font-family: "DejaVu Serif Condensed"; src: url(fonts/DejaVuSerifCondensed-Bold.ttf)}
 @font-face { font-weight: bold; font-style: italic; font-family: "DejaVu Serif Condensed"; src: url(fonts/DejaVuSerifCondensed-BoldItalic.ttf)}
 */
+td.td11{ padding-right:5pt; width: 50%; }
+.centerline {text-align:center;}
+.rightline {text-align:right;}
 

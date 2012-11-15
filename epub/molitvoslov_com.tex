@@ -8,17 +8,6 @@
 \usepackage{wrapfig}
 \usepackage{indentfirst}
 \usepackage{url}
-\usepackage{xcolor}
-\usepackage{pdfcolparallel}
-
-
-% http://ru.wikipedia.org/wiki/%D0%9A%D0%B8%D0%BD%D0%BE%D0%B2%D0%B0%D1%80%D1%8C_%28%D1%86%D0%B2%D0%B5%D1%82%29
-%\definecolor{kinovar}{cmyk}{0, 0.71, 0.77, 0.11}
-\definecolor{kinovar}{RGB}{227, 66, 52}
-
-\newcommand\myheadingcolor{\color{kinovar}}
-\newcommand\mychaptercolor{\color{kinovar}}
-\newcommand\myframecolor{\color{kinovar}}
 
 \renewcommand\sectionmark[1]{}
 \newcommand{\partornament}{cross}
@@ -73,6 +62,8 @@
 \newcommand\myid{}
 \newenvironment{identity}{}{}
 
+\newenvironment{Parallel}{}{}
+
 \newenvironment{centericon}{}{}
 
 \newcommand{\myfig}[2][0.41]{
@@ -118,14 +109,14 @@
 \long\def\symbolfootnote[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup}
 
-\newcommand\myemph[1]{{\small\myheadingcolor #1}}
+\newcommand{\myemph}[1]{{\small #1}}
 \newcommand{\firstletter}[1]{#1}%{\myheadingcolor #1}}
 
 \newcommand{\minicolumns}[2]{
   \medskip
-  \ParallelLText{#1}
-  \ParallelRText{#2}
-  \ParallelPar
+  \begin{tabular}{ p{0.5\textwidth} p{0.5\textwidth} }
+  #1 & #2 \\
+  \end{tabular}
 }
 
 \newcommand{\myparsep}[1][0.3]{%
