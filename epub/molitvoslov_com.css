@@ -9,6 +9,7 @@
 .lati-0900{font-size:85%;font-style: italic}
 .labx-0900{font-size:85%;font-weight: bold}
 .labx-1440{font-size:127%;font-weight: bold}
+.myemph{color:#E34234}
 p.noindent { text-indent: 0em }
 p.indent{ text-indent: 1.3em }
 dd {margin-left: 1em}
@@ -49,7 +50,7 @@ div.author, div.date {text-align:center}
  .wrapfig-l {text-align: right; float:left; margin-right:0.5em; margin-top: 0.5em; width:50%} 
  .wrapfig-lt {text-align: right; float:left; margin-right:0.5em; margin-top: 0.5em; width:37%} 
  .wrapfig-lw {text-align: right; float:left; margin-right:0.5em; margin-top: 0.5em; width:70%} 
-h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; font-weight: bold}
+h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; font-weight: bold; text-align: center; font-size: 1em}
 /*
 h5.subsubsectionHead + a p{ text-indent: 1.3em }
 */
@@ -58,7 +59,7 @@ h5.subsubsectionHead + a + p{ text-indent: 1.3em }
 */
 body { font-family: "PT Serif"}
 a,h2,h3,h4,h5 { text-align: left }
-h1,h2,h3,h4,h5 { color: red }
+h1,h2,h3,h4,h5 { color: #E34234 }
 a { text-decoration: none }
 .partTOCS, .chapterTOCS, .tableofcontents { text-align: left; margin-left:0; margin-bottom:1.5em}
 span.titlemark { line-height: 300% }
