@@ -112,14 +112,12 @@
 \newcommand{\firstletter}[1]{#1}%{\myheadingcolor #1}}
 
 \newcommand{\minicolumns}[2]{
-  \medskip
-  \begin{tabular}{ p{0.5\textwidth} p{0.5\textwidth} }
-  #1 & #2 \\
-  \end{tabular}
+  #1\par\medskip
+  \textit{#2}\par
 }
 
 \newcommand{\myparsep}[1][0.3]{%
-  \HCode{<hr class="myparsep"/>}}
+  \EndP\IgnorePar\HCode{<hr class="myparsep"/>}}
 
 
 \input{common-prayers}
@@ -135,6 +133,10 @@
 \renewcommand{\ornament}{uzor_begin_10}
 
 \input{_content_molitvi}
+
+\input{_content_molitvi-svyatim}
+
+\input{_content_velikiy-kanon}
 
 \input{changes}
 

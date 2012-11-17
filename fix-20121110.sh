@@ -14,10 +14,7 @@ $ {
         # copy from the hold to the pattern buffer
         g
         # do the search and replace
-        s/\n\\bfseries Смотреть весь раздел &rarr;\\normalfont\{\}\s*\n/\
-\
-\
-/g
+        s/\\bfseries Смотреть весь раздел &rarr;\\normalfont\{\}//g
         # print
         p
 }' "$1"

@@ -27,7 +27,7 @@ get_latex_field(){
 }
 
 print_item() {
-    [ -f "$2" ] && printf '    <item id="%s" href="%s" media-type="%s" />\n' $1 $2 $3
+    [ -f "$2" ] && printf '    <item id="%s" href="%s" media-type="%s" />\n' "$1" "$2" "$3"
 }
 
 TARGET=$1
@@ -74,28 +74,38 @@ EOF
 
 ( cd $HTML_DIR
 
-# output fonts
-for file in fonts/*ttf; do
-    print_item `basename $file` $file "application/x-font-ttf"
-done
+  # counter for item ids
+  ID=1
 
-# output images
-for file in `find images -type f -name "*.png"`; do
-    print_item "img`basename $file`" $file "image/png"
-done
+  # output fonts
+  for file in fonts/*ttf; do
+      print_item "item-$((ID++))" "$file" "application/x-font-ttf"
+  done
 
-for file in `find images -type f -name "*.svg"`; do
-    print_item "img`basename $file`" $file "image/svg+xml"
-done
+  # output font licenses
+  for file in fonts/*txt; do
+      print_item "item-$((ID++))" "$file" "text/plain"
+  done
 
-# match both 'jpg' and 'jpeg'
-for file in `find images -type f -name "*.jp*g"`; do
-    print_item "img`basename $file`" $file "image/jpeg"
-done )
+  # output images
+  for file in `find images -type f -name "*.png"`; do
+      print_item "item-$((ID++))" "$file" "image/png"
+  done
+
+  for file in `find images -type f -name "*.svg"`; do
+      print_item "item-$((ID++))" "$file" "image/svg+xml"
+  done
+
+  # match both 'jpg' and 'jpeg'
+  for file in `find images -type f -name "*.jp*g"`; do
+      print_item "item-$((ID++))" "$file" "image/jpeg"
+  done
+
+)
 
 # output chapters
 for file in ${TARGET}???*\.html; do
-    print_item $file $file "application/xhtml+xml"
+    print_item "$file" "$file" "application/xhtml+xml"
 done
 
 cat <<EOF

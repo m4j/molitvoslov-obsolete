@@ -53,6 +53,8 @@ $(TARGET_EPUB_DIR): $(EPUB_DIR)/*
 	# create directory structure and copy template
 	mkdir -p $(TARGET_EPUB_DIR)
 	cp -vr $(EPUB_TEMPLATE)/* $(TARGET_EPUB_DIR)/
+	mkdir -p $(EPUB_HTML_DIR)/images/tall
+	mkdir -p $(EPUB_HTML_DIR)/images/wide
 	mkdir -p $(TARGET_IMG_DIR)/tall
 	mkdir -p $(TARGET_IMG_DIR)/wide
 
