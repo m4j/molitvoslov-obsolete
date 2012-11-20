@@ -8,6 +8,7 @@
 \usepackage{wrapfig}
 \usepackage{indentfirst}
 \usepackage{url}
+\usepackage{ifpdf}
 
 \renewcommand\sectionmark[1]{}
 \newcommand{\partornament}{cross}
@@ -49,6 +50,10 @@
     \subsubsection{#1}
 }
 
+\newcommand\mysubsection[1]{
+    \subsection{#1}
+}
+
 \newcommand\myparagraph[1]{
     \paragraph{#1}
 }
@@ -66,25 +71,25 @@
 
 \newenvironment{centericon}{}{}
 
-\newcommand{\myfig}[2][0.41]{
+\newcommand{\myfig}[2][0.43]{
     \begin{wrapfigure}{l}{0pt}
     \includegraphics[width=#1\textwidth]{#2}
     \end{wrapfigure}
 }
 
-\newcommand{\myfigh}[3][0.41]{
+\newcommand{\myfigh}[3][0.43]{
     \begin{wrapfigure}[#3]{l}{0pt}
     \includegraphics[width=#1\textwidth]{#2}
     \end{wrapfigure}
 }
 
-\newcommand{\myfigr}[2][0.41]{
+\newcommand{\myfigr}[2][0.43]{
     \begin{wrapfigure}{r}{0pt}
     \includegraphics[width=#1\textwidth]{#2}
     \end{wrapfigure}
 }
 
-\newcommand{\myfigrh}[3][0.41]{
+\newcommand{\myfigrh}[3][0.43]{
     \begin{wrapfigure}[#3]{r}{0pt}
     \includegraphics[width=#1\textwidth]{#2}
     \end{wrapfigure}
@@ -134,10 +139,10 @@
 
 \input{_content_molitvi}
 
-\input{_content_molitvi-svyatim}
+%\input{_content_molitvi-svyatim}
 
-\input{_content_velikiy-kanon}
+\input{_content_semeynoy-zhizni}
 
-\input{changes}
+%\input{changes}
 
 \end{document}

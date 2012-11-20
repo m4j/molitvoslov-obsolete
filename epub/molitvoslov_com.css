@@ -8,7 +8,8 @@
 .lati-0900{font-size:0.85em;font-style: italic}
 .labx-0900{font-size:0.85em;font-weight: bold}
 .labx-1440{font-size:1.27em;font-weight: bold}
-.myemph{color:#E34234;font-size:0.90em}
+/* .myemph{color:#E34234;font-size:0.90em} */
+.myemph{font-style: italic;font-size:0.90em}
 .myemph .larm-1000 {font-size:1em}
 p.noindent { text-indent: 0em }
 p.indent{ text-indent: 1.3em }
@@ -31,11 +32,14 @@ span.footnote-mark, sup.textsuperscript, span.footnote-mark a sup.textsuperscrip
 div.footnotes{border-top:solid 1px black; padding-bottom:1ex; padding-top:0.5ex; margin-right:15%; margin-top:2em; font-size:85%; text-align: left}
 div.footnotes p{margin-top:0; margin-bottom:0; text-indent:0}
 .partToc a, .partToc, .chapterToc a, .chapterToc {font-weight:bold; margin-top:0.5em; page-break-inside: avoid}
-.partHead, .chapterHead, .likechapterHead {text-align: center; margin-top:0.5em; line-height: 1em;}
+.partHead, .chapterHead, .likechapterHead, .sectionHead, .subsectionHead {text-align: center; margin-top:0.5em; line-height: 1em; clear:both}
 .quote {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; margin-right:1em; text-align:justify}
 .verse{white-space:nowrap; margin-left:2em}
 div.maketitle {text-align:center}
 h2.titleHead{text-align:center}
+h3.sectionHead{margin-top:0.8em; margin-bottom:0.6em; font-weight: bold; text-align: center; font-size: 1.17em}
+h4.subsectionHead{text-align:center}
+h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; font-weight: bold; text-align: center; font-size: 1em}
 div.maketitle{ margin-bottom: 2em}
 div.author, div.date {text-align:center}
 .sectionToc, .bukvaToc {margin-left:2.5em; text-indent: -1em}
@@ -50,7 +54,6 @@ div.author, div.date {text-align:center}
  .wrapfig-l {text-align: right; float:left; margin-right:0.5em; margin-top: 0.5em; width:50%} 
  .wrapfig-lt {text-align: right; float:left; margin-right:0.5em; margin-top: 0.5em; width:37%} 
  .wrapfig-lw {text-align: right; float:left; margin-right:0.5em; margin-top: 0.5em; width:70%} 
-h5.subsubsectionHead {margin-top:0.7em; margin-bottom:0.5em; font-weight: bold; text-align: center; font-size: 1em}
 /*
 h5.subsubsectionHead + a p{ text-indent: 1.3em }
 */

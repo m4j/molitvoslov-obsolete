@@ -50,6 +50,7 @@
 \usepackage{calc,layouts}
 \usepackage{eso-pic}
 \usepackage{pifont}
+\usepackage{ifpdf}
 %\usepackage{etoolbox}
 
 \pagestyle{fancy}
@@ -349,6 +350,8 @@ pdfsubject=, pdfkeywords={Православие,молитва,молитвос
                                      {\normalfont\normalsize\bfseries\centering\myheadingcolor}}
 \makeatother
 
+\newcommand\mysubsection[1]{%
+  \subsubsection*{\centering\myheadingcolor #1}}
 
 \newcommand\myparagraph[1]{%
 {\centering\myheadingcolor\bfseries #1\par}}
