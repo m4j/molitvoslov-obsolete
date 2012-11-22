@@ -1,3 +1,4 @@
+TOP := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 TARGET=molitvoslov_com
 INCLUDEONLY=
 LATEX=pdflatex
@@ -6,19 +7,20 @@ INKSCAPE=inkscape -z
 PDFTK=pdftk
 TARGET_DIR=target
 VERSION_FILE=VERSION
+SCRIPTS=scripts
 
 EPUB_DIR=epub
 EPUB_TEMPLATE=$(EPUB_DIR)/template
 EPUBCHECK_JAR=$(wildcard $(EPUB_DIR)/epubcheck/epubcheck*jar)
 JAVA=java
-XSLTPROC=xsltproc --nonet
-
 TARGET_EPUB_DIR=$(TARGET_DIR)/epub
 TARGET_IMG_DIR=$(TARGET_DIR)/img
 EPUB_HTML_DIR=$(TARGET_EPUB_DIR)/OEBPS
 EPUB_META_DIR=$(TARGET_EPUB_DIR)/META-INF
 
-XML_CATALOG=catalog/catalog.xml
+XSLTPROC=xsltproc --nonet
+XSLT=xslt
+XML_CATALOG=$(XSLT)/catalog/catalog.xml
 
 ifdef ONLY
 INCLUDEONLY=\includeonly{$(ONLY)}
@@ -34,7 +36,7 @@ fetch:
 		fdir=import_`date '+%Y%m%d'`; \
 	fi; \
 	mkdir -p $$fdir/img && \
-	cd $$fdir && ../cnv2tex.py 0 http://www.molitvoslov.com '[["/o-molitve"], "/content/soderzhanie", ["/slovar.php"]]'
+	cd $$fdir && $(SCRIPTS)/cnv2tex.py 0 http://www.molitvoslov.com '[["/o-molitve"], "/content/soderzhanie", ["/slovar.php"]]'
 
 ARGS = "\nonstopmode $(INCLUDEONLY) \input{$(TARGET)}"
 
@@ -142,7 +144,7 @@ $(TARGET)*.html: *.tex $(EPUB_DIR)/$(TARGET).cfg $(EPUB_DIR)/$(TARGET).tex
 	# execute tex4ht process
 	$(HTLATEX) $(EPUB_DIR)/$(TARGET).tex "$(EPUB_DIR)/$(TARGET)" " -cunihtf -utf8" ""
 
-$(EPUB_HTML_DIR)/$(TARGET)*.html: $(TARGET)*.html epub*.xslt epub*sh
+$(EPUB_HTML_DIR)/$(TARGET)*.html: $(TARGET)*.html $(XSLT)/*.xslt $(SCRIPTS)/*.sh
 	#
 	# generate OPF and NCX files
 	export XML_CATALOG_FILES=$(XML_CATALOG); \
@@ -152,8 +154,7 @@ $(EPUB_HTML_DIR)/$(TARGET)*.html: $(TARGET)*.html epub*.xslt epub*sh
 	export RIGHTS="Public domain"; \
 	export TITLE="Молитвослов на всякую потребу"; \
 	export BOOK_LANG="ru"; \
-		./epubmkopf.sh $(TARGET) $(EPUB_HTML_DIR) >$(EPUB_HTML_DIR)/content.opf && \
-	export XML_CATALOG_FILES=$(XML_CATALOG); \
+	$(SCRIPTS)/epubmkopf.sh $(TARGET) $(EPUB_HTML_DIR) $(XSLT)/epubmkspine.xslt >$(EPUB_HTML_DIR)/content.opf && \
 	$(XSLTPROC) \
 		--stringparam xml_lang "$$BOOK_LANG" \
 		--stringparam dtb_uid "$$BOOK_ID" \
@@ -161,8 +162,8 @@ $(EPUB_HTML_DIR)/$(TARGET)*.html: $(TARGET)*.html epub*.xslt epub*sh
 		--stringparam docAuthor "$$CREATOR" \
 		--stringparam docFirstPage "$(TARGET).html" \
 		--stringparam docFirstPageLabel "Оглавление" \
-		-o $(EPUB_HTML_DIR)/toc.ncx epubmkncx.xslt $(TARGET).html && \
-	./epubapplyxslt.sh $(TARGET) $(EPUB_HTML_DIR) epubxpgt.xslt
+		-o $(EPUB_HTML_DIR)/toc.ncx $(XSLT)/epubmkncx.xslt $(TARGET).html && \
+	$(SCRIPTS)/epubapplyxslt.sh $(TARGET) $(EPUB_HTML_DIR) $(XSLT)/epubxpgt.xslt
 	#
 	# rename image paths
 	sed -i "s;$(TARGET_IMG_DIR);images;" $(EPUB_HTML_DIR)/$(TARGET)*.html

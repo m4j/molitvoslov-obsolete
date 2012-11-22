@@ -32,7 +32,7 @@ print_item() {
 
 TARGET=$1
 HTML_DIR=$2
-SPINE_XSLT=epubmkspine.xslt
+SPINE_XSLT=$3
 
 if [ -z "$TITLE" ]; then
     TITLE=`get_latex_field title $TARGET.tex`
