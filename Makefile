@@ -7,7 +7,7 @@ INKSCAPE=inkscape -z
 PDFTK=pdftk
 TARGET_DIR=target
 VERSION_FILE=VERSION
-SCRIPTS=scripts
+SCRIPTS=$(TOP)/scripts
 
 EPUB_DIR=epub
 EPUB_TEMPLATE=$(EPUB_DIR)/template
@@ -26,15 +26,10 @@ ifdef ONLY
 INCLUDEONLY=\includeonly{$(ONLY)}
 endif
 
-#FETCH_DIR = import_`date '+%Y%m%d'`
-
 .PHONY: all pdf epub eps images fetch
 
 fetch:
-	fdir=$(FETCH_DIR); \
-	if [ "$$fdir" == "" ]; then \
-		fdir=import_`date '+%Y%m%d'`; \
-	fi; \
+	fdir=import_`date '+%Y%m%d'`; \
 	mkdir -p $$fdir/img && \
 	cd $$fdir && $(SCRIPTS)/cnv2tex.py 0 http://www.molitvoslov.com '[["/o-molitve"], "/content/soderzhanie", ["/slovar.php"]]'
 

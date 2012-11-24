@@ -8,8 +8,8 @@
 .lati-0900{font-size:0.85em;font-style: italic}
 .labx-0900{font-size:0.85em;font-weight: bold}
 .labx-1440{font-size:1.27em;font-weight: bold}
-/* .myemph{color:#E34234;font-size:0.90em} */
-.myemph{font-style: italic;font-size:0.90em}
+.myemph{color:#E34234;font-size:0.90em}
+/*.myemph{font-style: italic;font-size:0.90em}*/
 .myemph .larm-1000 {font-size:1em}
 p.noindent { text-indent: 0em }
 p.indent{ text-indent: 1.3em }

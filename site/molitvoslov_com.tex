@@ -111,26 +111,13 @@
 
 \newcommand{\firstletter}[1]{#1}%{\myheadingcolor #1}}
 
-\input{common-prayers}
+\input{../common-prayers}
+
+\renewcommand{\pripevc}[1]{#1}
 
 \begin{document}
 
-\renewcommand{\ornament}{uzor_psaltyr}
-
-\input{secondpage}
-
-\tableofcontents[part,chapter,section,bukva]
-
-\renewcommand{\ornament}{uzor_begin_10}
-
-\input{_content_molitvi}
-
-\input{_content_velikiy-kanon}
-
-\mypart{ПРИЛОЖЕНИЯ}
-
-\include{_slovar.php}
-
-\input{changes}
+%\input{../_content_obolyachih}
+\input{../_content_edinovercheskie-molitvi}
 
 \end{document}
