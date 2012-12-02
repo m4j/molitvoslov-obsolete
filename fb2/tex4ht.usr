@@ -1,6 +1,5 @@
 \Configure{fictionbook}{%
    \Hinclude[*]{html4.4ht}%
-   \Hinclude[*]{html4-math.4ht}%
-   \Hinclude[*]{fictionbook.4ht}%
+   \Hinclude[*]{unicode.4ht}%
 }
 
