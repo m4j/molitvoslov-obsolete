@@ -156,7 +156,7 @@ sectioning
     match="xhtml:h2|xhtml:h4|contains(., 'Кондак')">
   <xsl:text>
 
-\mysubsubsection{</xsl:text>
+\mysubtitle{</xsl:text>
   <xsl:copy-of select="normalize-space(text())"/>
   <xsl:text>}</xsl:text>
       
