@@ -7,11 +7,14 @@ XSLTPROC=xsltproc --nonet
 XSLT=$(TOP)/xslt
 XML_CATALOG=$(XSLT)/catalog/catalog.xml
 SCRIPTS=$(TOP)/scripts
+FB2XSD=xsd/FictionBook2.1.xsd
+IMAGE_PREFIX=img_
+VERSION_FILE=$(TOP)/VERSION
 #UNICODE4HF=$(shell kpsewhich unicode.4hf)
 
-.PHONY: fb2
+.PHONY: fb2 fb2check
 
-fb2: $(TARGET_DIR) $(TARGET_DIR)/$(TARGET).fb2
+fb2: $(TARGET_DIR) $(TARGET_DIR)/$(TARGET).fb2.zip
 
 $(TARGET_DIR):
 	#
@@ -31,34 +34,30 @@ $(TARGET).html: $(TOP)/*.tex $(TARGET).cfg $(TARGET).tex unicode.4hf
 	
 $(TARGET).html.0: $(TARGET).html
 	cp -v $? $@
-	cp cover.png $(TARGET_DIR)/
-	$(SCRIPTS)/fbcnvimg.sh $(TARGET_DIR) cover >>$@
-	sed -n 's/^.*<image xlink:href="#\(.*\)".*$$/\1/p' $? | xargs $(SCRIPTS)/fbcnvimg.sh $(IMG_DIR) >>$@
+	# append cover image
+	$(SCRIPTS)/fbcnvimg.sh "./" "$(IMAGE_PREFIX)" cover >>$@
+	# append all other images used in the document
+	sed -n 's/^.*<image xlink:href="#$(IMAGE_PREFIX)\(.*\)".*$$/\1/p' $? | xargs \
+		$(SCRIPTS)/fbcnvimg.sh "$(IMG_DIR)" "$(IMAGE_PREFIX)" >>$@
 	echo '</FictionBook>' >> $@
 
 $(TARGET_DIR)/$(TARGET).fb2: $(TARGET).html.0
 	#
 	# call xsl transformation for finishing touch-ups
 	export XML_CATALOG_FILES=$(XML_CATALOG); \
-	export BOOK_ID="http://www.molitvoslov.com/"; \
-	export CREATOR="www.molitvoslov.com"; \
-	export PUBLISHER="www.molitvoslov.com"; \
-	export RIGHTS="Public domain"; \
-	export TITLE="Молитвослов на всякую потребу"; \
-	export BOOK_LANG="ru"; \
 	$(XSLTPROC) \
-		--stringparam xml_lang "$$BOOK_LANG" \
-		--stringparam dtb_uid "$$BOOK_ID" \
-		--stringparam docTitle "$$TITLE" \
-		--stringparam docAuthor "$$CREATOR" \
-		--stringparam docFirstPage "$(TARGET).html" \
-		--stringparam docFirstPageLabel "Оглавление" \
-		$(XSLT)/fb2.xslt $? >$@ #| tidy -xml -utf8 -i -o $@
+		--stringparam document-info-version "`cat $(VERSION_FILE)`" \
+		--stringparam cover-image-id "$(IMAGE_PREFIX)cover" \
+		$(XSLT)/fb2.xslt $? >$@
 
 $(TARGET_DIR)/$(TARGET).fb2.zip: $(TARGET_DIR)/$(TARGET).fb2
 	#
 	# package fb2.zip
-	zip -X9Dq $@.zip $@
+	zip -X9Dq $@ $?
+	
+fb2check: $(TARGET_DIR)/$(TARGET).fb2
+	xmllint --noout --schema $(FB2XSD) $?
+
 
 clean:
 	rm -rf *.ps *.dvi *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.ptc* *.mtc* *.maf *.4ct *.4tc *.css *.html* *.idv *.lg *.tmp *.xref $(TARGET_DIR)

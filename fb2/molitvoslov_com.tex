@@ -58,7 +58,9 @@
 
 \newenvironment{centericon}{}{}
 
-\newcommand{\myfig}[2][0.43]{\HCode{<image xlink:href="\##2"/>}}
+\newcommand{\imageprefix}{img_}
+
+\newcommand{\myfig}[2][0.43]{\HCode{<image xlink:href="\#\imageprefix#2"/>}}
 
 \newcommand{\myfigh}[3][0.43]{\myfig[#1]{#2}}
 
@@ -93,7 +95,7 @@
 
 \begin{document}
 
-\input{../_o-molitve}
+\input{../_content_molitvi}
 \input{../changes}
 
 \end{document}

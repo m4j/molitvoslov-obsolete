@@ -2481,7 +2481,7 @@ j{01F0}H{021E}h{021F}\i{01D0}\j{01F0}%
        \let\csname (fn\FNnum x\minipageNum
 -bk)\endcsname\def}
 
-   \newcommand{\FbnTitle}[2]{\IgnorePar\Hnewline\HCode{<subtitle id="#2">[}}
+   \newcommand{\FbnTitle}[2]{\IgnorePar\HCode{\Hnewline<subtitle id="#2">[}}
    \newcommand{\EndFbnTitle}{\HCode{]</subtitle>}\par}
    \Configure{footnotetext}
    {\SaveEndP\global\setbox\fn:box=\vtop\bgroup\ShowPar

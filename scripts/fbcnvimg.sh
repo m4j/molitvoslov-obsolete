@@ -23,17 +23,16 @@
 #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #       MA 02110-1301, USA.
 
+IMG_DIR=$1
+IMG_PREFIX=$2
+shift
+
 print_item() {
-    printf '\n<binary id="%s" content-type="%s">\n' "$1" "$2"
+    binid=$IMG_PREFIX$1
+    printf '\n<binary id="%s" content-type="%s">\n' "$binid" "$2"
     base64 "$3"
     printf '</binary>'
 }
-
-IMG_DIR=$1
-shift
-
-#echo $@
-#exit
 
 for NAME in $@; do
 
