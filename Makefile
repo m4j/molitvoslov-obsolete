@@ -3,12 +3,12 @@ TARGET=molitvoslov_com
 INCLUDEONLY=
 LATEX=pdflatex
 HTLATEX=htlatex
-INKSCAPE=inkscape -z
 PDFTK=pdftk
 TARGET_DIR=target
 VERSION_FILE=VERSION
 SCRIPTS=$(TOP)/scripts
 
+# epub-related variables
 EPUB_DIR=epub
 EPUB_TEMPLATE=$(EPUB_DIR)/template
 EPUBCHECK_JAR=$(wildcard $(EPUB_DIR)/epubcheck/epubcheck*jar)
@@ -18,9 +18,17 @@ TARGET_IMG_DIR=$(TARGET_DIR)/img
 EPUB_HTML_DIR=$(TARGET_EPUB_DIR)/OEBPS
 EPUB_META_DIR=$(TARGET_EPUB_DIR)/META-INF
 
+# epub metadata
+BOOK_ID=http://www.molitvoslov.com/
+CREATOR=www.molitvoslov.com
+PUBLISHER=www.molitvoslov.com
+RIGHTS=Public domain
+TITLE=Полный православный молитвослов на всякую потребу
+BOOK_LANG=ru
+
 XSLTPROC=xsltproc --nonet
 XSLT=xslt
-XML_CATALOG=$(XSLT)/catalog/catalog.xml
+XML_CATALOG_FILES=$(XSLT)/catalog/catalog.xml
 
 ifdef ONLY
 INCLUDEONLY=\includeonly{$(ONLY)}
@@ -63,8 +71,6 @@ $(TARGET_DIR)/header/%.pdf: header/%.pdf $(VERSION_FILE)
 	# uncompress title page pdf and replace version string 0123456789 with
 	# the contents of VERSION file and then recompress into target folder
 	$(PDFTK) $< output - uncompress | sed "s/\[( 012345)3(6789)\]TJ/( `cat $(VERSION_FILE)`)Tj/" | $(PDFTK) - output $@ compress
-	#sed "s/MY_VERSION/$$VERSION/" $< >$(TARGET_DIR)/header/$(<F)
-	#$(INKSCAPE) $(TARGET_DIR)/header/$(<F) --export-pdf=$@
 
 $(TARGET_DIR)/$(TARGET).pdf: *.tex img/* $(TARGET_DIR)/header $(TARGET_DIR)/header/title_page_a4.pdf uzory/*
 	mkdir -p $(TARGET_DIR)
@@ -118,8 +124,8 @@ $(EPUB_HTML_DIR)/images/*.png: uzory/uzor_begin_10.pdf uzory/uzor_begin_4.pdf uz
 $(EPUB_HTML_DIR)/images/tall/*.jp*g: img/tall/*.jp*g
 	for file in $?; do \
 		fname=`basename $$file`; \
-		resize_to="500x500"; \
-		cnv="convert $$file -density 72 -resize $${resize_to} $(@D)/$$fname"; \
+		resize_to="400x400"; \
+		cnv="convert $$file -density 72 -quality 75 -resize $${resize_to} $(@D)/$$fname"; \
 		echo $$cnv; $$cnv; \
 	done
 
@@ -129,8 +135,8 @@ $(EPUB_HTML_DIR)/images/wide/*.jp*g: img/wide/*.jp*g
 $(EPUB_HTML_DIR)/images/*.jp*g: img/*.jp*g
 	for file in $?; do \
 		fname=`basename $$file`; \
-		resize_to="500x500"; \
-		cnv="convert $$file -density 72 -resize $${resize_to} $(@D)/$$fname"; \
+		resize_to="400x400"; \
+		cnv="convert $$file -density 72  -quality 75 -resize $${resize_to} $(@D)/$$fname"; \
 		echo $$cnv; $$cnv; \
 	done
 
@@ -142,13 +148,13 @@ $(TARGET)*.html: *.tex $(EPUB_DIR)/$(TARGET).cfg $(EPUB_DIR)/$(TARGET).tex
 $(EPUB_HTML_DIR)/$(TARGET)*.html: $(TARGET)*.html $(XSLT)/*.xslt $(SCRIPTS)/*.sh
 	#
 	# generate OPF and NCX files
-	export XML_CATALOG_FILES=$(XML_CATALOG); \
-	export BOOK_ID="http://www.molitvoslov.com/"; \
-	export CREATOR="www.molitvoslov.com"; \
-	export PUBLISHER="www.molitvoslov.com"; \
-	export RIGHTS="Public domain"; \
-	export TITLE="Полный православный молитвослов на всякую потребу"; \
-	export BOOK_LANG="ru"; \
+	export XML_CATALOG_FILES=$(XML_CATALOG_FILES); \
+	export BOOK_ID="$(BOOK_ID)"; \
+	export CREATOR="$(CREATOR)"; \
+	export PUBLISHER="$(PUBLISHER)"; \
+	export RIGHTS="$(RIGHTS)"; \
+	export TITLE="$(TITLE)"; \
+	export BOOK_LANG="$(BOOK_LANG)"; \
 	$(SCRIPTS)/epubmkopf.sh $(TARGET) $(EPUB_HTML_DIR) $(XSLT)/epubmkspine.xslt >$(EPUB_HTML_DIR)/content.opf && \
 	$(XSLTPROC) \
 		--stringparam xml_lang "$$BOOK_LANG" \

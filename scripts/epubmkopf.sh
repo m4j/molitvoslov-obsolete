@@ -41,7 +41,7 @@ if [ -z "$CREATOR" ]; then
     CREATOR=`get_latex_field author $TARGET.tex`
 fi
 if [ -z "$DATE" ]; then
-    DATE=`get_latex_field date $TARGET.tex`
+    DATE=`date "+%Y-%m-%d"`
 fi
 
 cat <<EOF
