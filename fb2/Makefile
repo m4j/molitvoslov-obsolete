@@ -3,18 +3,19 @@ TARGET=molitvoslov_com
 HTLATEX=htlatex
 TARGET_DIR=target
 IMG_DIR=$(TOP)/img
-XSLTPROC=xsltproc --nonet
-XSLT=$(TOP)/xslt
-XML_CATALOG=$(XSLT)/catalog/catalog.xml
+XSLT_DIRPROC=xsltproc --nonet
+XSLT_DIR=$(TOP)/xslt
+XML_CATALOG_FILES=$(XSLT_DIR)/catalog/catalog.xml
 SCRIPTS=$(TOP)/scripts
 FB2XSD=xsd/FictionBook2.1.xsd
 IMAGE_PREFIX=img_
 VERSION_FILE=$(TOP)/VERSION
+ALL_IMAGES=$(shell find $(IMG_DIR) -iname "*.jp*g")
 #UNICODE4HF=$(shell kpsewhich unicode.4hf)
 
-.PHONY: fb2 fb2check
+.PHONY: fb2 fb2check img
 
-fb2: $(TARGET_DIR) $(TARGET_DIR)/$(TARGET).fb2.zip
+fb2: $(TARGET_DIR) img $(TARGET_DIR)/$(TARGET).fb2.zip
 
 $(TARGET_DIR):
 	#
@@ -27,7 +28,13 @@ $(TARGET_DIR):
 	# for fb2...
 	#sed "s/^'\([&\#;[:alnum:]]*\)'.*$/'\1' '' '\1' ''/" $? >$@
 
-$(TARGET).html: $(TOP)/*.tex $(TARGET).cfg $(TARGET).tex unicode.4hf
+myroot.tmp: $(TOP)/root.tex
+	# override unicode to html entities table
+	# because character entities like &hellip; do not work well
+	# for fb2...
+	sed "s/\\include{/\\input{..\//" $? >$@
+
+$(TARGET).html: $(TOP)/*.tex $(TARGET).cfg $(TARGET).tex unicode.4hf myroot.tmp
 	#
 	# execute tex4ht process
 	$(HTLATEX) $(TARGET).tex "$(TARGET)" " -cunihtf -utf8" ""
@@ -36,19 +43,24 @@ $(TARGET).html.0: $(TARGET).html
 	cp -v $? $@
 	# append cover image
 	$(SCRIPTS)/fbcnvimg.sh "./" "$(IMAGE_PREFIX)" cover >>$@
-	# append all other images used in the document
-	sed -n 's/^.*<image xlink:href="#$(IMAGE_PREFIX)\(.*\)".*$$/\1/p' $? | xargs \
-		$(SCRIPTS)/fbcnvimg.sh "$(IMG_DIR)" "$(IMAGE_PREFIX)" >>$@
+	# append all other images used in the document,
+	# sorting and filtering out duplicates
+	sed -n 's/^.*<image xlink:href="#$(IMAGE_PREFIX)\(.*\)".*$$/\1/p' $? | sort -u | xargs --verbose	$(SCRIPTS)/fbcnvimg.sh "$(TARGET_DIR)" "$(IMAGE_PREFIX)" >>$@
 	echo '</FictionBook>' >> $@
 
 $(TARGET_DIR)/$(TARGET).fb2: $(TARGET).html.0
 	#
 	# call xsl transformation for finishing touch-ups
-	export XML_CATALOG_FILES=$(XML_CATALOG); \
-	$(XSLTPROC) \
-		--stringparam document-info-version "`cat $(VERSION_FILE)`" \
+	export FB2_VERSION=`cat $(VERSION_FILE)`; \
+	export LC_TIME=ru_RU.UTF-8; \
+	export FB2_DATE="`date "+%e %B %Y"`"; \
+	export FB2_DATEVALUE="`date "+%Y-%m-%d"`"; \
+	$(XSLT_DIRPROC) \
+		--stringparam document-info-version "$$FB2_VERSION" \
+		--stringparam document-info-date "$$FB2_DATE" \
+		--stringparam document-info-date-value "$$FB2_DATEVALUE" \
 		--stringparam cover-image-id "$(IMAGE_PREFIX)cover" \
-		$(XSLT)/fb2.xslt $? >$@
+		$(XSLT_DIR)/fb2.xslt $? >$@
 
 $(TARGET_DIR)/$(TARGET).fb2.zip: $(TARGET_DIR)/$(TARGET).fb2
 	#
@@ -58,7 +70,15 @@ $(TARGET_DIR)/$(TARGET).fb2.zip: $(TARGET_DIR)/$(TARGET).fb2
 fb2check: $(TARGET_DIR)/$(TARGET).fb2
 	xmllint --noout --schema $(FB2XSD) $?
 
+$(TARGET_DIR)/*.jpg: $(ALL_IMAGES)
+	for file in $?; do \
+		fname=`basename $$file`; \
+		cnv="convert -resize 333x333 -density 72 -quality 50 $$file $(@D)/$${fname%.*}.jpg"; \
+		echo $$cnv; $$cnv; \
+	done
+
+img: $(TARGET_DIR) $(TARGET_DIR)/*.jpg
 
 clean:
-	rm -rf *.ps *.dvi *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.ptc* *.mtc* *.maf *.4ct *.4tc *.css *.html* *.idv *.lg *.tmp *.xref $(TARGET_DIR)
+	rm -rf *~ *.ps *.dvi *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.ptc* *.mtc* *.maf *.4ct *.4tc *.css *.html* *.idv *.lg *.tmp *.xref $(TARGET_DIR)/$(TARGET)*
 

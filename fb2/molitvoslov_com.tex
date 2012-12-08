@@ -18,9 +18,8 @@
 \newcommand{\ornament}{uzor_begin_10}
 \newcommand{\ornamentending}{uzor_end_3}
 
-\title{Молитвослов на всякую потребу}
+\title{Полный православный молитвослов на всякую потребу}
 \author{www.molitvoslov.com}
-\date{2011-10-13}
 
 \newcommand{\mypart}[1]{
     \part{#1}
@@ -89,13 +88,16 @@
 
 \newcommand{\firstletter}[1]{#1}%{\myheadingcolor #1}}
 
+\newcommand{\mybibleref}[1]{(#1)}
+
 \input{../common-prayers}
 
 \renewcommand{\pripevc}[1]{#1}
 
 \begin{document}
 
-\input{../_content_molitvi}
+\input{myroot.tmp}
+
 \input{../changes}
 
 \end{document}

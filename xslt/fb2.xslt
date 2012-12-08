@@ -2,13 +2,13 @@
 <xsl:stylesheet version="1.0"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns="http://www.gribuser.ru/xml/fictionbook/2.0"
-  xmlns:fb2="http://www.gribuser.ru/xml/fictionbook/2.0"
+  xmlns:pre="http://www.gribuser.ru/xml/fictionbook/2.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  exclude-result-prefixes="fb2 xsl">
-  
-  <xsl:strip-space  elements="fb2:*"/>
-  <xsl:preserve-space elements="fb2:p"/>
+  exclude-result-prefixes="pre xsl">
 
+<xsl:strip-space elements="pre:*"/>
+<xsl:preserve-space elements="pre:p pre:v pre:emphasis pre:strong pre:a"/>
+  
 <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
 <xsl:param name="document-info-id">AF0BDE17-0E06-48C1-9449-EEF622B3740B</xsl:param>
@@ -27,24 +27,27 @@
 <!--
 Populate the description
 -->
-<xsl:template match="fb2:description">
+<xsl:template match="pre:description">
   <xsl:copy>
     <xsl:apply-templates select="@*|node()"/>
     <title-info>
       <genre>religion_rel</genre>
       <author>
-        <nickname/>
+        <first-name>www.molitvoslov.com</first-name>
+        <middle-name/>
+        <last-name/>
       </author>
       <book-title>Полный православный молитвослов на всякую потребу</book-title>
       <annotation>
       <p>Полный православный молитвослов создан на основе материалов сайта <a xlink:href="http://www.molitvoslov.com/">http://www.molitvoslov.com</a></p>
       </annotation>
+      <keywords>Православие,церковь,молитва,молитвослов,канон,акафист,правило,святой,вера,исцеление</keywords>
       <coverpage>
       	<image>
        	  <xsl:attribute name = "xlink:href">
-	    <xsl:value-of select = "$cover-image-id" />
+      	    <xsl:value-of select = "concat('#', $cover-image-id)" />
           </xsl:attribute>
-	</image>
+        </image>
       </coverpage>
       <lang>ru</lang>
       <src-lang>ru</src-lang>
@@ -53,7 +56,7 @@ Populate the description
       <author>
         <nickname/>
       </author>
-      <program-used>TeX4ht (http://www.tug.org/tex4ht/), xsltproc (http://xmlsoft.org/)</program-used>
+      <program-used>TeX4ht (http://www.tug.org/tex4ht/) | xsltproc, xmllint (http://xmlsoft.org/)</program-used>
       <date>
         <xsl:attribute name = "value">
             <xsl:value-of select = "$document-info-date-value"/>
@@ -72,36 +75,51 @@ Populate the description
   </xsl:copy>
 </xsl:template>
 
+<xsl:template match="pre:title">
+    <xsl:copy>
+        <xsl:apply-templates select="@*" />
+        <xsl:apply-templates select="node()" />
+        <xsl:copy-of select="following-sibling::pre:p[1][./pre:image]" />
+    </xsl:copy>
+</xsl:template>
+
+<xsl:template match="pre:p[preceding-sibling::pre:title[1] and ./pre:image]" />
+
 <!-- Remove meta elements -->
-<xsl:template match="fb2:meta" />
+<xsl:template match="pre:meta" />
 
 <!--
 Remove paragraphs containing only whitespace or non-breaking space
 match if only one node and that node is text and whitespace
 -->
 <xsl:template 
-    match="fb2:p[count(node()) = 1 and child::node()[1][self::text() and normalize-space(.) = '']]" />
+    match="pre:p[count(node()) = 1 and child::node()[1][self::text() and normalize-space(.) = '']]" />
 
 <!--
 Remove empty links
 -->
 <xsl:template 
-    match="fb2:a[count(node()) = 0]" />
+    match="pre:a[count(node()) = 0]" />
 
 <!--
 Remove paragraphs containing only whitespace or non-breaking space
 match if only one node and that node is text and whitespace
 -->
 <xsl:template 
-    match="fb2:v[count(node()) = 1 and child::node()[1][self::text() and normalize-space(.) = '']]" />
+    match="pre:v[count(node()) = 1 and child::node()[1][self::text() and normalize-space(.) = '']]" />
 
 <!--
 Remove comments
 -->
 <xsl:template match="comment()"/>
 
+<!--
+Remove comments
+-->
+<xsl:template match="pre:br"/>
+
 <!-- remove span elements, but not their contents -->
-<xsl:template match="fb2:span">
+<xsl:template match="pre:span">
     <xsl:apply-templates select="node()"/>
 </xsl:template>
 

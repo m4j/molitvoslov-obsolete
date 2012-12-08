@@ -22,9 +22,8 @@
 \addtolength\headoff{\headsep}
 \addtolength\headoff{14pt}
 
-\title{Молитвослов на всякую потребу}
+\title{Полный православный молитвослов на всякую потребу}
 \author{www.molitvoslov.com}
-\date{2011-10-13}
 \setcounter{secnumdepth}{-3}
 %\setcounter{tocdepth}{-1}
 
@@ -111,6 +110,10 @@
 
 \newcommand{\firstletter}[1]{#1}%{\myheadingcolor #1}}
 
+\newcommand{\mybibleref}[1]{%
+  \myemph{\footnotesize #1}%
+}
+
 \input{common-prayers}
 
 \begin{document}
@@ -123,13 +126,9 @@
 
 \renewcommand{\ornament}{uzor_begin_10}
 
-\input{_content_molitvi}
-
-\input{_content_velikiy-kanon}
+\input{root}
 
 \mypart{ПРИЛОЖЕНИЯ}
-
-\include{_slovar.php}
 
 \input{changes}
 

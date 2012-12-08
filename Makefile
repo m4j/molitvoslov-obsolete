@@ -118,8 +118,8 @@ $(EPUB_HTML_DIR)/images/*.png: uzory/uzor_begin_10.pdf uzory/uzor_begin_4.pdf uz
 $(EPUB_HTML_DIR)/images/tall/*.jp*g: img/tall/*.jp*g
 	for file in $?; do \
 		fname=`basename $$file`; \
-		resize_to="500x500<"; \
-		cnv="convert $$file -resize $${resize_to} $(@D)/$$fname"; \
+		resize_to="500x500"; \
+		cnv="convert $$file -density 72 -resize $${resize_to} $(@D)/$$fname"; \
 		echo $$cnv; $$cnv; \
 	done
 
@@ -129,8 +129,8 @@ $(EPUB_HTML_DIR)/images/wide/*.jp*g: img/wide/*.jp*g
 $(EPUB_HTML_DIR)/images/*.jp*g: img/*.jp*g
 	for file in $?; do \
 		fname=`basename $$file`; \
-		resize_to="500x500<"; \
-		cnv="convert $$file -resize $${resize_to} $(@D)/$$fname"; \
+		resize_to="500x500"; \
+		cnv="convert $$file -density 72 -resize $${resize_to} $(@D)/$$fname"; \
 		echo $$cnv; $$cnv; \
 	done
 
@@ -147,7 +147,7 @@ $(EPUB_HTML_DIR)/$(TARGET)*.html: $(TARGET)*.html $(XSLT)/*.xslt $(SCRIPTS)/*.sh
 	export CREATOR="www.molitvoslov.com"; \
 	export PUBLISHER="www.molitvoslov.com"; \
 	export RIGHTS="Public domain"; \
-	export TITLE="Молитвослов на всякую потребу"; \
+	export TITLE="Полный православный молитвослов на всякую потребу"; \
 	export BOOK_LANG="ru"; \
 	$(SCRIPTS)/epubmkopf.sh $(TARGET) $(EPUB_HTML_DIR) $(XSLT)/epubmkspine.xslt >$(EPUB_HTML_DIR)/content.opf && \
 	$(XSLTPROC) \
