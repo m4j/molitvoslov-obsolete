@@ -56,10 +56,7 @@ a { text-decoration: none; text-align: left }
 span.titlemark { line-height: 300% }
 p { margin: 0px; line-height:1.3em}
 li.itemize {text-align: left; margin-left: -0.3em;}
-#secondpagewarning h4 {
-    color: black;
-}
-#secondpagewarning {
+#announce {
     page-break-after: always;
 }
 

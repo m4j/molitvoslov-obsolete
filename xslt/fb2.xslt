@@ -37,11 +37,11 @@ Populate the description
         <middle-name/>
         <last-name/>
       </author>
-      <book-title>Полный православный молитвослов на всякую потребу</book-title>
+      <book-title>Полный православный молитвослов</book-title>
       <annotation>
-      <p>Полный православный молитвослов создан на основе материалов сайта <a xlink:href="http://www.molitvoslov.com/">http://www.molitvoslov.com</a></p>
+        <xsl:copy-of select="//pre:section[@id='announce']/*" />
       </annotation>
-      <keywords>Православие,церковь,молитва,молитвослов,канон,акафист,правило,святой,вера,исцеление</keywords>
+    <keywords>Православие,церковь,молитва,молитвослов,канон,акафист,правило,святой,вера,исцеление</keywords>
       <coverpage>
       	<image>
        	  <xsl:attribute name = "xlink:href">
@@ -75,6 +75,7 @@ Populate the description
   </xsl:copy>
 </xsl:template>
 
+<!-- Copy <image> element into the preceding <title> -->
 <xsl:template match="pre:title">
     <xsl:copy>
         <xsl:apply-templates select="@*" />
@@ -83,10 +84,14 @@ Populate the description
     </xsl:copy>
 </xsl:template>
 
+<!-- Remove <image> element that was copied in the previous template -->
 <xsl:template match="pre:p[preceding-sibling::pre:title[1] and ./pre:image]" />
 
 <!-- Remove meta elements -->
 <xsl:template match="pre:meta" />
+
+<!-- Delete "announce" section -->
+<xsl:template match="pre:section[@id='announce']" />
 
 <!--
 Remove paragraphs containing only whitespace or non-breaking space
