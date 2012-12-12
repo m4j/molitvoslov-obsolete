@@ -11,7 +11,12 @@ FB2XSD=xsd/FictionBook2.1.xsd
 IMAGE_PREFIX=img_
 VERSION_FILE=$(TOP)/VERSION
 ALL_IMAGES=$(shell find $(IMG_DIR) -iname "*.jp*g")
+HTLATEX_CONFIG=custom.cfg
+COVERS=$(TOP)/header
 #UNICODE4HF=$(shell kpsewhich unicode.4hf)
+
+# epub metadata
+include $(TARGET).mk
 
 .PHONY: fb2 fb2check img
 
@@ -34,18 +39,23 @@ myroot.tmp: $(TOP)/root.tex
 	# for fb2...
 	sed "s/\\include{/\\input{..\//" $? >$@
 
-$(TARGET).html: $(TOP)/*.tex $(TARGET).cfg $(TARGET).tex unicode.4hf myroot.tmp
+$(TARGET).html: $(TOP)/*.tex $(HTLATEX_CONFIG) $(TARGET).tex unicode.4hf myroot.tmp
 	#
 	# execute tex4ht process
-	$(HTLATEX) $(TARGET).tex "$(TARGET)" " -cunihtf -utf8" ""
+	$(HTLATEX) $(TARGET).tex "$(HTLATEX_CONFIG)" " -cunihtf -utf8" ""
 	
-$(TARGET).html.0: $(TARGET).html
-	cp -v $? $@
+$(TARGET_DIR)/cover.jpg: $(COVERS)/$(TARGET)-ebook.svg
+	#
+	# copy cover file
+	convert $? $@
+	
+$(TARGET).html.0: $(TARGET).html $(TARGET_DIR)/cover.jpg
+	cp -v $(TARGET).html $@
 	# append cover image
-	$(SCRIPTS)/fbcnvimg.sh "./" "$(IMAGE_PREFIX)" cover >>$@
+	$(SCRIPTS)/fbcnvimg.sh "$(TARGET_DIR)" "$(IMAGE_PREFIX)" cover >>$@
 	# append all other images used in the document,
 	# sorting and filtering out duplicates
-	sed -n 's/^.*<image xlink:href="#$(IMAGE_PREFIX)\(.*\)".*$$/\1/p' $? | sort -u | xargs --verbose	$(SCRIPTS)/fbcnvimg.sh "$(TARGET_DIR)" "$(IMAGE_PREFIX)" >>$@
+	sed -n 's/^.*<image xlink:href="#$(IMAGE_PREFIX)\(.*\)".*$$/\1/p' $(TARGET).html | sort -u | xargs --verbose	$(SCRIPTS)/fbcnvimg.sh "$(TARGET_DIR)" "$(IMAGE_PREFIX)" >>$@
 	echo '</FictionBook>' >> $@
 
 $(TARGET_DIR)/$(TARGET).fb2: $(TARGET).html.0
@@ -60,6 +70,8 @@ $(TARGET_DIR)/$(TARGET).fb2: $(TARGET).html.0
 		--stringparam document-info-date "$$FB2_DATE" \
 		--stringparam document-info-date-value "$$FB2_DATEVALUE" \
 		--stringparam cover-image-id "$(IMAGE_PREFIX)cover" \
+		--stringparam title-info-title "$(TITLE)" \
+		--stringparam document-info-id "$(BOOK_ID)" \
 		$(XSLT_DIR)/fb2.xslt $? >$@
 
 $(TARGET_DIR)/$(TARGET).fb2.zip: $(TARGET_DIR)/$(TARGET).fb2

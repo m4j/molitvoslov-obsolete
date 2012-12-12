@@ -11,6 +11,10 @@
   
 <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
 
+<xsl:param name="title-info-author-fn">www.molitvoslov.com</xsl:param>
+<xsl:param name="title-info-author-mn"></xsl:param>
+<xsl:param name="title-info-author-ln"></xsl:param>
+<xsl:param name="title-info-title">Полный православный молитвослов</xsl:param>
 <xsl:param name="document-info-id">AF0BDE17-0E06-48C1-9449-EEF622B3740B</xsl:param>
 <xsl:param name="document-info-version">123456789</xsl:param>
 <xsl:param name="document-info-date">2006-03-30</xsl:param>
@@ -33,11 +37,19 @@ Populate the description
     <title-info>
       <genre>religion_rel</genre>
       <author>
-        <first-name>www.molitvoslov.com</first-name>
-        <middle-name/>
-        <last-name/>
+        <first-name>
+          <xsl:value-of select = "$title-info-author-fn" />
+        </first-name>
+        <middle-name>
+          <xsl:value-of select = "$title-info-author-mn" />
+        </middle-name>
+        <last-name>
+          <xsl:value-of select = "$title-info-author-ln" />
+        </last-name>
       </author>
-      <book-title>Полный православный молитвослов</book-title>
+      <book-title>
+        <xsl:value-of select = "$title-info-title" />
+      </book-title>
       <annotation>
         <xsl:copy-of select="//pre:section[@id='announce']/*" />
       </annotation>
