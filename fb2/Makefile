@@ -10,9 +10,11 @@ SCRIPTS=$(TOP)/scripts
 FB2XSD=xsd/FictionBook2.1.xsd
 IMAGE_PREFIX=img_
 VERSION_FILE=$(TOP)/VERSION
+VERSION=$(shell cat $(VERSION_FILE))
 ALL_IMAGES=$(shell find $(IMG_DIR) -iname "*.jp*g")
 HTLATEX_CONFIG=custom.cfg
 COVERS=$(TOP)/header
+$(TARGET_FB2)=$(TARGET_DIR)/$(TARGET)-$(VERSION).fb2
 #UNICODE4HF=$(shell kpsewhich unicode.4hf)
 
 # epub metadata
@@ -20,7 +22,7 @@ include $(TARGET).mk
 
 .PHONY: fb2 fb2check img
 
-fb2: $(TARGET_DIR) img $(TARGET_DIR)/$(TARGET).fb2.zip
+fb2: $(TARGET_DIR) img $(TARGET_FB2).zip
 
 $(TARGET_DIR):
 	#
@@ -58,15 +60,14 @@ $(TARGET).html.0: $(TARGET).html $(TARGET_DIR)/cover.jpg
 	sed -n 's/^.*<image xlink:href="#$(IMAGE_PREFIX)\(.*\)".*$$/\1/p' $(TARGET).html | sort -u | xargs --verbose	$(SCRIPTS)/fbcnvimg.sh "$(TARGET_DIR)" "$(IMAGE_PREFIX)" >>$@
 	echo '</FictionBook>' >> $@
 
-$(TARGET_DIR)/$(TARGET).fb2: $(TARGET).html.0
+$(TARGET_FB2): $(TARGET).html.0
 	#
 	# call xsl transformation for finishing touch-ups
-	export FB2_VERSION=`cat $(VERSION_FILE)`; \
 	export LC_TIME=ru_RU.UTF-8; \
 	export FB2_DATE="`date "+%e %B %Y"`"; \
 	export FB2_DATEVALUE="`date "+%Y-%m-%d"`"; \
 	$(XSLT_DIRPROC) \
-		--stringparam document-info-version "$$FB2_VERSION" \
+		--stringparam document-info-version "$(VERSION)" \
 		--stringparam document-info-date "$$FB2_DATE" \
 		--stringparam document-info-date-value "$$FB2_DATEVALUE" \
 		--stringparam cover-image-id "$(IMAGE_PREFIX)cover" \
@@ -74,23 +75,23 @@ $(TARGET_DIR)/$(TARGET).fb2: $(TARGET).html.0
 		--stringparam document-info-id "$(BOOK_ID)" \
 		$(XSLT_DIR)/fb2.xslt $? >$@
 
-$(TARGET_DIR)/$(TARGET).fb2.zip: $(TARGET_DIR)/$(TARGET).fb2
+$(TARGET_FB2).zip: $(TARGET_FB2)
 	#
 	# package fb2.zip
 	zip -X9Dq $@ $?
 	
-fb2check: $(TARGET_DIR)/$(TARGET).fb2
+fb2check: $(TARGET_FB2)
 	xmllint --noout --schema $(FB2XSD) $?
 
 $(TARGET_DIR)/*.jpg: $(ALL_IMAGES)
 	for file in $?; do \
 		fname=`basename $$file`; \
-		cnv="convert -resize 333x333 -density 72 -quality 50 $$file $(@D)/$${fname%.*}.jpg"; \
+		cnv="convert -resize 333x333 -density 72 -quality 65 $$file $(@D)/$${fname%.*}.jpg"; \
 		echo $$cnv; $$cnv; \
 	done
 
 img: $(TARGET_DIR) $(TARGET_DIR)/*.jpg
 
 clean:
-	rm -rf *~ *.ps *.dvi *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.ptc* *.mtc* *.maf *.4ct *.4tc *.css *.html* *.idv *.lg *.tmp *.xref $(TARGET_DIR)/$(TARGET)*
+	rm -rf *~ *.ps *.dvi *.aux *.toc *.idx *.ind *.ilg *.log *.out *.lof *.ptc* *.mtc* *.maf *.4ct *.4tc *.css *.html* *.idv *.lg *.tmp *.xref $(TARGET_DIR)
 

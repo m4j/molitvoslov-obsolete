@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#       cnv2tex.py
+#       cnv2tex.py -- screen scraping script
 #
 #       Fetches the contents of the site www.molitvoslov.com and converts
 #       html to tex representation, also saves images under img/ directory
@@ -53,6 +53,9 @@ class Fetcher:
     "output to this file"
     myFile = None
     
+    "ordered list counter"
+    olCounter = None
+
     def __init__(self, baseUrl, file=None):
         "Basic constructor."
         self.baseUrl = baseUrl
@@ -144,19 +147,41 @@ class Fetcher:
                 self.myprint('\\bfseries ')
                 self.outputElement(el)
                 self.myprint('\\normalfont{}')
-            elif el.name == 'font':
-                self.outputElement(el)
-            elif el.name == 'span':
-                self.outputElement(el)
             elif el.name == 'a':
-	   	if el.get('class') == 'icona':
+                if el.get('class') == 'icona':
                     file_name = self.findAndSaveBigIcon(el)
                     if file_name != None:
                         self.myprint('\\myfig{' + file_name + '}')
                         sys.stdout.write(', ' + file_name)
                 else:
                     self.outputElement(el)
+            elif el.name == 'font':
+                self.outputElement(el)
+            elif el.name == 'span':
+                self.outputElement(el)
             elif el.name == 'sup':
+                self.outputElement(el)
+            elif el.name == 'table' and el.get('class') == 'description':
+                self.outputElement(el)
+            elif el.name == 'tbody':
+                self.outputElement(el)
+            elif el.name == 'tr':
+                self.myprint('\n\n')
+                self.outputElement(el)
+            elif el.name == 'td' or el.name == 'th':
+                self.outputElement(el)
+            elif el.name == 'ol':
+                self.olCounter = 0
+                self.outputElement(el)
+            elif el.name == 'ul' and el.get('class') != 'nodehierarchy_title_list':
+                self.olCounter = None
+                self.outputElement(el)
+            elif el.name == 'li':
+                self.myprint('\n\n')
+                if self.olCounter:
+                    self.olCounter = self.olCounter + 1
+                    listItem = '%d. ' % self.olCounter
+                    self.myprint(listItem)
                 self.outputElement(el)
                 
     def findAndSaveBigIcon(self, el_a):
@@ -182,8 +207,8 @@ class Fetcher:
         s = s.replace('&gt;', '$>$')
         s = s.replace('&#8212;', '"---')
         s = s.replace(' - ', ' "--- ')
-#        s = s.replace(' – ', ' "--- ')
-#        s = s.replace(' &mdash; ', ' "--- ') 
+        s = s.replace(u'—', '"---')
+        s = s.replace('&mdash;', '"---') 
         s = s.replace('&quot;', '"')
         s = s.replace('&nbsp;', ' ')
         self.myprint(s)
