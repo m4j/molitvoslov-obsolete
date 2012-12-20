@@ -5,7 +5,7 @@
 #       This script generates OPF according to EPUB 2.0 spec in a target
 #       directory.
 #       
-#       Copyright 2011 Max Agapov <m4j@swissmail.org>
+#       Copyright 2011-2012 Max Agapov <m4j@swissmail.org>
 #       
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by
@@ -124,13 +124,6 @@ cat <<EOF
   <guide>
     <reference type="toc" title="Оглавление" href="$TARGET.html" />
     <reference type="cover" title="Cover" href="cover.html"/>
-    <reference type="other.ms-coverimage-standard" title="Cover" href="cover.png" />
-    <reference type="other.ms-thumbimage-standard" title="ThumbImageStandard" href="cover.png" />
-    <reference type="other.ms-thumbimage" title="PPCThumbnailImage" href="thumb.jpg" />
-    <!--
-    <reference type="copyright" title="Copyright" href="bano_9781411432963_oeb_cop_r1.html" />
-    <reference type="beginreading" title="Begin reading" href="bano_9781411432963_oeb_p01_r1.html" />
-    -->
   </guide>
 </package>
 EOF

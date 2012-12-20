@@ -1,4 +1,5 @@
-TOP := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))../)
+BASEDIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+TOP=$(BASEDIR)/..
 TARGET=molitvoslov_com
 INCLUDEONLY=
 LATEX=htlatex
@@ -20,7 +21,7 @@ TARGET_EPUB_DIR=$(TARGET_DIR)/epub
 TARGET_IMG_DIR=$(TARGET_DIR)/img
 EPUB_HTML_DIR=$(TARGET_EPUB_DIR)/OEBPS
 EPUB_META_DIR=$(TARGET_EPUB_DIR)/META-INF
-TARGET_EPUB=$(TARGET_DIR)/$(TARGET)-$(VERSION).epub
+TARGET_EPUB=$(BASEDIR)/$(TARGET_DIR)/$(TARGET)-$(VERSION).epub
 
 # epub metadata
 include $(TARGET).mk
@@ -153,14 +154,14 @@ $(TARGET_EPUB): $(EPUB_HTML_DIR)/$(TARGET)*.html $(EPUB_HTML_DIR)/$(TARGET).css 
 	#
 	# package everything
 	cd $(TARGET_EPUB_DIR); \
-	  zip -0Xq $(TARGET).epub mimetype; \
-	  zip -Xr9Dq $(TARGET).epub META-INF OEBPS
+	  zip -0Xq $(TARGET_EPUB) mimetype; \
+	  zip -Xr9Dq $(TARGET_EPUB) META-INF OEBPS
 	#
 	# move the result and display contents
-	mv $(TARGET_EPUB_DIR)/$(TARGET).epub $(TARGET_DIR)/
+	# mv $(TARGET_EPUB_DIR)/$(TARGET).epub $(TARGET_DIR)/
 	unzip -l $(TARGET_EPUB)
 
-epubcheck: $(EPUBCHECK_JAR) $(TARGET_EPUB)
+epubcheck: $(EPUBCHECK_JAR)
 	$(JAVA) -jar $(EPUBCHECK_JAR) $(TARGET_EPUB)
 
 clean:

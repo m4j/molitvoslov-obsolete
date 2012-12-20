@@ -7,15 +7,13 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   version="1.2"
+   version="1.1"
    width="600"
    height="800"
    viewBox="0 0 599.99999 800.00001"
    id="Layer_1"
    xml:space="preserve"><metadata
-   id="metadata791"><rdf:RDF><cc:Work
-       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="metadata791"></metadata><defs
    id="defs5252" />
 
 
@@ -2765,11 +2763,4 @@
 <path
    d="m 186.40895,123.78612 c 74.01081,-35.249698 149.5262,-37.377127 227.18209,0"
    id="path5119"
-   style="fill:none;stroke:none" /><flowRoot
-   transform="translate(-8.75e-6,0)"
-   id="flowRoot4576"
-   xml:space="preserve"
-   style="font-size:40px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"><flowRegion
-     id="flowRegion4578" /><flowPara
-     id="flowPara4582"
-     style="font-size:36px" /></flowRoot></svg>
+   style="fill:none;stroke:none" /></svg>

@@ -14,7 +14,7 @@ VERSION=$(shell cat $(VERSION_FILE))
 ALL_IMAGES=$(shell find $(IMG_DIR) -iname "*.jp*g")
 HTLATEX_CONFIG=custom.cfg
 COVERS=$(TOP)/header
-$(TARGET_FB2)=$(TARGET_DIR)/$(TARGET)-$(VERSION).fb2
+TARGET_FB2=$(TARGET_DIR)/$(TARGET)-$(VERSION).fb2
 #UNICODE4HF=$(shell kpsewhich unicode.4hf)
 
 # epub metadata
@@ -78,10 +78,10 @@ $(TARGET_FB2): $(TARGET).html.0
 $(TARGET_FB2).zip: $(TARGET_FB2)
 	#
 	# package fb2.zip
-	zip -X9Dq $@ $?
+	zip -X9Dqj $@ $? && unzip -l $@
 	
-fb2check: $(TARGET_FB2)
-	xmllint --noout --schema $(FB2XSD) $?
+fb2check:
+	xmllint --noout --schema $(FB2XSD) $(TARGET_FB2)
 
 $(TARGET_DIR)/*.jpg: $(ALL_IMAGES)
 	for file in $?; do \

@@ -5,7 +5,9 @@
 *.out
 *.toc
 /*.pdf
-/*.epub
+*.epub
+*.fb2
+*.fb2.zip
 *.dvi
 *.ps
 *.ptc*
@@ -14,6 +16,7 @@
 vc.tex
 /*.html
 target
+rel
 target/*
 *~
 .~lock*
